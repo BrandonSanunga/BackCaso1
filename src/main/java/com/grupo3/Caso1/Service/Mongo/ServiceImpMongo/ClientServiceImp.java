@@ -10,14 +10,15 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ClientServiceImp extends GenericServiceImp<Client, String> implements ClientService {
+public class ClientServiceImp /*extends GenericServiceImp<Client, String> implements ClientService */{
 
-    @Autowired
+/*    @Autowired
     private ClientRepository clientRepository;
 
     @Override
     public CrudRepository<Client, String> getDao() {
         return clientRepository;
-    }
+    }*/
+    
 
 }

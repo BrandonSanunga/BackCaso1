@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin("*")
 public class ClientController {
     // Este apartado hara lo todo lo que necesite para cada metodo
-
+/*
     @Autowired
     private ClientService clientService;
 
@@ -52,5 +52,5 @@ public class ClientController {
 
         return new ResponseEntity<Client>(client, HttpStatus.OK);
     }
-
+*/
 }
