@@ -1,4 +1,4 @@
-package com.grupo3.Caso1.Controller.Mongo;
+package com.grupo3.Caso1.Controller.Posgrest;
 
 import java.util.List;
 
@@ -11,11 +11,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.grupo3.Caso1.Model.Vehiculo;
-import com.grupo3.Caso1.Service.Mongo.VehiculoService;
+import com.grupo3.Caso1.Service.Posgrest.VehiculoService;
 
 @RestController
 @RequestMapping("/vehiculo/api/v1")
@@ -42,14 +41,14 @@ public class VehiculoController {
 
 	/*
 	 * Metodo Prueba
-	  
-	  @PostMapping("/vh")
-	
-	  @ResponseStatus(HttpStatus.CREATED) public Vehiculo create(@RequestBody
-	  Vehiculo vehiculo)
-	  { 
-	  return vehiculoService.save(vehiculo);
-	  }
+	 * 
+	 * @PostMapping("/vh")
+	 * 
+	 * @ResponseStatus(HttpStatus.CREATED) public Vehiculo create(@RequestBody
+	 * Vehiculo vehiculo)
+	 * {
+	 * return vehiculoService.save(vehiculo);
+	 * }
 	 */
 	@GetMapping(value = "/delete/{id}")
 	public ResponseEntity<Vehiculo> delete(@PathVariable(value = "id") Long id) {
