@@ -1,9 +1,9 @@
-package com.grupo3.Caso1.Controller.Mongo;
+package com.grupo3.Caso1.Controller.Postgres;
 
 import java.util.List;
 
 import com.grupo3.Caso1.Model.Client;
-import com.grupo3.Caso1.Service.Mongo.ClientService;
+import com.grupo3.Caso1.Service.Postgres.ClientService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

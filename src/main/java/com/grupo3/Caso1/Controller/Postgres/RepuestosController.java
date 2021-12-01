@@ -1,4 +1,4 @@
-package com.grupo3.Caso1.Controller.Mongo;
+package com.grupo3.Caso1.Controller.Postgres;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.grupo3.Caso1.Model.Repuestos;
-import com.grupo3.Caso1.Service.Mongo.RepuestoService;
+import com.grupo3.Caso1.Service.Postgres.RepuestoService;
 
 @RestController
 @RequestMapping("/repuestos/api/v1")

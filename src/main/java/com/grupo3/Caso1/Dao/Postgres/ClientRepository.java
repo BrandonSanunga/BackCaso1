@@ -1,4 +1,4 @@
-package com.grupo3.Caso1.Dao.Mongo;
+package com.grupo3.Caso1.Dao.Postgres;
 
 import com.grupo3.Caso1.Model.Client;
 

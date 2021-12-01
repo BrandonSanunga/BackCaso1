@@ -1,4 +1,4 @@
-package com.grupo3.Caso1.Controller.Mongo;
+package com.grupo3.Caso1.Controller.Postgres;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.grupo3.Caso1.Model.FacturaRepuestos;
-import com.grupo3.Caso1.Service.Mongo.FacturaRepuestoService;
+import com.grupo3.Caso1.Service.Postgres.FacturaRepuestoService;
 
 @RestController
 @RequestMapping("/facturaRep/api/v1")
