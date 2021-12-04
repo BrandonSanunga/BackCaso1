@@ -21,6 +21,7 @@ public class FacturaClient {
 	@Temporal(TemporalType.DATE)
 	private Date fecha_emision;
 	private String fk_cedula_cliente;
+	private double total_factura;
 	
 	public FacturaClient() {
 	}
@@ -39,16 +40,8 @@ public class FacturaClient {
 		return id_factura;
 	}
 
-	public void setId_factura(long id_factura) {
-		this.id_factura = id_factura;
-	}
-
 	public Date getFecha_emision() {
 		return fecha_emision;
-	}
-
-	public void setFecha_emision(Date fecha_emision) {
-		this.fecha_emision = fecha_emision;
 	}
 
 	public String getFk_cedula_cliente() {
@@ -58,5 +51,10 @@ public class FacturaClient {
 	public void setFk_cedula_cliente(String fk_cedula_cliente) {
 		this.fk_cedula_cliente = fk_cedula_cliente;
 	}
+
+	public double getTotal_factura() {
+		return total_factura;
+	}
+
 }
 

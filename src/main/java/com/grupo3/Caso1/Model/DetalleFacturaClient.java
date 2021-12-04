@@ -42,10 +42,6 @@ public class DetalleFacturaClient {
 		return id_detalle;
 	}
 
-	public void setId_detalle(Long id_detalle) {
-		this.id_detalle = id_detalle;
-	}
-
 	public int getCantidad() {
 		return cantidad;
 	}
