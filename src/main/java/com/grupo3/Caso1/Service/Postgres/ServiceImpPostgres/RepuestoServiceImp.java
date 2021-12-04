@@ -8,7 +8,7 @@ import com.grupo3.Caso1.Commons.GenericServiceImp;
 import com.grupo3.Caso1.Dao.Postgres.RepuestoRepository;
 import com.grupo3.Caso1.Model.Repuestos;
 import com.grupo3.Caso1.Service.Postgres.RepuestoService;
-import com.grupo3.Caso1.Service.Postgres.informeReparacionService;
+
 
 @Service
 public class RepuestoServiceImp extends GenericServiceImp<Repuestos, String> implements RepuestoService {
