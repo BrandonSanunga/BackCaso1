@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class InformeRechazo {
+public class InformeReclamo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idinformeRecha;
@@ -21,10 +21,10 @@ public class InformeRechazo {
     private boolean tipo_informe;
     private boolean respuesta_cliente;
 
-    public InformeRechazo() {
+    public InformeReclamo() {
     }
 
-    public InformeRechazo(Long idinformeRecha, Date fechaEmicion, String idCliente, Vehiculo vehiculo,
+    public InformeReclamo(Long idinformeRecha, Date fechaEmicion, String idCliente, Vehiculo vehiculo,
             String descripcionInforme, boolean tipo_informe, boolean respuesta_cliente) {
         this.idinformeRecha = idinformeRecha;
         this.fechaEmicion = fechaEmicion;

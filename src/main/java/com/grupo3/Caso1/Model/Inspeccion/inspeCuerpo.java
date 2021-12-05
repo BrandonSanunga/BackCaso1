@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -12,80 +13,50 @@ public class inspeCuerpo {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idinspeCuerpo;
     @ManyToOne
+    @JoinColumn(name = "idinspeccionCavecera")
     private inspeCavecera inspeCavecera;
     private String luces;
     private String parabrisas;
-    private String limpiaparabrisas;
-    private String bocina;
     private String bateria;
-    private String aceite;
     private String liquido_transmicion;
-    private String liquido_direccion;
-    private String liquido_frenos;
+    private String direccion;
     private String refrigerante;
     private String filtro_cabina;
     private String filtro_aire;
     private String cinturones;
-    private String linea_frenos;
-    private String clabes_frenos;
+    private String frenos;
     private String suspencion;
-    private String direccion;
     private String eje;
-    private String liquido_diferencia_tracero;
     private String escape;
-    private String amortiguador;
-    private String puntuales;
     private String patron_desgaste_neomatico;
     private String tipo_reparacion_neomatico;
-    private String pastillas_frenos;
     private String observaciones;
 
     public inspeCuerpo() {
     }
 
     public inspeCuerpo(Long idinspeCuerpo, com.grupo3.Caso1.Model.Inspeccion.inspeCavecera inspeCavecera, String luces,
-            String parabrisas, String limpiaparabrisas, String bocina, String bateria, String aceite,
-            String liquido_transmicion, String liquido_direccion, String liquido_frenos, String refrigerante,
-            String filtro_cabina, String filtro_aire, String cinturones, String linea_frenos, String clabes_frenos,
-            String suspencion, String direccion, String eje, String liquido_diferencia_tracero, String escape,
-            String amortiguador, String puntuales, String patron_desgaste_neomatico, String tipo_reparacion_neomatico,
-            String pastillas_frenos, String observaciones) {
+            String parabrisas, String bateria, String liquido_transmicion, String direccion, String refrigerante,
+            String filtro_cabina, String filtro_aire, String cinturones, String frenos, String suspencion, String eje,
+            String escape, String patron_desgaste_neomatico, String tipo_reparacion_neomatico, String observaciones) {
         this.idinspeCuerpo = idinspeCuerpo;
         this.inspeCavecera = inspeCavecera;
         this.luces = luces;
         this.parabrisas = parabrisas;
-        this.limpiaparabrisas = limpiaparabrisas;
-        this.bocina = bocina;
         this.bateria = bateria;
-        this.aceite = aceite;
         this.liquido_transmicion = liquido_transmicion;
-        this.liquido_direccion = liquido_direccion;
-        this.liquido_frenos = liquido_frenos;
+        this.direccion = direccion;
         this.refrigerante = refrigerante;
         this.filtro_cabina = filtro_cabina;
         this.filtro_aire = filtro_aire;
         this.cinturones = cinturones;
-        this.linea_frenos = linea_frenos;
-        this.clabes_frenos = clabes_frenos;
+        this.frenos = frenos;
         this.suspencion = suspencion;
-        this.direccion = direccion;
         this.eje = eje;
-        this.liquido_diferencia_tracero = liquido_diferencia_tracero;
         this.escape = escape;
-        this.amortiguador = amortiguador;
-        this.puntuales = puntuales;
         this.patron_desgaste_neomatico = patron_desgaste_neomatico;
         this.tipo_reparacion_neomatico = tipo_reparacion_neomatico;
-        this.pastillas_frenos = pastillas_frenos;
         this.observaciones = observaciones;
-    }
-
-    public inspeCavecera getInspeCavecera() {
-        return inspeCavecera;
-    }
-
-    public void setInspeCavecera(inspeCavecera inspeCavecera) {
-        this.inspeCavecera = inspeCavecera;
     }
 
     public Long getIdinspeCuerpo() {
@@ -94,6 +65,14 @@ public class inspeCuerpo {
 
     public void setIdinspeCuerpo(Long idinspeCuerpo) {
         this.idinspeCuerpo = idinspeCuerpo;
+    }
+
+    public inspeCavecera getInspeCavecera() {
+        return inspeCavecera;
+    }
+
+    public void setInspeCavecera(inspeCavecera inspeCavecera) {
+        this.inspeCavecera = inspeCavecera;
     }
 
     public String getLuces() {
@@ -112,36 +91,12 @@ public class inspeCuerpo {
         this.parabrisas = parabrisas;
     }
 
-    public String getLimpiaparabrisas() {
-        return limpiaparabrisas;
-    }
-
-    public void setLimpiaparabrisas(String limpiaparabrisas) {
-        this.limpiaparabrisas = limpiaparabrisas;
-    }
-
-    public String getBocina() {
-        return bocina;
-    }
-
-    public void setBocina(String bocina) {
-        this.bocina = bocina;
-    }
-
     public String getBateria() {
         return bateria;
     }
 
     public void setBateria(String bateria) {
         this.bateria = bateria;
-    }
-
-    public String getAceite() {
-        return aceite;
-    }
-
-    public void setAceite(String aceite) {
-        this.aceite = aceite;
     }
 
     public String getLiquido_transmicion() {
@@ -152,20 +107,12 @@ public class inspeCuerpo {
         this.liquido_transmicion = liquido_transmicion;
     }
 
-    public String getLiquido_direccion() {
-        return liquido_direccion;
+    public String getDireccion() {
+        return direccion;
     }
 
-    public void setLiquido_direccion(String liquido_direccion) {
-        this.liquido_direccion = liquido_direccion;
-    }
-
-    public String getLiquido_frenos() {
-        return liquido_frenos;
-    }
-
-    public void setLiquido_frenos(String liquido_frenos) {
-        this.liquido_frenos = liquido_frenos;
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 
     public String getRefrigerante() {
@@ -200,20 +147,12 @@ public class inspeCuerpo {
         this.cinturones = cinturones;
     }
 
-    public String getLinea_frenos() {
-        return linea_frenos;
+    public String getFrenos() {
+        return frenos;
     }
 
-    public void setLinea_frenos(String linea_frenos) {
-        this.linea_frenos = linea_frenos;
-    }
-
-    public String getClabes_frenos() {
-        return clabes_frenos;
-    }
-
-    public void setClabes_frenos(String clabes_frenos) {
-        this.clabes_frenos = clabes_frenos;
+    public void setFrenos(String frenos) {
+        this.frenos = frenos;
     }
 
     public String getSuspencion() {
@@ -224,14 +163,6 @@ public class inspeCuerpo {
         this.suspencion = suspencion;
     }
 
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-
     public String getEje() {
         return eje;
     }
@@ -240,36 +171,12 @@ public class inspeCuerpo {
         this.eje = eje;
     }
 
-    public String getLiquido_diferencia_tracero() {
-        return liquido_diferencia_tracero;
-    }
-
-    public void setLiquido_diferencia_tracero(String liquido_diferencia_tracero) {
-        this.liquido_diferencia_tracero = liquido_diferencia_tracero;
-    }
-
     public String getEscape() {
         return escape;
     }
 
     public void setEscape(String escape) {
         this.escape = escape;
-    }
-
-    public String getAmortiguador() {
-        return amortiguador;
-    }
-
-    public void setAmortiguador(String amortiguador) {
-        this.amortiguador = amortiguador;
-    }
-
-    public String getPuntuales() {
-        return puntuales;
-    }
-
-    public void setPuntuales(String puntuales) {
-        this.puntuales = puntuales;
     }
 
     public String getPatron_desgaste_neomatico() {
@@ -286,14 +193,6 @@ public class inspeCuerpo {
 
     public void setTipo_reparacion_neomatico(String tipo_reparacion_neomatico) {
         this.tipo_reparacion_neomatico = tipo_reparacion_neomatico;
-    }
-
-    public String getPastillas_frenos() {
-        return pastillas_frenos;
-    }
-
-    public void setPastillas_frenos(String pastillas_frenos) {
-        this.pastillas_frenos = pastillas_frenos;
     }
 
     public String getObservaciones() {

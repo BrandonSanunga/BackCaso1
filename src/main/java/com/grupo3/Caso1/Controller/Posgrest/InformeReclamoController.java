@@ -2,8 +2,8 @@ package com.grupo3.Caso1.Controller.Posgrest;
 
 import java.util.List;
 
-import com.grupo3.Caso1.Model.InformeRechazo;
-import com.grupo3.Caso1.Service.Posgrest.InformeRechazoService;
+import com.grupo3.Caso1.Model.InformeReclamo;
+import com.grupo3.Caso1.Service.Posgrest.InformeReclamoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,34 +19,34 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/inforech/api/v1")
 @CrossOrigin("*")
-public class InformeRechazoController {
+public class InformeReclamoController {
     @Autowired
-    private InformeRechazoService informeRechazoService;
+    private InformeReclamoService informeRechazoService;
 
     @GetMapping(value = "/all")
-    public List<InformeRechazo> getAll() {
+    public List<InformeReclamo> getAll() {
         return informeRechazoService.getAll();
     }
 
     @GetMapping(value = "/find/{id}")
-    public InformeRechazo find(@PathVariable(value = "id") Long id) {
+    public InformeReclamo find(@PathVariable(value = "id") Long id) {
         return informeRechazoService.get(id);
     }
 
     @PostMapping(value = "/save")
-    public ResponseEntity<InformeRechazo> save(@RequestBody InformeRechazo informeRechazo) {
-        InformeRechazo obj = informeRechazoService.save(informeRechazo);
-        return new ResponseEntity<InformeRechazo>(obj, HttpStatus.OK);
+    public ResponseEntity<InformeReclamo> save(@RequestBody InformeReclamo informeRechazo) {
+        InformeReclamo obj = informeRechazoService.save(informeRechazo);
+        return new ResponseEntity<InformeReclamo>(obj, HttpStatus.OK);
     }
 
     @GetMapping(value = "/delete/{id}")
-    public ResponseEntity<InformeRechazo> delete(@PathVariable(value = "id") Long id) {
-        InformeRechazo informeRechazo = informeRechazoService.get(id);
+    public ResponseEntity<InformeReclamo> delete(@PathVariable(value = "id") Long id) {
+        InformeReclamo informeRechazo = informeRechazoService.get(id);
         if (informeRechazo != null) {
             informeRechazoService.delete(id);
         } else {
-            return new ResponseEntity<InformeRechazo>(HttpStatus.OK);
+            return new ResponseEntity<InformeReclamo>(HttpStatus.OK);
         }
-        return new ResponseEntity<InformeRechazo>(informeRechazo, HttpStatus.OK);
+        return new ResponseEntity<InformeReclamo>(informeRechazo, HttpStatus.OK);
     }
 }

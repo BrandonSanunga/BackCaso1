@@ -6,33 +6,31 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.grupo3.Caso1.Model.Vehiculo;
+import com.grupo3.Caso1.Model.Inspeccion.inspeCuerpo;
 
 @Entity
 public class ordenRepCavecera {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idordenCave;
-    public Date fechaActual;
-    public String idcedulaClient;
+    public Date fecha_emision;
     public Date fechaIngreso;
-    public String horaIngreso;
     @ManyToOne
-    private Vehiculo vehiculo;
+    @JoinColumn(name = "idinspeCuerpo")
+    private inspeCuerpo inspeCuerpo;
 
     public ordenRepCavecera() {
     }
 
-    public ordenRepCavecera(Long idordenCave, Date fechaActual, String idcedulaClient, Date fechaIngreso,
-            String horaIngreso, Vehiculo vehiculo) {
+    public ordenRepCavecera(Long idordenCave, Date fecha_emision, Date fechaIngreso,
+            com.grupo3.Caso1.Model.Inspeccion.inspeCuerpo inspeCuerpo) {
         this.idordenCave = idordenCave;
-        this.fechaActual = fechaActual;
-        this.idcedulaClient = idcedulaClient;
+        this.fecha_emision = fecha_emision;
         this.fechaIngreso = fechaIngreso;
-        this.horaIngreso = horaIngreso;
-        this.vehiculo = vehiculo;
+        this.inspeCuerpo = inspeCuerpo;
     }
 
     public Long getIdordenCave() {
@@ -43,20 +41,12 @@ public class ordenRepCavecera {
         this.idordenCave = idordenCave;
     }
 
-    public Date getFechaActual() {
-        return fechaActual;
+    public Date getFecha_emision() {
+        return fecha_emision;
     }
 
-    public void setFechaActual(Date fechaActual) {
-        this.fechaActual = fechaActual;
-    }
-
-    public String getIdcedulaClient() {
-        return idcedulaClient;
-    }
-
-    public void setIdcedulaClient(String idcedulaClient) {
-        this.idcedulaClient = idcedulaClient;
+    public void setFecha_emision(Date fecha_emision) {
+        this.fecha_emision = fecha_emision;
     }
 
     public Date getFechaIngreso() {
@@ -67,20 +57,12 @@ public class ordenRepCavecera {
         this.fechaIngreso = fechaIngreso;
     }
 
-    public String getHoraIngreso() {
-        return horaIngreso;
+    public inspeCuerpo getInspeCuerpo() {
+        return inspeCuerpo;
     }
 
-    public void setHoraIngreso(String horaIngreso) {
-        this.horaIngreso = horaIngreso;
-    }
-
-    public Vehiculo getVehiculo() {
-        return vehiculo;
-    }
-
-    public void setVehiculo(Vehiculo vehiculo) {
-        this.vehiculo = vehiculo;
+    public void setInspeCuerpo(inspeCuerpo inspeCuerpo) {
+        this.inspeCuerpo = inspeCuerpo;
     }
 
 }
