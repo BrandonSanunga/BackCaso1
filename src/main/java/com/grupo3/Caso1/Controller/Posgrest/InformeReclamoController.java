@@ -2,7 +2,6 @@ package com.grupo3.Caso1.Controller.Posgrest;
 
 import java.util.List;
 
-import com.grupo3.Caso1.Dao.Posgrest.informeReclamoRepositori;
 import com.grupo3.Caso1.Model.InformeReclamo;
 import com.grupo3.Caso1.Service.Posgrest.InformeReclamoService;
 import com.grupo3.Caso1.Service.Posgrest.ServiceImp.InformeReclamoServiceImp;
