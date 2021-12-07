@@ -1,28 +1,23 @@
 package com.grupo3.Caso1.Model;
 
-import java.util.Date;
-
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document(value = "client")
 public class Client {
 
     @Id
     private String cedulaClient;
-
     private String nombresClient;
-    private String apellidosClient;
-    private Date nacimientoClient;
     private String emailClient;
     private String celularClient;
     private String direccionClient;
     private String passwordClient;
 
-    public Client(String cedulaClient, String nombresClient, String apellidosClient, Date nacimientoClient,
-            String emailClient, String celularClient, String direccionClient, String passwordClient) {
+    public Client(String cedulaClient, String nombresClient, String emailClient, String celularClient,
+            String direccionClient, String passwordClient) {
         this.cedulaClient = cedulaClient;
         this.nombresClient = nombresClient;
-        this.apellidosClient = apellidosClient;
-        this.nacimientoClient = nacimientoClient;
         this.emailClient = emailClient;
         this.celularClient = celularClient;
         this.direccionClient = direccionClient;
@@ -58,34 +53,6 @@ public class Client {
      */
     public void setNombresClient(String nombresClient) {
         this.nombresClient = nombresClient;
-    }
-
-    /**
-     * @return String return the apellidosClient
-     */
-    public String getApellidosClient() {
-        return apellidosClient;
-    }
-
-    /**
-     * @param apellidosClient the apellidosClient to set
-     */
-    public void setApellidosClient(String apellidosClient) {
-        this.apellidosClient = apellidosClient;
-    }
-
-    /**
-     * @return Date return the nacimientoClient
-     */
-    public Date getNacimientoClient() {
-        return nacimientoClient;
-    }
-
-    /**
-     * @param nacimientoClient the nacimientoClient to set
-     */
-    public void setNacimientoClient(Date nacimientoClient) {
-        this.nacimientoClient = nacimientoClient;
     }
 
     /**
