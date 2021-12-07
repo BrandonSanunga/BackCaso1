@@ -21,7 +21,9 @@ public class DetalleFacturaClient {
 	@ManyToOne
 	@JoinColumn(name = "id_factura")
 	private FacturaClient fk_id_factura;
-	private String fk_chasis_vehiculo;
+	@ManyToOne
+	@JoinColumn(name = "chasis_vehiculo")
+	private Vehiculo fk_chasis_vehiculo;
 	
 	
 	
@@ -29,7 +31,7 @@ public class DetalleFacturaClient {
 	}
 
 	public DetalleFacturaClient(int cantidad, double precio_unt, double precio_total,
-			FacturaClient fk_id_factura, String fk_chasis_vehiculo) {
+			FacturaClient fk_id_factura, Vehiculo fk_chasis_vehiculo) {
 		super();
 		this.cantidad = cantidad;
 		this.precio_unt = precio_unt;
@@ -74,11 +76,11 @@ public class DetalleFacturaClient {
 		this.fk_id_factura = fk_id_factura;
 	}
 
-	public String getFk_chasis_vehiculo() {
+	public Vehiculo getFk_chasis_vehiculo() {
 		return fk_chasis_vehiculo;
 	}
 
-	public void setFk_chasis_vehiculo(String fk_chasis_vehiculo) {
+	public void setFk_chasis_vehiculo(Vehiculo fk_chasis_vehiculo) {
 		this.fk_chasis_vehiculo = fk_chasis_vehiculo;
 	}
 }
