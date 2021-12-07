@@ -1,7 +1,7 @@
 package com.grupo3.Caso1.Service.Mongo.ServiceImpMongo;
 
 import com.grupo3.Caso1.Commons.GenericServiceImp;
-import com.grupo3.Caso1.Dao.Mongo.ClientRepository;
+import com.grupo3.Caso1.Dao.Posgrest.ClientRepository;
 import com.grupo3.Caso1.Model.Client;
 import com.grupo3.Caso1.Service.Mongo.ClientService;
 

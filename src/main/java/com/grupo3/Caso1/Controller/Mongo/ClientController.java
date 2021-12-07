@@ -5,7 +5,6 @@ import java.util.List;
 import com.grupo3.Caso1.Model.Client;
 import com.grupo3.Caso1.Service.Mongo.ClientService;
 
-import org.hibernate.annotations.SourceType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

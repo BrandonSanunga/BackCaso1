@@ -1,9 +1,10 @@
 package com.grupo3.Caso1.Model;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import javax.persistence.Entity;
 
-@Document(value = "client")
+import javax.persistence.Id;
+
+@Entity
 public class Client {
 
     @Id
