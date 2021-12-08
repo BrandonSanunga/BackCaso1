@@ -4,6 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.grupo3.Caso1.Commons.GenericServiceImp;
 import com.grupo3.Caso1.Dao.Posgrest.facturacion.SolicitudGarantiaRepository;
 import com.grupo3.Caso1.Model.SolicitudGarantia;
@@ -21,7 +24,16 @@ implements SolicitudGarantiaService{
 		return garantiaRepository;
 	}
 
-	
+	public List<SolicitudGarantia> findAllByEstado(){
+		List<SolicitudGarantia> solGaranrespuesta= new ArrayList<>();
+		List<SolicitudGarantia> solicitudes = garantiaRepository.findAll(); 
+		for (int i=0; i<solicitudes.size();i++) {
+			if(solicitudes.get(i).isEstado_solicitud()==true) {
+				solGaranrespuesta.add(solicitudes.get(i));
+			}
+	   }
+		return solGaranrespuesta;
+   }
 
 
 

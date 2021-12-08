@@ -17,7 +17,7 @@ public class SolicitudGarantia{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id_solicitud;
+	private Long id_solicitud;
 	private Date fecha_solicitud;
 	@OneToOne
 	@JoinColumn(name = "chasis_vehiculo")
@@ -25,13 +25,9 @@ public class SolicitudGarantia{
 	private String descripcion;
 	private boolean estado_solicitud;
 	
-	
-	
 	public SolicitudGarantia() {
 		super();
 	}
-
-
 
 	public SolicitudGarantia(Date fecha_solicitud, Vehiculo fk_chasis_vehiculo, String descripcion,
 			boolean estado_solicitud) {
@@ -44,13 +40,13 @@ public class SolicitudGarantia{
 
 
 
-	public long getId_solicitud() {
+	public Long getId_solicitud() {
 		return id_solicitud;
 	}
 
 
 
-	public void setId_solicitud(long id_solicitud) {
+	public void setId_solicitud(Long id_solicitud) {
 		this.id_solicitud = id_solicitud;
 	}
 
