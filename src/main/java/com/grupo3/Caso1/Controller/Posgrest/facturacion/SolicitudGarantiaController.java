@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.grupo3.Caso1.Model.FacturaClient;
 import com.grupo3.Caso1.Model.SolicitudGarantia;
 import com.grupo3.Caso1.Service.Posgrest.SolicitudGarantiaService;
 

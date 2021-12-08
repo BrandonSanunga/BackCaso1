@@ -21,9 +21,9 @@ public class Cotizacion implements Serializable{
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	    private Long id;
 	    
-	    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-	    @ManyToOne(fetch = FetchType.LAZY)
-	    private Cliente cliente;
+//	    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+//	    @ManyToOne(fetch = FetchType.LAZY)
+//	    private Cliente cliente;
 	    
 	    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	    @ManyToOne(fetch = FetchType.LAZY)
@@ -45,13 +45,13 @@ public class Cotizacion implements Serializable{
 			this.id = id;
 		}
 
-		public Cliente getCliente() {
-			return cliente;
-		}
-
-		public void setCliente(Cliente cliente) {
-			this.cliente = cliente;
-		}
+//		public Cliente getCliente() {
+//			return cliente;
+//		}
+//
+//		public void setCliente(Cliente cliente) {
+//			this.cliente = cliente;
+//		}
 
 		public Double getTotal() {
 			return total;
