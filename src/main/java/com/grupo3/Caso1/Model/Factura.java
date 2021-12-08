@@ -47,10 +47,10 @@ public class Factura implements Serializable {
 	@Column(nullable = false)
 	private String direccion;
 
-	// @JsonIgnoreProperties(value={"facturas", "hibernateLazyInitializer",
-	// "handler"}, allowSetters=true)
-	// @ManyToOne(fetch = FetchType.LAZY)
-	// private Cliente cliente;
+	 @JsonIgnoreProperties(value={"facturas", "hibernateLazyInitializer",
+	 "handler"}, allowSetters=true)
+	 @ManyToOne(fetch = FetchType.LAZY)
+	 private Client cliente;
 
 	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -114,13 +114,6 @@ public class Factura implements Serializable {
 		this.direccion = direccion;
 	}
 
-	// public Cliente getCliente() {
-	// return cliente;
-	// }
-	//
-	// public void setCliente(Cliente cliente) {
-	// this.cliente = cliente;
-	// }
 
 	public List<DetalleFactura> getDetallesfacturas() {
 		return detallesfacturas;
@@ -130,14 +123,21 @@ public class Factura implements Serializable {
 		this.detallesfacturas = detallesfacturas;
 	}
 
-	/*
-	 * public Double getTotal() {
-	 * Double total=0.00;
-	 * for(DetalleFactura detalles:detallesfacturas) {
-	 * total += detalles.getTotal();
-	 * }
-	 * return total;
-	 * }
-	 */
+	public Client getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Client cliente) {
+		this.cliente = cliente;
+	}
+	
+	  public Double getTotal() {
+	  Double total=0.00;
+	  for(DetalleFactura detalles:detallesfacturas) {
+	  total += detalles.getTotal();
+	  }
+	  return total;
+	  }
+	 
 
 }
