@@ -26,9 +26,9 @@ public class DetalleFactura implements Serializable {
 	@Column(nullable = false)
 	private Double total;
 	
-	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @ManyToOne(fetch = FetchType.LAZY)
-	private Vehiculo vehiculo;
+//	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+//    @ManyToOne(fetch = FetchType.LAZY)
+//	private Vehiculo vehiculo;
 
 	public DetalleFactura() {
 	}
@@ -49,21 +49,21 @@ public class DetalleFactura implements Serializable {
 		this.cantidad = cantidad;
 	}
 
-	public Double getTotal() {
-		return cantidad.doubleValue()*vehiculo.getPrecio_venta();
-	}
+//	public Double getTotal() {
+//		return cantidad.doubleValue()*vehiculo.getPrecio_venta();
+//	}
 
 	public void setTotal(Double total) {
 		this.total = total;
 	}
-
-	public Vehiculo getVehiculo() {
-		return vehiculo;
-	}
-
-	public void setVehiculo(Vehiculo vehiculo) {
-		this.vehiculo = vehiculo;
-	}
+//
+//	public Vehiculo getVehiculo() {
+//		return vehiculo;
+//	}
+//
+//	public void setVehiculo(Vehiculo vehiculo) {
+//		this.vehiculo = vehiculo;
+//	}
 	
 	
 	
