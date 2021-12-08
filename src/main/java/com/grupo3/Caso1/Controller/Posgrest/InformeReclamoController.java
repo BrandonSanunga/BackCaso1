@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.grupo3.Caso1.Model.InformeReclamo;
 import com.grupo3.Caso1.Service.Posgrest.InformeReclamoService;
-import com.grupo3.Caso1.Service.Posgrest.ServiceImp.InformeReclamoServiceImp;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,7 +22,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class InformeReclamoController {
     @Autowired
     private InformeReclamoService informeRechazoService;
-    private InformeReclamoServiceImp inforservice2;
 
     @GetMapping(value = "/all")
     public List<InformeReclamo> getAll() {
@@ -52,16 +49,4 @@ public class InformeReclamoController {
         }
         return new ResponseEntity<InformeReclamo>(informeRechazo, HttpStatus.OK);
     }
-
-    @PutMapping(value = "/update/{id}")
-    public ResponseEntity<InformeReclamo> update(@RequestBody InformeReclamo informeReclamo,
-            @PathVariable(name = "id") Long id) {
-        inforservice2.update(informeReclamo, id);
-        if (informeReclamo != null) {
-            return new ResponseEntity<>(HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
-        }
-    }
-
 }

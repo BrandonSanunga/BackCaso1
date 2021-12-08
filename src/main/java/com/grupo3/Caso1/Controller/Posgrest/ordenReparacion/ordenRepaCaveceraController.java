@@ -3,7 +3,6 @@ package com.grupo3.Caso1.Controller.Posgrest.ordenReparacion;
 import java.util.List;
 
 import com.grupo3.Caso1.Model.ordenReparacion.ordenRepCavecera;
-import com.grupo3.Caso1.Service.Posgrest.ServiceImp.OrdenReparacion.ordenRepaCaveceraServiceImp;
 import com.grupo3.Caso1.Service.Posgrest.ordenReparacion.ordenRepaCaveceraService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,7 +22,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class ordenRepaCaveceraController {
     @Autowired
     private ordenRepaCaveceraService ordenRepaCaveceraService;
-    private ordenRepaCaveceraServiceImp ordenRepaCaveceraServiceImp2;
 
     @GetMapping(value = "/all")
     public List<ordenRepCavecera> getall() {
@@ -51,15 +48,5 @@ public class ordenRepaCaveceraController {
             return new ResponseEntity<ordenRepCavecera>(HttpStatus.NOT_ACCEPTABLE);
         }
         return new ResponseEntity<ordenRepCavecera>(obj, HttpStatus.OK);
-    }
-
-    @PutMapping(value = "/update/{id}")
-    public ResponseEntity<ordenRepCavecera> update(@RequestBody ordenRepCavecera ordenRepCavecera,
-            @PathVariable(name = "id") Long id) {
-        if (ordenRepaCaveceraServiceImp2.update(ordenRepCavecera, id) != null) {
-            return new ResponseEntity<>(HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
-        }
     }
 }

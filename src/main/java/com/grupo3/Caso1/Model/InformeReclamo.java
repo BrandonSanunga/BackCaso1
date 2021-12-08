@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class InformeReclamo {
@@ -14,9 +15,8 @@ public class InformeReclamo {
     private Long idinformeRecha;
     private Date fechaEmicion;
     private String idCliente;
-    // @ManyToOne
-    // @JoinColumn(name = "")
-    // private respuestaCliente respuestacliente;
+    @ManyToOne
+    private Vehiculo vehiculo;
     private String descripcionInforme;
     private boolean tipo_informe;
     private boolean respuesta_cliente;
@@ -24,11 +24,12 @@ public class InformeReclamo {
     public InformeReclamo() {
     }
 
-    public InformeReclamo(Long idinformeRecha, Date fechaEmicion, String idCliente,
+    public InformeReclamo(Long idinformeRecha, Date fechaEmicion, String idCliente, Vehiculo vehiculo,
             String descripcionInforme, boolean tipo_informe, boolean respuesta_cliente) {
         this.idinformeRecha = idinformeRecha;
         this.fechaEmicion = fechaEmicion;
         this.idCliente = idCliente;
+        this.vehiculo = vehiculo;
         this.descripcionInforme = descripcionInforme;
         this.tipo_informe = tipo_informe;
         this.respuesta_cliente = respuesta_cliente;
@@ -56,6 +57,14 @@ public class InformeReclamo {
 
     public void setIdCliente(String idCliente) {
         this.idCliente = idCliente;
+    }
+
+    public Vehiculo getVehiculo() {
+        return vehiculo;
+    }
+
+    public void setVehiculo(Vehiculo vehiculo) {
+        this.vehiculo = vehiculo;
     }
 
     public String getDescripcionInforme() {

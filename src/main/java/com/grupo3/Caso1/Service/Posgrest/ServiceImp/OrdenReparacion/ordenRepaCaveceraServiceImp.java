@@ -22,11 +22,4 @@ public class ordenRepaCaveceraServiceImp extends GenericServiceImp<ordenRepCavec
         return ordenRepCaveceraRepo;
     }
 
-    public ordenRepCavecera update(ordenRepCavecera ordenRepCavecera, Long id) {
-        if (ordenRepCaveceraRepo.findById(id) != null) {
-            return ordenRepCaveceraRepo.save(ordenRepCavecera);
-        } else {
-            return null;
-        }
-    }
 }

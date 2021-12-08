@@ -22,11 +22,4 @@ public class ordenRepaCuerpoServiceImp extends GenericServiceImp<ordenRepCuerpo,
         return ordenRepCuerpoRepo;
     }
 
-    public ordenRepCuerpo update(ordenRepCuerpo ordenRepCuerpo, Long id) {
-        if (ordenRepCuerpoRepo.findById(id) != null) {
-            return ordenRepCuerpoRepo.save(ordenRepCuerpo);
-        } else {
-            return null;
-        }
-    }
 }

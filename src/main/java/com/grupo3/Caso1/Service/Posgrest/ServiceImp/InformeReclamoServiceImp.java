@@ -1,7 +1,5 @@
 package com.grupo3.Caso1.Service.Posgrest.ServiceImp;
 
-import javax.servlet.http.PushBuilder;
-
 import com.grupo3.Caso1.Commons.GenericServiceImp;
 import com.grupo3.Caso1.Dao.Posgrest.informeReclamoRepositori;
 import com.grupo3.Caso1.Model.InformeReclamo;
@@ -23,12 +21,4 @@ public class InformeReclamoServiceImp extends GenericServiceImp<InformeReclamo, 
         return informeRechazoRepositori;
     }
 
-    public InformeReclamo update(InformeReclamo informeReclamo, Long id) {
-        if (informeRechazoRepositori.findById(id) != null) {
-            informeReclamo.setIdinformeRecha(id);
-            return informeRechazoRepositori.save(informeReclamo);
-        } else {
-            return null;
-        }
-    }
 }

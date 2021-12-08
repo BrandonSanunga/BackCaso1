@@ -6,10 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
-import com.grupo3.Caso1.Model.InformeReclamo;
 
 @Entity
 public class inspeCavecera {
@@ -17,9 +13,8 @@ public class inspeCavecera {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idinspeccionCavecera;
     private Date fecha_insepeccion;
-    @ManyToOne
-    @JoinColumn(name = "idinformeRecha")
-    private InformeReclamo informeReclamo;
+    // @ManyToOne
+    // private informe informe ;
 
     public inspeCavecera() {
     }

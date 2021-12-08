@@ -22,12 +22,4 @@ public class inspeccionCaveceraServiceImp extends GenericServiceImp<inspeCavecer
         return inspeCaveceraRepo;
     }
 
-    public inspeCavecera update(inspeCavecera inspeCavecera, Long id) {
-        if (inspeCaveceraRepo.findById(id) != null) {
-            return inspeCaveceraRepo.save(inspeCavecera);
-        } else {
-            return null;
-        }
-    }
-
 }
