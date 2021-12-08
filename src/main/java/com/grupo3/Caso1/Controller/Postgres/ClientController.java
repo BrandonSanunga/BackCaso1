@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -21,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin("*")
 public class ClientController {
     // Este apartado hara lo todo lo que necesite para cada metodo
-/*
+
     @Autowired
     private ClientService clientService;
 
@@ -52,5 +53,17 @@ public class ClientController {
 
         return new ResponseEntity<Client>(client, HttpStatus.OK);
     }
-*/
+
+    @GetMapping(value = "/login")
+    public Client login(@RequestParam("cedulaClient") String id,
+            @RequestParam("passwordClient") String password) {
+        Client client = clientService.get(id);
+        if (client != null) {
+            if (client.getPasswordClient().equals(password)) {
+                return client;
+            }
+        }
+        return null;
+    }
+
 }

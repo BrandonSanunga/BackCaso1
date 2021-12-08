@@ -28,41 +28,42 @@ public class Factura implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-	
-    @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date fecha_emision;
-    
-    @Column(nullable = false)
-    private String descripcion;
-    
-    @Column(nullable = false)
-    private String ruc_factura;
-    
-    @Column(nullable = false)
-    private String nombre_empresa;
-    
-    @Column(nullable = false)
-    private String direccion;
-    
-//    @JsonIgnoreProperties(value={"facturas", "hibernateLazyInitializer", "handler"}, allowSetters=true)
-//	@ManyToOne(fetch = FetchType.LAZY)
-//    private Cliente cliente;
-    
-    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
+	@Column(nullable = false)
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date fecha_emision;
+
+	@Column(nullable = false)
+	private String descripcion;
+
+	@Column(nullable = false)
+	private String ruc_factura;
+
+	@Column(nullable = false)
+	private String nombre_empresa;
+
+	@Column(nullable = false)
+	private String direccion;
+
+	// @JsonIgnoreProperties(value={"facturas", "hibernateLazyInitializer",
+	// "handler"}, allowSetters=true)
+	// @ManyToOne(fetch = FetchType.LAZY)
+	// private Cliente cliente;
+
+	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "factura_id")
 	private List<DetalleFactura> detallesfacturas;
-    
+
 	public Factura() {
-		this.detallesfacturas= new ArrayList<>();
+		this.detallesfacturas = new ArrayList<>();
 	}
-	
+
 	@PrePersist
 	public void prepersist() {
-		this.fecha_emision=new Date();
+		this.fecha_emision = new Date();
 	}
 
 	public Long getId() {
@@ -113,13 +114,13 @@ public class Factura implements Serializable {
 		this.direccion = direccion;
 	}
 
-//	public Cliente getCliente() {
-//		return cliente;
-//	}
-//
-//	public void setCliente(Cliente cliente) {
-//		this.cliente = cliente;
-//	}
+	// public Cliente getCliente() {
+	// return cliente;
+	// }
+	//
+	// public void setCliente(Cliente cliente) {
+	// this.cliente = cliente;
+	// }
 
 	public List<DetalleFactura> getDetallesfacturas() {
 		return detallesfacturas;
@@ -128,13 +129,15 @@ public class Factura implements Serializable {
 	public void setDetallesfacturas(List<DetalleFactura> detallesfacturas) {
 		this.detallesfacturas = detallesfacturas;
 	}
-	
-	public Double getTotal() {
-		Double total=0.00;
-		for(DetalleFactura detalles:detallesfacturas) {
-			total += detalles.getTotal();
-		}
-		return total;
-	}
-	
+
+	/*
+	 * public Double getTotal() {
+	 * Double total=0.00;
+	 * for(DetalleFactura detalles:detallesfacturas) {
+	 * total += detalles.getTotal();
+	 * }
+	 * return total;
+	 * }
+	 */
+
 }
