@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class InformeReclamo {
@@ -13,10 +15,15 @@ public class InformeReclamo {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idinformeRecha;
     private Date fechaEmicion;
-    private String idCliente;
-    // @ManyToOne
-    // @JoinColumn(name = "")
-    // private respuestaCliente respuestacliente;
+    @ManyToOne
+    @JoinColumn(name = "cedulaClient")
+    private Client client;
+    /*
+     * @ManyToOne
+     * 
+     * @JoinColumn(name = "idreclmo")
+     * private Reclamo reclamo;
+     */
     private String descripcionInforme;
     private boolean tipo_informe;
     private boolean respuesta_cliente;
@@ -24,11 +31,10 @@ public class InformeReclamo {
     public InformeReclamo() {
     }
 
-    public InformeReclamo(Long idinformeRecha, Date fechaEmicion, String idCliente,
+    public InformeReclamo(Long idinformeRecha, Date fechaEmicion,
             String descripcionInforme, boolean tipo_informe, boolean respuesta_cliente) {
         this.idinformeRecha = idinformeRecha;
         this.fechaEmicion = fechaEmicion;
-        this.idCliente = idCliente;
         this.descripcionInforme = descripcionInforme;
         this.tipo_informe = tipo_informe;
         this.respuesta_cliente = respuesta_cliente;
@@ -48,14 +54,6 @@ public class InformeReclamo {
 
     public void setFechaEmicion(Date fechaEmicion) {
         this.fechaEmicion = fechaEmicion;
-    }
-
-    public String getIdCliente() {
-        return idCliente;
-    }
-
-    public void setIdCliente(String idCliente) {
-        this.idCliente = idCliente;
     }
 
     public String getDescripcionInforme() {
