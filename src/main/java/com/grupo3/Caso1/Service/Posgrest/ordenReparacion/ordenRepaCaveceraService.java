@@ -7,5 +7,5 @@ import java.util.List;
 import java.util.Map;
 
 public interface ordenRepaCaveceraService extends GenericService<ordenRepCavecera, Long> {
-    List<Map<String, Object>> getOrdenesTaller();
+
 }

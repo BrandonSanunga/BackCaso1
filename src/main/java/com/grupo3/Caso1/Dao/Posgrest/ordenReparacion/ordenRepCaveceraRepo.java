@@ -8,7 +8,5 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface ordenRepCaveceraRepo extends JpaRepository<ordenRepCavecera, Long> {
-    @Query("SELECT o FROM ordenRepCavecera o")
-    List<ordenRepCavecera> getOrdenesTaller();
 
 }

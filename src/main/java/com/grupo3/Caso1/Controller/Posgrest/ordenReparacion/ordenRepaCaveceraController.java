@@ -56,8 +56,4 @@ public class ordenRepaCaveceraController {
         }
     }
 
-    @GetMapping("/ordenes-taller")
-    public List<Map<String, Object>> getOrdenesTaller() {
-        return ordenRepaCaveceraService.getOrdenesTaller();
-    }
 }

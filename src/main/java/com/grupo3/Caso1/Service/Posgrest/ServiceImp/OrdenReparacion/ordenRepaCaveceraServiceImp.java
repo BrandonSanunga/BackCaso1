@@ -33,14 +33,4 @@ public class ordenRepaCaveceraServiceImp extends GenericServiceImp<ordenRepCavec
         }
     }
 
-    @Override
-    public List<Map<String, Object>> getOrdenesTaller() {
-
-        List<Map<String, Object>> ordenes = new ArrayList<>();
-        ordenRepCaveceraRepo.getOrdenesTaller().forEach(orden -> {
-            System.out.println(orden);
-        });
-        ordenes.add(Map.ofEntries(Map.entry("persona", "Diego")));
-        return ordenes;
-    }
 }
