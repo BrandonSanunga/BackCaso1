@@ -19,14 +19,14 @@ public class ordenRepCuerpo {
     private String trabajoRealizar;
     private String observaciones;
     private String imagenes;
-    private Boolean estadoOrden;
+    private String estadoOrden;
 
     public ordenRepCuerpo() {
     }
 
     public ordenRepCuerpo(Long idordenCuerpo, com.grupo3.Caso1.Model.ordenReparacion.ordenRepCavecera ordenRepCavecera,
             String trabajoSolicitado, String trabajoRealizar, String observaciones, String imagenes,
-            Boolean estadoOrden) {
+            String estadoOrden) {
         this.idordenCuerpo = idordenCuerpo;
         this.ordenRepCavecera = ordenRepCavecera;
         this.trabajoSolicitado = trabajoSolicitado;
@@ -36,11 +36,11 @@ public class ordenRepCuerpo {
         this.estadoOrden = estadoOrden;
     }
 
-    public Boolean getEstadoOrden() {
+    public String getEstadoOrden() {
         return estadoOrden;
     }
 
-    public void setEstadoOrden(Boolean estadoOrden) {
+    public void setEstadoOrden(String estadoOrden) {
         this.estadoOrden = estadoOrden;
     }
 
