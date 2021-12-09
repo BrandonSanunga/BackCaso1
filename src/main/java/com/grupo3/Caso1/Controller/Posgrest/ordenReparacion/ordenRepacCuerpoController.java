@@ -65,8 +65,8 @@ public class ordenRepacCuerpoController {
         }
     }
 
-    @GetMapping("/ordenes-taller")
-    public List<Map<String, Object>> getOrdenesTaller() {
-        return ordenRepaCuerpoServiceImp2.getOrdenesTaller();
+    @GetMapping("/ordenes-taller/{estado}")
+    public List<Map<String, Object>> getOrdenesTaller(@PathVariable(name = "estado") String estado) {
+        return ordenRepaCuerpoServiceImp2.getOrdenesTaller(estado);
     }
 }

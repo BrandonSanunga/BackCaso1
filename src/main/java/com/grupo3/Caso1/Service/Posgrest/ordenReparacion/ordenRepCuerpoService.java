@@ -7,5 +7,5 @@ import java.util.List;
 import java.util.Map;
 
 public interface ordenRepCuerpoService extends GenericService<ordenRepCuerpo, Long> {
-    List<Map<String, Object>> getOrdenesTaller();
+    List<Map<String, Object>> getOrdenesTaller(String estado);
 }
