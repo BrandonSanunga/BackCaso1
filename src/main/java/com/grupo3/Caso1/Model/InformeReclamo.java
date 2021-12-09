@@ -80,4 +80,11 @@ public class InformeReclamo {
         this.respuesta_cliente = respuesta_cliente;
     }
 
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
 }
