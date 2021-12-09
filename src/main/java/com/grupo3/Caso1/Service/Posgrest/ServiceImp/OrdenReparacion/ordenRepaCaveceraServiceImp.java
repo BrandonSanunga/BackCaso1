@@ -9,9 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 @Service
-public class ordenRepaCaveceraServiceImp extends GenericServiceImp<ordenRepCavecera, Long>
-        implements ordenRepaCaveceraService {
+public class ordenRepaCaveceraServiceImp extends GenericServiceImp<ordenRepCavecera, Long> implements ordenRepaCaveceraService {
 
     @Autowired
     private ordenRepCaveceraRepo ordenRepCaveceraRepo;
@@ -28,5 +31,16 @@ public class ordenRepaCaveceraServiceImp extends GenericServiceImp<ordenRepCavec
         } else {
             return null;
         }
+    }
+
+    @Override
+    public List<Map<String, Object>> getOrdenesTaller() {
+
+        List<Map<String, Object>> ordenes = new ArrayList<>();
+        ordenRepCaveceraRepo.getOrdenesTaller().forEach(orden -> {
+            System.out.println(orden);
+        });
+        ordenes.add(Map.ofEntries(Map.entry("persona", "Diego")));
+        return ordenes;
     }
 }
