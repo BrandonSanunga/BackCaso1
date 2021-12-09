@@ -1,18 +1,15 @@
 package com.grupo3.Caso1.Model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
 public class Vehiculo {
-<<<<<<< HEAD
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	private static final long serialVersionUID = 982015014319402841L;
+
 	private String marca;
 	private String modelo;
 	private String color;
@@ -21,17 +18,15 @@ public class Vehiculo {
 	private String placa;
 	private String cilindraje;
 	private String numero_motor;
-	private String ramv;
-=======
->>>>>>> 4c888d1aa56cdd0b35876a293895b1071b84ada3
+	private String ramy;
 
     @Id
     private String chasis_vehiculo;
-    private String color;
+   
     private String ramv;
     private boolean estado;
-    @OneToOne
-    private Pais id_pais;
+    //@OneToOne
+    //private Pais id_pais;
     @ManyToOne
     private GarantiaVehiculo id_garantia;
     @ManyToOne
@@ -49,7 +44,7 @@ public class Vehiculo {
         this.color = color;
         this.ramv = ramv;
         this.estado = estado;
-        this.id_pais = id_pais;
+        //this.id_pais = id_pais;
         this.id_garantia = id_garantia;
         this.vehiculoCatalogo = vehiculoCatalogo;
         this.precio_compra = precio_compra;
@@ -88,13 +83,13 @@ public class Vehiculo {
         this.estado = estado;
     }
 
-    public Pais getId_pais() {
+/*    public Pais getId_pais() {
         return id_pais;
     }
 
     public void setId_pais(Pais id_pais) {
         this.id_pais = id_pais;
-    }
+    }*/
 
     public GarantiaVehiculo getId_garantia() {
         return id_garantia;
