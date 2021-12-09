@@ -1,6 +1,8 @@
 package com.grupo3.Caso1.Model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -9,7 +11,8 @@ import javax.persistence.ManyToOne;
 public class Repuestos {
 
 	@Id
-	private String id_repuesto;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id_repuesto;
 	
 	private String nombre_repuesto;
 	
@@ -19,7 +22,7 @@ public class Repuestos {
 	
 	private float precio;
 
-	public Repuestos(String id_repuesto, String nombre_repuesto, Disenovehiculo diseno, float precio) {
+	public Repuestos(Long id_repuesto, String nombre_repuesto, Disenovehiculo diseno, float precio) {
 		super();
 		this.id_repuesto = id_repuesto;
 		this.nombre_repuesto = nombre_repuesto;
@@ -31,11 +34,11 @@ public class Repuestos {
 		super();
 	}
 
-	public String getId_repuesto() {
+	public Long getId_repuesto() {
 		return id_repuesto;
 	}
 
-	public void setId_repuesto(String id_repuesto) {
+	public void setId_repuesto(Long id_repuesto) {
 		this.id_repuesto = id_repuesto;
 	}
 

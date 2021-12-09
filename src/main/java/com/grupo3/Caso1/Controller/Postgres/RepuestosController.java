@@ -30,7 +30,7 @@ public class RepuestosController {
 	}
 
 	@GetMapping(value="/find/{id_repuesto}")
-	public Repuestos find(@PathVariable String id_repuesto) {
+	public Repuestos find(@PathVariable Long id_repuesto) {
 		return repuestoservice.get(id_repuesto);
 	}
 	
@@ -41,7 +41,7 @@ public class RepuestosController {
 	}
 	
 	@GetMapping(value="/delete/{id_repuesto}")
-	public ResponseEntity<Repuestos> delete(@PathVariable String id_repuesto){
+	public ResponseEntity<Repuestos> delete(@PathVariable(value= "id_repuesto") Long id_repuesto){
 		Repuestos repuesto= repuestoservice.get(id_repuesto);
 		if(repuesto != null) {
 			repuestoservice.delete(id_repuesto);

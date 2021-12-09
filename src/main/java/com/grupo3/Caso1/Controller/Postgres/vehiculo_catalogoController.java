@@ -32,7 +32,7 @@ public class vehiculo_catalogoController {
 	}
 
 	@GetMapping(value="/find/{id_vehiculo_catalogo}")
-	public vehiculo_catalogo find(@PathVariable String id_vehiculo_catalogo) {
+	public vehiculo_catalogo find(@PathVariable Long id_vehiculo_catalogo) {
 		return vehiculoservice.get(id_vehiculo_catalogo);
 	}
 	
@@ -43,7 +43,7 @@ public class vehiculo_catalogoController {
 	}
 	
 	@GetMapping(value="/delete/{id_vehiculo_catalogo}")
-	public ResponseEntity<vehiculo_catalogo> delete(@PathVariable String id_vehiculo_catalogo){
+	public ResponseEntity<vehiculo_catalogo> delete(@PathVariable Long id_vehiculo_catalogo){
 		vehiculo_catalogo vehiculocatalogo= vehiculoservice.get(id_vehiculo_catalogo);
 		if(vehiculocatalogo != null) {
 			vehiculoservice.delete(id_vehiculo_catalogo);
