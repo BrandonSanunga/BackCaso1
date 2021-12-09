@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.grupo3.Caso1.Commons.Utils;
 import com.grupo3.Caso1.Model.Inspeccion.inspeCuerpo;
 
 @Entity
@@ -25,8 +26,7 @@ public class ordenRepCavecera {
     public ordenRepCavecera() {
     }
 
-    public ordenRepCavecera(Long idordenCave, Date fecha_emision, Date fechaIngreso,
-            com.grupo3.Caso1.Model.Inspeccion.inspeCuerpo inspeCuerpo) {
+    public ordenRepCavecera(Long idordenCave, Date fecha_emision, Date fechaIngreso, com.grupo3.Caso1.Model.Inspeccion.inspeCuerpo inspeCuerpo) {
         this.idordenCave = idordenCave;
         this.fecha_emision = fecha_emision;
         this.fechaIngreso = fechaIngreso;
@@ -63,6 +63,10 @@ public class ordenRepCavecera {
 
     public void setInspeCuerpo(inspeCuerpo inspeCuerpo) {
         this.inspeCuerpo = inspeCuerpo;
+    }
+
+    public String getFechaIngresoWithFormat() {
+        return Utils.formatDate(this.fechaIngreso);
     }
 
 }
