@@ -39,7 +39,7 @@ public class ordenRepaCuerpoServiceImp extends GenericServiceImp<ordenRepCuerpo,
         List<Map<String, Object>> ordenes = new ArrayList<>();
         List<ordenRepCuerpo> ordenesRep = ordenRepCuerpoRepo.getOrdenesTaller();
         ordenesRep.forEach(obj -> {
-            ordenes.add(Map.of("persona", obj.getOrdenRepCavecera().getInspeCuerpo().getInspeCavecera()));
+            ordenes.add(Map.of("persona", obj.getOrdenRepCavecera().getInspeCuerpo().getInspeCavecera().getInformeReclamo()));
         });
         return ordenes;
     }
