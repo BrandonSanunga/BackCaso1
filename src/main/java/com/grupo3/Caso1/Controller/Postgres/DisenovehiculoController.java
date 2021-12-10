@@ -31,7 +31,7 @@ public class DisenovehiculoController {
 	}
 
 	@GetMapping(value="/find/{id_diseno}")
-	public Disenovehiculo find(@PathVariable String id_diseno) {
+	public Disenovehiculo find(@PathVariable Long id_diseno) {
 		return disenoservice.get(id_diseno);
 	}
 	
@@ -42,7 +42,7 @@ public class DisenovehiculoController {
 	}
 	
 	@GetMapping(value="/delete/{id_diseno}")
-	public ResponseEntity<Disenovehiculo> delete(@PathVariable String id_diseno){
+	public ResponseEntity<Disenovehiculo> delete(@PathVariable(value="id_diseno") Long id_diseno){
 		Disenovehiculo diseno= disenoservice.get(id_diseno);
 		if(diseno != null) {
 			disenoservice.delete(id_diseno);
