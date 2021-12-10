@@ -11,7 +11,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -40,21 +39,11 @@ public class ordenRepaCuerpoServiceImp extends GenericServiceImp<ordenRepCuerpo,
         List<Map<String, Object>> ordenes = new ArrayList<>();
         List<ordenRepCuerpo> ordenesRep = ordenRepCuerpoRepo.getOrdenesTaller(estado);
         ordenesRep.forEach(obj -> {
-
-            Map<String, Object> json = new HashMap<>();
-            json.put("id", obj.getIdordenCuerpo());
-            json.put("persona", obj.getOrdenRepCavecera().getInspeCuerpo().getInspeCavecera().getInformeReclamo().getClient().getClienteObject());
-            json.put("fechaIngreso", obj.getOrdenRepCavecera().getFechaIngresoWithFormat());
-            json.put("estado", obj.getEstadoOrden());
-
-            Map<String, Object> vehiculo = new HashMap<>();
-            vehiculo.put("id", 1);
-            vehiculo.put("modelo", "2010");
-            vehiculo.put("marca", "TOYOTA");
-            vehiculo.put("label", "TOYOTA | 2010");
-            json.put("vehiculo", vehiculo);
-
-            ordenes.add(json);
+            ordenes.add(Map.ofEntries(
+                    Map.entry("persona", obj.getOrdenRepCavecera().getInspeCuerpo().getInspeCavecera().getInformeReclamo().getClient().getClienteObject()),
+                    Map.entry("fechaIngreso", obj.getOrdenRepCavecera().getFechaIngreso()),
+                    Map.entry("estado", obj.getOrdenRepCavecera().get)
+            ));
         });
         return ordenes;
     }

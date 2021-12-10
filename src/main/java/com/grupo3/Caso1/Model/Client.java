@@ -114,9 +114,6 @@ public class Client {
         this.passwordClient = passwordClient;
     }
 
-    public String getClienteLabel() {
-        return this.nombresClient;
-    }
 
     public Map<String, Object> getClienteObject() {
         return Map.ofEntries(
@@ -124,8 +121,7 @@ public class Client {
                 Map.entry("nombres", this.nombresClient),
                 Map.entry("direccion", this.direccionClient),
                 Map.entry("email", this.emailClient),
-                Map.entry("celular", this.celularClient),
-                Map.entry("label", this.getClienteLabel())
+                Map.entry("celular", this.celularClient)
         );
     }
 
