@@ -10,12 +10,12 @@ import com.grupo3.Caso1.Model.Disenovehiculo;
 import com.grupo3.Caso1.Service.Postgres.DisenovehiculoService;
 
 @Service
-public class DisenovehiculoServiceImp extends GenericServiceImp<Disenovehiculo, Long> implements DisenovehiculoService{
+public class DisenovehiculoServiceImp extends GenericServiceImp<Disenovehiculo, String> implements DisenovehiculoService{
 
 	@Autowired
 	private DisenovehiculoRepository disenoImp; 
 	@Override
-	public CrudRepository<Disenovehiculo, Long> getDao() {
+	public CrudRepository<Disenovehiculo, String> getDao() {
 		// TODO Auto-generated method stub
 		return disenoImp;
 	}

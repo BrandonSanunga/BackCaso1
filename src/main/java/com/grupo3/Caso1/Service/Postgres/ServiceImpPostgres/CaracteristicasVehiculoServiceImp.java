@@ -10,13 +10,13 @@ import com.grupo3.Caso1.Model.CaracteristicaVehiculo;
 import com.grupo3.Caso1.Service.Postgres.caracteristicas_vehiculoService;
 
 @Service
-public class CaracteristicasVehiculoServiceImp extends GenericServiceImp<CaracteristicaVehiculo, Long> implements caracteristicas_vehiculoService {
+public class CaracteristicasVehiculoServiceImp extends GenericServiceImp<CaracteristicaVehiculo, String> implements caracteristicas_vehiculoService {
 	
 	@Autowired
 	private CaracteristicaVehiculoRepository caracteristicaVehi;
 	
 	@Override
-	public CrudRepository<CaracteristicaVehiculo, Long> getDao() {
+	public CrudRepository<CaracteristicaVehiculo, String> getDao() {
 		// TODO Auto-generated method stub
 		return caracteristicaVehi;
 	}

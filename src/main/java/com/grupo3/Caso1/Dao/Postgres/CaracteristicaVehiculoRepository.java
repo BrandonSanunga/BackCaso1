@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.grupo3.Caso1.Model.CaracteristicaVehiculo;
 import com.grupo3.Caso1.Model.Repuestos;
 
-public interface CaracteristicaVehiculoRepository  extends JpaRepository<CaracteristicaVehiculo, Long>{
+public interface CaracteristicaVehiculoRepository  extends JpaRepository<CaracteristicaVehiculo, String>{
 
 }
