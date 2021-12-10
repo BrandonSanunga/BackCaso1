@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="solicitudgarantia")
@@ -38,55 +40,37 @@ public class SolicitudGarantia{
 		this.estado_solicitud = estado_solicitud;
 	}
 
-
-
 	public Long getId_solicitud() {
 		return id_solicitud;
 	}
-
-
 
 	public void setId_solicitud(Long id_solicitud) {
 		this.id_solicitud = id_solicitud;
 	}
 
-
-
 	public Date getFecha_solicitud() {
 		return fecha_solicitud;
 	}
-
-
 
 	public void setFecha_solicitud(Date fecha_solicitud) {
 		this.fecha_solicitud = fecha_solicitud;
 	}
 
-
-
 	public Vehiculo getFk_chasis_vehiculo() {
 		return fk_chasis_vehiculo;
 	}
-
-
 
 	public void setFk_chasis_vehiculo(Vehiculo fk_chasis_vehiculo) {
 		this.fk_chasis_vehiculo = fk_chasis_vehiculo;
 	}
 
-
-
 	public String getDescripcion() {
 		return descripcion;
 	}
 
-
-
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-
-
 
 	public boolean isEstado_solicitud() {
 		return estado_solicitud;
@@ -98,6 +82,4 @@ public class SolicitudGarantia{
 		this.estado_solicitud = estado_solicitud;
 	}
 
-	
-	
 }
