@@ -31,7 +31,7 @@ public class CaracteristicaVehiculoController {
 	}
 
 	@GetMapping(value="/find/{id_caracteristica}")
-	public CaracteristicaVehiculo find(@PathVariable String id_caracteristica) {
+	public CaracteristicaVehiculo find(@PathVariable Long id_caracteristica) {
 		return caracteristicaservice.get(id_caracteristica);
 	}
 	
@@ -42,7 +42,7 @@ public class CaracteristicaVehiculoController {
 	}
 	
 	@GetMapping(value="/delete/{id_caracteristica}")
-	public ResponseEntity<CaracteristicaVehiculo> delete(@PathVariable String id_caracteristica){
+	public ResponseEntity<CaracteristicaVehiculo> delete(@PathVariable (value="id_caracteristica")Long id_caracteristica){
 		CaracteristicaVehiculo caracteristica= caracteristicaservice.get(id_caracteristica);
 		if(caracteristica != null) {
 			caracteristicaservice.delete(id_caracteristica);
