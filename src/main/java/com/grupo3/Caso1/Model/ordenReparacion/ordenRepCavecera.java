@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.grupo3.Caso1.Commons.Utils;
+//import com.grupo3.Caso1.Commons.Utils;
 import com.grupo3.Caso1.Model.Inspeccion.inspeCuerpo;
 
 @Entity
@@ -65,8 +65,8 @@ public class ordenRepCavecera {
         this.inspeCuerpo = inspeCuerpo;
     }
 
-    public String getFechaIngresoWithFormat() {
+   /* public String getFechaIngresoWithFormat() {
         return Utils.formatDate(this.fechaIngreso);
-    }
+    }*/
 
 }
