@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -40,14 +41,9 @@ public class RepuestosController {
 		return new ResponseEntity<>(obj, HttpStatus.OK);
 	}
 	
-	@GetMapping(value="/delete/{id_repuesto}")
-	public ResponseEntity<Repuestos> delete(@PathVariable(value= "id_repuesto") Long id_repuesto){
-		Repuestos repuesto= repuestoservice.get(id_repuesto);
-		if(repuesto != null) {
-			repuestoservice.delete(id_repuesto);
-		}else {
-			return new ResponseEntity<Repuestos>(HttpStatus.NO_CONTENT);
-		}
-		return new ResponseEntity<Repuestos>(repuesto, HttpStatus.OK);
+	@DeleteMapping(value="/delete/{id_repuesto}")
+	public ResponseEntity<Boolean> delete(@PathVariable("id_repuesto") Long id_vehiculo_catalogo){
+		repuestoservice.delete(id_vehiculo_catalogo);
+		return ResponseEntity.ok(!(repuestoservice.get(id_vehiculo_catalogo)!=null));
 	}
 }
