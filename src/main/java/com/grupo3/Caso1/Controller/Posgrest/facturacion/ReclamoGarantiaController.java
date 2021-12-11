@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.grupo3.Caso1.Model.ReclamoGarantia;
-import com.grupo3.Caso1.Model.SolicitudGarantia;
 import com.grupo3.Caso1.Service.Posgrest.ReclamoGarantiaService;
 
 @RestController

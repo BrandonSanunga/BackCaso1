@@ -44,7 +44,7 @@ public class ordenRepaCuerpoServiceImp extends GenericServiceImp<ordenRepCuerpo,
             Map<String, Object> json = new HashMap<>();
             json.put("id", obj.getIdordenCuerpo());
             json.put("persona", obj.getOrdenRepCavecera().getInspeCuerpo().getInspeCavecera().getInformeReclamo().getClient().getClienteObject());
-            json.put("fechaIngreso", obj.getOrdenRepCavecera().getFechaIngresoWithFormat());
+           // json.put("fechaIngreso", obj.getOrdenRepCavecera().getFechaIngresoWithFormat());
             json.put("estado", obj.getEstadoOrden());
 
             Map<String, Object> vehiculo = new HashMap<>();
