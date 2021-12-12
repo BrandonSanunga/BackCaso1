@@ -25,14 +25,14 @@ public class InformeReclamo {
      * private Reclamo reclamo;
      */
     private String descripcionInforme;
-    private boolean tipo_informe;
-    private boolean respuesta_cliente;
+    private String tipo_informe;
+    private String respuesta_cliente;
 
     public InformeReclamo() {
     }
 
     public InformeReclamo(Long idinformeRecha, Date fechaEmicion,
-            String descripcionInforme, boolean tipo_informe, boolean respuesta_cliente) {
+            String descripcionInforme, String tipo_informe, String respuesta_cliente) {
         this.idinformeRecha = idinformeRecha;
         this.fechaEmicion = fechaEmicion;
         this.descripcionInforme = descripcionInforme;
@@ -64,19 +64,19 @@ public class InformeReclamo {
         this.descripcionInforme = descripcionInforme;
     }
 
-    public boolean isTipo_informe() {
+    public String isTipo_informe() {
         return tipo_informe;
     }
 
-    public void setTipo_informe(boolean tipo_informe) {
+    public void setTipo_informe(String tipo_informe) {
         this.tipo_informe = tipo_informe;
     }
 
-    public boolean isRespuesta_cliente() {
+    public String isRespuesta_cliente() {
         return respuesta_cliente;
     }
 
-    public void setRespuesta_cliente(boolean respuesta_cliente) {
+    public void setRespuesta_cliente(String respuesta_cliente) {
         this.respuesta_cliente = respuesta_cliente;
     }
 
