@@ -20,5 +20,9 @@ implements ReclamoGarantiaService{
 		// TODO Auto-generated method stub
 		return garantiaRepository;
 	}
+	
+	public void cambiarEstadoReclamo(Long id) {
+		garantiaRepository.cambiarEstadoReclamo(id);
+	}
 
 }

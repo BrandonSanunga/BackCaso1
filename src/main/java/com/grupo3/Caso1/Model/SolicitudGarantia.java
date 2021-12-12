@@ -3,6 +3,7 @@ package com.grupo3.Caso1.Model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,16 +16,19 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="solicitudgarantia")
-public class SolicitudGarantia{
-
+public class SolicitudGarantia implements Serializable{
+	
+	private static final long serialVersionUID = -4205639510532965379L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id_solicitud;
+	@Temporal(TemporalType.DATE)
 	private Date fecha_solicitud;
 	@OneToOne
 	@JoinColumn(name = "chasis_vehiculo")
 	private Vehiculo fk_chasis_vehiculo;
 	private String descripcion;
+	@Column(name = "estado_solicitud", columnDefinition = "boolean DEFAULT 'true'")
 	private boolean estado_solicitud;
 	
 	public SolicitudGarantia() {
@@ -81,5 +85,11 @@ public class SolicitudGarantia{
 	public void setEstado_solicitud(boolean estado_solicitud) {
 		this.estado_solicitud = estado_solicitud;
 	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
+	
 
 }

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,7 +21,7 @@ import com.grupo3.Caso1.Service.Posgrest.SolicitudGarantiaService;
 import com.grupo3.Caso1.Service.Posgrest.ServiceImp.facturacion.SolicitudGarantiaServImpl;
 
 @RestController
-@RequestMapping("/solicitud/garantia/api/v1")
+@RequestMapping("/solicitud/garantia/api/v1/")
 @CrossOrigin("*")
 public class SolicitudGarantiaController {
 
@@ -50,8 +51,14 @@ public class SolicitudGarantiaController {
 		return ResponseEntity.ok(!(garantiaService.get(idSoliGarantia)!=null));
 	}
 
-	@GetMapping("/pendientes")
-	private ResponseEntity<List<SolicitudGarantia>> getAllSoliGarTrue(){
-		return ResponseEntity.ok(garantiaServImpl.findAllByEstado());
+	@GetMapping("pendientes/{estado}")
+	private ResponseEntity<List<SolicitudGarantia>> getAllSoliGarTrue(@PathVariable("estado") Boolean estado){
+		return ResponseEntity.ok(garantiaServImpl.findAllByEstado(estado));
+	}
+	
+	@PutMapping("{id}")
+	public ResponseEntity<?> cambiarEstadoReclamo(@PathVariable("id") Long id) {
+		garantiaServImpl.cambiarEstadoSolicitud(id);
+		return ResponseEntity.ok(garantiaService.getAll());
 	}
 }

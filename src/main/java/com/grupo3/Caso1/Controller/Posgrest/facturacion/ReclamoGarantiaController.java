@@ -8,21 +8,26 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.grupo3.Caso1.Model.ReclamoGarantia;
 import com.grupo3.Caso1.Service.Posgrest.ReclamoGarantiaService;
+import com.grupo3.Caso1.Service.Posgrest.ServiceImp.facturacion.ReclamoGarantiaSercImpl;
 
 @RestController
-@RequestMapping("/reclamo/garantia/api/v1")
+@RequestMapping("/reclamo/garantia/api/v1/")
 @CrossOrigin("*")
 public class ReclamoGarantiaController {
 
 	@Autowired
 	private ReclamoGarantiaService garantiaService;
+	@Autowired
+	private ReclamoGarantiaSercImpl garantiaSercImpl;
 	
 	@GetMapping
 	private ResponseEntity<List<ReclamoGarantia>> getAllReclamoGarantia(){
@@ -37,5 +42,11 @@ public class ReclamoGarantiaController {
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 		}
+	}
+	
+	@PutMapping("{id}")
+	public ResponseEntity<?> cambiarEstadoReclamo(@PathVariable("id") Long id) {
+		garantiaSercImpl.cambiarEstadoReclamo(id);
+		return ResponseEntity.ok(garantiaService.getAll());
 	}
 }

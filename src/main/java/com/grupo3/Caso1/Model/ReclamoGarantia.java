@@ -3,6 +3,7 @@ package com.grupo3.Caso1.Model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,13 +29,13 @@ public class ReclamoGarantia implements Serializable{
 	private SolicitudGarantia fk_id_solicitud;
 	@Temporal(TemporalType.DATE)
 	private Date fecha_reclamo;
+	@Column(columnDefinition = "boolean DEFAULT 'true'")
 	private boolean estado_reclamo;
 	
 	
 	@PrePersist
 	public void prePersist() {
 		fecha_reclamo = new Date();
-		estado_reclamo = true;
 	}
 
 
@@ -94,7 +95,5 @@ public class ReclamoGarantia implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
-	
 	
 }
