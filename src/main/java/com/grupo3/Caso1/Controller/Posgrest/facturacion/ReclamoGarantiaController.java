@@ -38,7 +38,7 @@ public class ReclamoGarantiaController {
 	private ResponseEntity<ReclamoGarantia> saveReclamoGarantia(@RequestBody ReclamoGarantia solicitud){
  		try {
  			ReclamoGarantia reclamoGar = garantiaService.save(solicitud);
- 			return ResponseEntity.created(new URI("/reclamo/garantia/api/v1"+reclamoGar.getId_reclamo())).body(reclamoGar);
+ 			return ResponseEntity.created(new URI("/reclamo/garantia/api/v1/"+reclamoGar.getId_reclamo())).body(reclamoGar);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 		}
