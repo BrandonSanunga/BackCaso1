@@ -15,6 +15,8 @@ public class InformeReclamo {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idinformeRecha;
     private Date fechaEmicion;
+    private String respuestaCliente;
+    private String tipoInforme;
     @ManyToOne
     @JoinColumn(name = "cedulaClient")
     private Client client;
@@ -25,19 +27,34 @@ public class InformeReclamo {
      * private Reclamo reclamo;
      */
     private String descripcionInforme;
-    private String tipo_informe;
-    private String respuesta_cliente;
 
     public InformeReclamo() {
     }
 
-    public InformeReclamo(Long idinformeRecha, Date fechaEmicion,
-            String descripcionInforme, String tipo_informe, String respuesta_cliente) {
+    public InformeReclamo(Long idinformeRecha, Date fechaEmicion, String respuestaCliente, String tipoInforme,
+            Client client, String descripcionInforme) {
         this.idinformeRecha = idinformeRecha;
         this.fechaEmicion = fechaEmicion;
+        this.respuestaCliente = respuestaCliente;
+        this.tipoInforme = tipoInforme;
+        this.client = client;
         this.descripcionInforme = descripcionInforme;
-        this.tipo_informe = tipo_informe;
-        this.respuesta_cliente = respuesta_cliente;
+    }
+
+    public String getRespuestaCliente() {
+        return respuestaCliente;
+    }
+
+    public void setRespuestaCliente(String respuestaCliente) {
+        this.respuestaCliente = respuestaCliente;
+    }
+
+    public String getTipoInforme() {
+        return tipoInforme;
+    }
+
+    public void setTipoInforme(String tipoInforme) {
+        this.tipoInforme = tipoInforme;
     }
 
     public Long getIdinformeRecha() {
@@ -65,19 +82,19 @@ public class InformeReclamo {
     }
 
     public String isTipo_informe() {
-        return tipo_informe;
+        return tipoInforme;
     }
 
-    public void setTipo_informe(String tipo_informe) {
-        this.tipo_informe = tipo_informe;
+    public void setTipo_informe(String tipoInforme) {
+        this.tipoInforme = tipoInforme;
     }
 
     public String isRespuesta_cliente() {
-        return respuesta_cliente;
+        return respuestaCliente;
     }
 
-    public void setRespuesta_cliente(String respuesta_cliente) {
-        this.respuesta_cliente = respuesta_cliente;
+    public void setRespuesta_cliente(String respuestaCliente) {
+        this.respuestaCliente = respuestaCliente;
     }
 
     public Client getClient() {
