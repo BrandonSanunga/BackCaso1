@@ -3,6 +3,7 @@ package com.grupo3.Caso1.Model;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Map;
 
 @Entity
 @Table(name = "client")
@@ -17,7 +18,7 @@ public class Client {
     private String passwordClient;
 
     public Client(String cedulaClient, String nombresClient, String emailClient, String celularClient,
-            String direccionClient, String passwordClient) {
+                  String direccionClient, String passwordClient) {
         this.cedulaClient = cedulaClient;
         this.nombresClient = nombresClient;
         this.emailClient = emailClient;
@@ -111,6 +112,21 @@ public class Client {
      */
     public void setPasswordClient(String passwordClient) {
         this.passwordClient = passwordClient;
+    }
+
+    public String getClienteLabel() {
+        return this.nombresClient;
+    }
+
+    public Map<String, Object> getClienteObject() {
+        return Map.ofEntries(
+                Map.entry("identificacion", this.cedulaClient),
+                Map.entry("nombres", this.nombresClient),
+                Map.entry("direccion", this.direccionClient),
+                Map.entry("email", this.emailClient),
+                Map.entry("celular", this.celularClient),
+                Map.entry("label", this.getClienteLabel())
+        );
     }
 
 }

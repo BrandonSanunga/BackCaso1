@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,7 +32,7 @@ public class CaracteristicaVehiculoController {
 	}
 
 	@GetMapping(value="/find/{id_caracteristica}")
-	public CaracteristicaVehiculo find(@PathVariable String id_caracteristica) {
+	public CaracteristicaVehiculo find(@PathVariable Long id_caracteristica) {
 		return caracteristicaservice.get(id_caracteristica);
 	}
 	
@@ -41,15 +42,10 @@ public class CaracteristicaVehiculoController {
 		return new ResponseEntity<>(obj, HttpStatus.OK);
 	}
 	
-	@GetMapping(value="/delete/{id_caracteristica}")
-	public ResponseEntity<CaracteristicaVehiculo> delete(@PathVariable String id_caracteristica){
-		CaracteristicaVehiculo caracteristica= caracteristicaservice.get(id_caracteristica);
-		if(caracteristica != null) {
-			caracteristicaservice.delete(id_caracteristica);
-		}else {
-			return new ResponseEntity<CaracteristicaVehiculo>(HttpStatus.NO_CONTENT);
-		}
-		return new ResponseEntity<CaracteristicaVehiculo>(caracteristica, HttpStatus.OK);
+	@DeleteMapping(value="/delete/{id_caracteristica}")
+	public ResponseEntity<Boolean> delete(@PathVariable("id_caracteristica") Long id_vehiculo_catalogo){
+		caracteristicaservice.delete(id_vehiculo_catalogo);
+		return ResponseEntity.ok(!(caracteristicaservice.get(id_vehiculo_catalogo)!=null));
 	}
 
 

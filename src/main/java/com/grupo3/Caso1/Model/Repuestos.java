@@ -1,6 +1,8 @@
 package com.grupo3.Caso1.Model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -9,33 +11,35 @@ import javax.persistence.ManyToOne;
 public class Repuestos {
 
 	@Id
-	private String id_repuesto;
-	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id_repuesto;	
 	private String nombre_repuesto;
-	
+	private boolean estado;	
+
 	@ManyToOne
 	@JoinColumn(name="id_diseno")	
 	private Disenovehiculo diseno;
 	
 	private float precio;
 
-	public Repuestos(String id_repuesto, String nombre_repuesto, Disenovehiculo diseno, float precio) {
-		super();
+	public Repuestos(Long id_repuesto, String nombre_repuesto, Disenovehiculo diseno, float precio, boolean estado) {
+		
 		this.id_repuesto = id_repuesto;
 		this.nombre_repuesto = nombre_repuesto;
 		this.diseno = diseno;
 		this.precio = precio;
+		this.estado = estado;
 	}
 
 	public Repuestos() {
 		super();
 	}
 
-	public String getId_repuesto() {
+	public Long getId_repuesto() {
 		return id_repuesto;
 	}
 
-	public void setId_repuesto(String id_repuesto) {
+	public void setId_repuesto(Long id_repuesto) {
 		this.id_repuesto = id_repuesto;
 	}
 
@@ -62,5 +66,13 @@ public class Repuestos {
 	public void setPrecio(float precio) {
 		this.precio = precio;
 	}
-		
+
+	public boolean getEstado() {
+		return estado;
+	}
+
+	public void setEstado(boolean estado) {
+		this.estado = estado;
+	}	
+
 	}

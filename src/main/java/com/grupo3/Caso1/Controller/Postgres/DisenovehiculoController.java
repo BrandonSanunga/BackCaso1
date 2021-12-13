@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,7 +32,7 @@ public class DisenovehiculoController {
 	}
 
 	@GetMapping(value="/find/{id_diseno}")
-	public Disenovehiculo find(@PathVariable String id_diseno) {
+	public Disenovehiculo find(@PathVariable Long id_diseno) {
 		return disenoservice.get(id_diseno);
 	}
 	
@@ -41,15 +42,10 @@ public class DisenovehiculoController {
 		return new ResponseEntity<>(obj, HttpStatus.OK);
 	}
 	
-	@GetMapping(value="/delete/{id_diseno}")
-	public ResponseEntity<Disenovehiculo> delete(@PathVariable String id_diseno){
-		Disenovehiculo diseno= disenoservice.get(id_diseno);
-		if(diseno != null) {
-			disenoservice.delete(id_diseno);
-		}else {
-			return new ResponseEntity<Disenovehiculo>(HttpStatus.NO_CONTENT);
-		}
-		return new ResponseEntity<Disenovehiculo>(diseno, HttpStatus.OK);
+	@DeleteMapping(value="/delete/{id_diseno}")
+	public ResponseEntity<Boolean> delete(@PathVariable("id_diseno") Long id_vehiculo_catalogo){
+		disenoservice.delete(id_vehiculo_catalogo);
+		return ResponseEntity.ok(!(disenoservice.get(id_vehiculo_catalogo)!=null));
 	}
 
 

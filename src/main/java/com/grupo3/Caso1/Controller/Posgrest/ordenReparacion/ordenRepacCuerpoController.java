@@ -1,6 +1,7 @@
 package com.grupo3.Caso1.Controller.Posgrest.ordenReparacion;
 
 import java.util.List;
+import java.util.Map;
 
 import com.grupo3.Caso1.Model.ordenReparacion.ordenRepCuerpo;
 import com.grupo3.Caso1.Service.Posgrest.ServiceImp.OrdenReparacion.ordenRepaCuerpoServiceImp;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ordenRepacCuerpoController {
     @Autowired
     public ordenRepCuerpoService ordenRepCuerpoService;
+    @Autowired
     public ordenRepaCuerpoServiceImp ordenRepaCuerpoServiceImp2;
 
     @GetMapping(value = "/getall")
@@ -55,12 +57,16 @@ public class ordenRepacCuerpoController {
     }
 
     @PutMapping(value = "/update/{id}")
-    public ResponseEntity<ordenRepCuerpo> update(@PathVariable(name = "id") Long id,
-            @RequestBody ordenRepCuerpo ordenRepCuerpo) {
+    public ResponseEntity<ordenRepCuerpo> update(@PathVariable(name = "id") Long id, @RequestBody ordenRepCuerpo ordenRepCuerpo) {
         if (ordenRepaCuerpoServiceImp2.update(ordenRepCuerpo, id) != null) {
             return new ResponseEntity<>(HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
         }
+    }
+
+    @GetMapping("/ordenes-taller/{estado}")
+    public List<Map<String, Object>> getOrdenesTaller(@PathVariable(name = "estado") String estado) {
+        return ordenRepaCuerpoServiceImp2.getOrdenesTaller(estado);
     }
 }

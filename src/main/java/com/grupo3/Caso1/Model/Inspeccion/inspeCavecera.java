@@ -45,4 +45,11 @@ public class inspeCavecera {
         this.fecha_insepeccion = fecha_insepeccion;
     }
 
+    public InformeReclamo getInformeReclamo() {
+        return informeReclamo;
+    }
+
+    public void setInformeReclamo(InformeReclamo informeReclamo) {
+        this.informeReclamo = informeReclamo;
+    }
 }

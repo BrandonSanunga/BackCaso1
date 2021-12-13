@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class InformeReclamo {
@@ -13,25 +15,46 @@ public class InformeReclamo {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idinformeRecha;
     private Date fechaEmicion;
-    private String idCliente;
-    // @ManyToOne
-    // @JoinColumn(name = "")
-    // private respuestaCliente respuestacliente;
+    private String respuestaCliente;
+    private String tipoInforme;
+    @ManyToOne
+    @JoinColumn(name = "cedulaClient")
+    private Client client;
+    /*
+     * @ManyToOne
+     * 
+     * @JoinColumn(name = "idreclmo")
+     * private Reclamo reclamo;
+     */
     private String descripcionInforme;
-    private boolean tipo_informe;
-    private boolean respuesta_cliente;
 
     public InformeReclamo() {
     }
 
-    public InformeReclamo(Long idinformeRecha, Date fechaEmicion, String idCliente,
-            String descripcionInforme, boolean tipo_informe, boolean respuesta_cliente) {
+    public InformeReclamo(Long idinformeRecha, Date fechaEmicion, String respuestaCliente, String tipoInforme,
+            Client client, String descripcionInforme) {
         this.idinformeRecha = idinformeRecha;
         this.fechaEmicion = fechaEmicion;
-        this.idCliente = idCliente;
+        this.respuestaCliente = respuestaCliente;
+        this.tipoInforme = tipoInforme;
+        this.client = client;
         this.descripcionInforme = descripcionInforme;
-        this.tipo_informe = tipo_informe;
-        this.respuesta_cliente = respuesta_cliente;
+    }
+
+    public String getRespuestaCliente() {
+        return respuestaCliente;
+    }
+
+    public void setRespuestaCliente(String respuestaCliente) {
+        this.respuestaCliente = respuestaCliente;
+    }
+
+    public String getTipoInforme() {
+        return tipoInforme;
+    }
+
+    public void setTipoInforme(String tipoInforme) {
+        this.tipoInforme = tipoInforme;
     }
 
     public Long getIdinformeRecha() {
@@ -50,14 +73,6 @@ public class InformeReclamo {
         this.fechaEmicion = fechaEmicion;
     }
 
-    public String getIdCliente() {
-        return idCliente;
-    }
-
-    public void setIdCliente(String idCliente) {
-        this.idCliente = idCliente;
-    }
-
     public String getDescripcionInforme() {
         return descripcionInforme;
     }
@@ -66,20 +81,27 @@ public class InformeReclamo {
         this.descripcionInforme = descripcionInforme;
     }
 
-    public boolean isTipo_informe() {
-        return tipo_informe;
+    public String isTipo_informe() {
+        return tipoInforme;
     }
 
-    public void setTipo_informe(boolean tipo_informe) {
-        this.tipo_informe = tipo_informe;
+    public void setTipo_informe(String tipoInforme) {
+        this.tipoInforme = tipoInforme;
     }
 
-    public boolean isRespuesta_cliente() {
-        return respuesta_cliente;
+    public String isRespuesta_cliente() {
+        return respuestaCliente;
     }
 
-    public void setRespuesta_cliente(boolean respuesta_cliente) {
-        this.respuesta_cliente = respuesta_cliente;
+    public void setRespuesta_cliente(String respuestaCliente) {
+        this.respuestaCliente = respuestaCliente;
     }
 
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
 }

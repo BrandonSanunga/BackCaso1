@@ -24,17 +24,20 @@ implements SolicitudGarantiaService{
 		return garantiaRepository;
 	}
 
-	public List<SolicitudGarantia> findAllByEstado(){
+	public List<SolicitudGarantia> findAllByEstado(Boolean estado){
 		List<SolicitudGarantia> solGaranrespuesta= new ArrayList<>();
 		List<SolicitudGarantia> solicitudes = garantiaRepository.findAll(); 
 		for (int i=0; i<solicitudes.size();i++) {
-			if(solicitudes.get(i).isEstado_solicitud()==true) {
+			if(solicitudes.get(i).isEstado_solicitud()==estado) {
 				solGaranrespuesta.add(solicitudes.get(i));
 			}
 	   }
 		return solGaranrespuesta;
    }
 
+	public void cambiarEstadoSolicitud(Long id) {
+		garantiaRepository.cambiarEstadoReclamo(id);
+	}
 
 
 	

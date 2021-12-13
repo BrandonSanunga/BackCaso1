@@ -1,13 +1,16 @@
 package com.grupo3.Caso1.Model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class CaracteristicaVehiculo {
 	
 	@Id
-	private String id_caracteristica;	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id_caracteristica;	
 	private String seguridad;
 	private String tecnologia;
 	private int velocidades;
@@ -20,7 +23,7 @@ public class CaracteristicaVehiculo {
 	private int numero_de_puertas;
 	private String motor;
 	
-	public CaracteristicaVehiculo(String id_caracteristica, String seguridad, String tecnologia, int velocidades,
+	public CaracteristicaVehiculo(Long id_caracteristica, String seguridad, String tecnologia, int velocidades,
 			String interior, String rines, int cilindros, String direccion, String capacidad_carga, String vidrios,
 			int numero_de_puertas, String motor) {
 		
@@ -40,10 +43,10 @@ public class CaracteristicaVehiculo {
 	public CaracteristicaVehiculo() {
 		
 	}
-	public String getId_caracteristica() {
+	public Long getId_caracteristica() {
 		return id_caracteristica;
 	}
-	public void setId_caracteristica(String id_caracteristica) {
+	public void setId_caracteristica(Long id_caracteristica) {
 		this.id_caracteristica = id_caracteristica;
 	}
 	public String getSeguridad() {

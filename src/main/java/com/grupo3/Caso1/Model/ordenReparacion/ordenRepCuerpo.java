@@ -19,18 +19,29 @@ public class ordenRepCuerpo {
     private String trabajoRealizar;
     private String observaciones;
     private String imagenes;
+    private String estadoOrden;
 
     public ordenRepCuerpo() {
     }
 
     public ordenRepCuerpo(Long idordenCuerpo, com.grupo3.Caso1.Model.ordenReparacion.ordenRepCavecera ordenRepCavecera,
-            String trabajoSolicitado, String trabajoRealizar, String observaciones, String imagenes) {
+            String trabajoSolicitado, String trabajoRealizar, String observaciones, String imagenes,
+            String estadoOrden) {
         this.idordenCuerpo = idordenCuerpo;
         this.ordenRepCavecera = ordenRepCavecera;
         this.trabajoSolicitado = trabajoSolicitado;
         this.trabajoRealizar = trabajoRealizar;
         this.observaciones = observaciones;
         this.imagenes = imagenes;
+        this.estadoOrden = estadoOrden;
+    }
+
+    public String getEstadoOrden() {
+        return estadoOrden;
+    }
+
+    public void setEstadoOrden(String estadoOrden) {
+        this.estadoOrden = estadoOrden;
     }
 
     public Long getIdordenCuerpo() {

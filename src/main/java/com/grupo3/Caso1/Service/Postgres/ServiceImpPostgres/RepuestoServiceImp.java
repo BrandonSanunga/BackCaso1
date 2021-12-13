@@ -11,13 +11,13 @@ import com.grupo3.Caso1.Service.Postgres.RepuestoService;
 
 
 @Service
-public class RepuestoServiceImp extends GenericServiceImp<Repuestos, String> implements RepuestoService {
+public class RepuestoServiceImp extends GenericServiceImp<Repuestos, Long> implements RepuestoService {
 
 	@Autowired
 	private RepuestoRepository repuestoRep;
 	
 	@Override
-	public CrudRepository<Repuestos, String> getDao() {
+	public CrudRepository<Repuestos, Long> getDao() {
 		
 		return repuestoRep;
 	}

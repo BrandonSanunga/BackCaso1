@@ -1,17 +1,20 @@
 package com.grupo3.Caso1.Model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class Disenovehiculo {
 	
 	@Id
-	private String id_diseno;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id_diseno;
 	private String marca;
 	private String modelo;
 	
-	public Disenovehiculo(String id_diseno, String marca, String modelo) {
+	public Disenovehiculo(Long id_diseno, String marca, String modelo) {
 		
 		this.id_diseno = id_diseno;
 		this.marca = marca;
@@ -20,10 +23,10 @@ public class Disenovehiculo {
 	public Disenovehiculo() {
 		
 	}
-	public String getId_diseno() {
+	public Long getId_diseno() {
 		return id_diseno;
 	}
-	public void setId_diseno(String id_diseno) {
+	public void setId_diseno(Long id_diseno) {
 		this.id_diseno = id_diseno;
 	}
 	public String getMarca() {
