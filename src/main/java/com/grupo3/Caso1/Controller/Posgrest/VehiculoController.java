@@ -29,7 +29,7 @@ public class VehiculoController {
 	}
 
 	@GetMapping(value = "/find/{id}")
-	public Vehiculo find(@PathVariable(value = "id") Long id) {
+	public Vehiculo find(@PathVariable(value = "id") String id) {
 		return vehiculoService.get(id);
 	}
 
@@ -39,19 +39,8 @@ public class VehiculoController {
 		return new ResponseEntity<Vehiculo>(obj, HttpStatus.OK);
 	}
 
-	/*
-	 * Metodo Prueba
-	 * 
-	 * @PostMapping("/vh")
-	 * 
-	 * @ResponseStatus(HttpStatus.CREATED) public Vehiculo create(@RequestBody
-	 * Vehiculo vehiculo)
-	 * {
-	 * return vehiculoService.save(vehiculo);
-	 * }
-	 */
 	@GetMapping(value = "/delete/{id}")
-	public ResponseEntity<Vehiculo> delete(@PathVariable(value = "id") Long id) {
+	public ResponseEntity<Vehiculo> delete(@PathVariable(value = "id") String id) {
 		Vehiculo vehiculo = vehiculoService.get(id);
 		if (vehiculo != null) {
 			vehiculoService.delete(id);

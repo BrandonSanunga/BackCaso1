@@ -10,13 +10,13 @@ import com.grupo3.Caso1.Model.Vehiculo;
 import com.grupo3.Caso1.Service.Posgrest.VehiculoService;
 
 @Service
-public class VehiculoServiceImp extends GenericServiceImp<Vehiculo, Long> implements VehiculoService {
+public class VehiculoServiceImp extends GenericServiceImp<Vehiculo, String> implements VehiculoService {
 
 	@Autowired
 	private VehiculoRepository vehiculo;
 
 	@Override
-	public CrudRepository<Vehiculo, Long> getDao() {
+	public CrudRepository<Vehiculo, String> getDao() {
 		// TODO Auto-generated method stub
 		return vehiculo;
 	}
