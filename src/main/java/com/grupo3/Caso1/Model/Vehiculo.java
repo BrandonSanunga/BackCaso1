@@ -8,10 +8,9 @@ import javax.persistence.OneToOne;
 @Entity
 public class Vehiculo {
 	@Id
-	private String chasis_vehiculo;
+	private String chasis;
 	private String color;
 	private String ramv;
-	private String placa;
 	private boolean estado;
 	@OneToOne
 	private Pais id_pais;

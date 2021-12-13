@@ -13,12 +13,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.grupo3.Caso1.Model.DetalleGarantia;
 import com.grupo3.Caso1.Service.Posgrest.DetalleGarantiaService;
 
 @RestController
 @RequestMapping("/detalleg/api/v1")
 @CrossOrigin("*")
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer"})
 public class DetalleGarantiaController {
 	
 	@Autowired
