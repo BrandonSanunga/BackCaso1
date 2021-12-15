@@ -24,7 +24,7 @@ public class Vehiculo {
 
     public Vehiculo() {
 
-        // TODO Auto-generated constructor stub
+       
     }
 
     public Vehiculo(String chasis_vehiculo, String color, String ramv, boolean estado, Pais id_pais, GarantiaVehiculo id_garantia, vehiculo_catalogo vehiculoCatalogo, Double precio_compra, Double precio_venta) {
@@ -110,7 +110,5 @@ public class Vehiculo {
     public void setPrecio_venta(Double precio_venta) {
         this.precio_venta = precio_venta;
     }
-
-    
-
 }
+    
