@@ -7,6 +7,8 @@ import com.grupo3.Caso1.Model.Factura;
 
 public interface FacturaService {
 	public List<Factura> findAll();
+	
+	public List<Factura> findFacturaByClienteCedulaClient(String cedulaClient);
 
     public Factura save(Factura factura);
 

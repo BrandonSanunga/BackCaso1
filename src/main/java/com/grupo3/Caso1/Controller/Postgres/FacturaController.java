@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import javax.validation.Valid;
 
 import java.util.HashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
@@ -23,7 +24,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.grupo3.Caso1.Model.DetalleFactura;
 import com.grupo3.Caso1.Model.Factura;
+import com.grupo3.Caso1.Model.Vehiculo;
+import com.grupo3.Caso1.Service.Posgrest.VehiculoService;
 import com.grupo3.Caso1.Service.Postgres.FacturaService;
 
 @RestController
@@ -33,10 +37,18 @@ public class FacturaController {
 
 	@Autowired
 	private FacturaService facturaService;
+	
+	@Autowired
+	private VehiculoService vehiculoService;
 
 	@GetMapping("/")
 	public List<Factura> getFacturas() {
 		return facturaService.findAll();
+	}
+	//ENDPOINT QUE REGRESA LAS FACTURAS DEL CLIENTE COMO PARAMETRO LA CEDULA 
+	@GetMapping("/facturas-cliente/{cedula}")
+	public List<Factura> getFacturasByCedulaCliente(@PathVariable String cedula) {
+		return facturaService.findFacturaByClienteCedulaClient(cedula);
 	}
 
 	@GetMapping("/{id}")
@@ -62,6 +74,7 @@ public class FacturaController {
 	public ResponseEntity<?> create(@Valid @RequestBody Factura factura, BindingResult result) {
 		Map<String, Object> response = new HashMap<>();
 		Factura newFactura = null;
+		Vehiculo veh=null;
 		if (result.hasErrors()) {
 			List<String> errors = result.getFieldErrors().stream().map(err -> {
 				return "El campo '" + err.getField() + "' " + err.getDefaultMessage();
@@ -70,6 +83,12 @@ public class FacturaController {
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.BAD_REQUEST);
 		}
 		try {
+			for (DetalleFactura detalleFactura:factura.getDetallesfacturas()) {
+				veh= vehiculoService.get(Long.valueOf(detalleFactura.getVehiculo().getChasis_vehiculo()).longValue());
+				boolean estadoTrue=true;
+				veh.setEstado(estadoTrue);
+				vehiculoService.save(veh);
+			}
 			newFactura = facturaService.save(factura);
 		} catch (DataAccessException e) {
 			response.put("mensaje", "Error  en la inserccion en la base de datos");
