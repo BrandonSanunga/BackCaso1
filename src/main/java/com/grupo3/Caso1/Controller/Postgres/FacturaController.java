@@ -45,7 +45,7 @@ public class FacturaController {
 	public List<Factura> getFacturas() {
 		return facturaService.findAll();
 	}
-	//ENDPOINT QUE REGRESA LAS FACTURAS DEL CLIENTE COMO PARAMETRO LA CEDULA 
+	//ENDPOINT QUE REGRESA LAS FACTURAS DEL CLIENTE CON PARAMETRO LA CEDULA 
 	@GetMapping("/facturas-cliente/{cedula}")
 	public List<Factura> getFacturasByCedulaCliente(@PathVariable String cedula) {
 		return facturaService.findFacturaByClienteCedulaClient(cedula);
@@ -84,7 +84,7 @@ public class FacturaController {
 		}
 		try {
 			for (DetalleFactura detalleFactura:factura.getDetallesfacturas()) {
-				veh= vehiculoService.get(Long.valueOf(detalleFactura.getVehiculo().getChasis_vehiculo()).longValue());
+				veh= vehiculoService.get(detalleFactura.getVehiculo().getChasis_vehiculo());
 				boolean estadoTrue=true;
 				veh.setEstado(estadoTrue);
 				vehiculoService.save(veh);

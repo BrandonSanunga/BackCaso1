@@ -1,5 +1,7 @@
 package com.grupo3.Caso1.Service.Posgrest.ServiceImp;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,11 @@ public class VehiculoServiceImp extends GenericServiceImp<Vehiculo, String> impl
 	public CrudRepository<Vehiculo, String> getDao() {
 		// TODO Auto-generated method stub
 		return vehiculo;
+	}
+
+	@Override
+	public List<Vehiculo> findAllEstadoFalse() {
+		return vehiculo.findAllEstadoFalse();
 	}
 
 }
