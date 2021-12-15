@@ -7,6 +7,5 @@ import com.grupo3.Caso1.Model.Factura;
 
 @Repository
 public interface FacturaRepository extends JpaRepository<Factura, Long> {
-	
 
 }
