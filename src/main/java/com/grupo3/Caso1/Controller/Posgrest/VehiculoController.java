@@ -32,6 +32,11 @@ public class VehiculoController {
 	public List<Vehiculo> getAll() {
 		return vehiculoService.getAll();
 	}
+	//LISTAR VEHICULOS EN ESTADO FALSO PARA LA FACTURA
+	@GetMapping(value = "/all-false")
+	public List<Vehiculo> findAllEstadoFalse() {
+		return vehiculoService.findAllEstadoFalse();
+	}
 
 	@GetMapping(value = "/find/{id}")
 	public Vehiculo find(@PathVariable(value = "id") String id) {

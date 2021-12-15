@@ -32,12 +32,10 @@ public class ReclamoGarantia implements Serializable{
 	@Column(columnDefinition = "boolean DEFAULT 'true'")
 	private boolean estado_reclamo;
 	
-	
 	@PrePersist
 	public void prePersist() {
 		fecha_reclamo = new Date();
 	}
-
 
 	public ReclamoGarantia(SolicitudGarantia fk_id_solicitud, Date fecha_reclamo, boolean estado_reclamo) {
 		super();

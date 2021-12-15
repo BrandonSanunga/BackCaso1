@@ -20,12 +20,29 @@ public class Vehiculo {
     private GarantiaVehiculo garantia;
     @ManyToOne
     private vehiculo_catalogo vehiculoCatalogo;
+<<<<<<< HEAD
   
+=======
+    private Double precio_venta;
+>>>>>>> 4b32ad7da49df23077ed0711f44cdee67a7bd300
 
     public Vehiculo() {
  
     }
 
+<<<<<<< HEAD
+=======
+    public Vehiculo(String chasis_vehiculo, String color, String ramv, boolean estado, Pais id_pais, GarantiaVehiculo id_garantia, vehiculo_catalogo vehiculoCatalogo,Double precio_venta) {
+        this.chasis_vehiculo = chasis_vehiculo;
+        this.color = color;
+        this.ramv = ramv;
+        this.estado = estado;
+        this.id_pais = id_pais;
+        this.id_garantia = id_garantia;
+        this.vehiculoCatalogo = vehiculoCatalogo;
+        this.precio_venta = precio_venta;
+    }
+>>>>>>> 4b32ad7da49df23077ed0711f44cdee67a7bd300
 
 	public Vehiculo(String chasis, String color, String ramv, boolean estado, Double precio, Pais pais,
 			GarantiaVehiculo garantia, vehiculo_catalogo vehiculoCatalogo) {
@@ -70,6 +87,7 @@ public class Vehiculo {
 	}
 
 
+<<<<<<< HEAD
 	public boolean isEstado() {
 		return estado;
 	}
@@ -120,6 +138,11 @@ public class Vehiculo {
 	}
     
 
+=======
+    public Double getPrecio_venta() {
+        return precio_venta;
+    }
+>>>>>>> 4b32ad7da49df23077ed0711f44cdee67a7bd300
 
 }
     

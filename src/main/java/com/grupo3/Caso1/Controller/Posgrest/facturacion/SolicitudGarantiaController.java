@@ -34,12 +34,17 @@ public class SolicitudGarantiaController {
 	private ResponseEntity<List<SolicitudGarantia>> getAllSoliGarantia(){
 		return ResponseEntity.ok(garantiaService.getAll());
 	}
+
+	@GetMapping("/find/{id}")
+	private SolicitudGarantia getSolGarantiaByID(@PathVariable("id") Long idSoliGarantia){
+		return garantiaService.get(idSoliGarantia);
+	}
 	
 	@PostMapping
 	private ResponseEntity<SolicitudGarantia> saveSoliGarantia(@RequestBody SolicitudGarantia solicitud){
  		try {
  			SolicitudGarantia solicitudGar = garantiaService.save(solicitud);
- 			return ResponseEntity.created(new URI("/solicitud/garantia/api/v1"+solicitudGar.getId_solicitud())).body(solicitudGar);
+ 			return ResponseEntity.created(new URI("/solicitud/garantia/api/v1/"+solicitudGar.getId_solicitud())).body(solicitudGar);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 		}
@@ -51,7 +56,7 @@ public class SolicitudGarantiaController {
 		return ResponseEntity.ok(!(garantiaService.get(idSoliGarantia)!=null));
 	}
 
-	@GetMapping("pendientes/{estado}")
+	@GetMapping("{estado}")
 	private ResponseEntity<List<SolicitudGarantia>> getAllSoliGarTrue(@PathVariable("estado") Boolean estado){
 		return ResponseEntity.ok(garantiaServImpl.findAllByEstado(estado));
 	}

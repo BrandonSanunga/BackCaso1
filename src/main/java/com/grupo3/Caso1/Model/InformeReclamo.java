@@ -20,25 +20,33 @@ public class InformeReclamo {
     @ManyToOne
     @JoinColumn(name = "cedulaClient")
     private Client client;
-    /*
-     * @ManyToOne
-     * 
-     * @JoinColumn(name = "idreclmo")
-     * private Reclamo reclamo;
-     */
+
+    @ManyToOne
+    @JoinColumn(name = "id_reclamo")
+    private ReclamoGarantia reclamogarantia;
+
     private String descripcionInforme;
 
     public InformeReclamo() {
     }
 
     public InformeReclamo(Long idinformeRecha, Date fechaEmicion, String respuestaCliente, String tipoInforme,
-            Client client, String descripcionInforme) {
+            Client client, ReclamoGarantia reclamogarantia, String descripcionInforme) {
         this.idinformeRecha = idinformeRecha;
         this.fechaEmicion = fechaEmicion;
         this.respuestaCliente = respuestaCliente;
         this.tipoInforme = tipoInforme;
         this.client = client;
+        this.reclamogarantia = reclamogarantia;
         this.descripcionInforme = descripcionInforme;
+    }
+
+    public ReclamoGarantia getReclamogarantia() {
+        return reclamogarantia;
+    }
+
+    public void setReclamogarantia(ReclamoGarantia reclamogarantia) {
+        this.reclamogarantia = reclamogarantia;
     }
 
     public String getRespuestaCliente() {

@@ -34,4 +34,9 @@ public class FacturaServiceImp implements FacturaService {
 		return facturaRepository.findById(id).orElse(null);
 	}
 
+	@Override
+	public List<Factura> findFacturaByClienteCedulaClient(String cedulaClient) {
+		return facturaRepository.findFacturaByClienteCedulaClient(cedulaClient);
+	}
+
 }

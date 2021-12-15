@@ -28,22 +28,29 @@ public class ReclamoGarantiaController {
 	private ReclamoGarantiaService garantiaService;
 	@Autowired
 	private ReclamoGarantiaSercImpl garantiaSercImpl;
-	
+
 	@GetMapping
-	private ResponseEntity<List<ReclamoGarantia>> getAllReclamoGarantia(){
+	private ResponseEntity<List<ReclamoGarantia>> getAllReclamoGarantia() {
 		return ResponseEntity.ok(garantiaService.getAll());
 	}
-	
+
 	@PostMapping
-	private ResponseEntity<ReclamoGarantia> saveReclamoGarantia(@RequestBody ReclamoGarantia solicitud){
- 		try {
- 			ReclamoGarantia reclamoGar = garantiaService.save(solicitud);
- 			return ResponseEntity.created(new URI("/reclamo/garantia/api/v1"+reclamoGar.getId_reclamo())).body(reclamoGar);
+	private ResponseEntity<ReclamoGarantia> saveReclamoGarantia(@RequestBody ReclamoGarantia solicitud) {
+		try {
+			ReclamoGarantia reclamoGar = garantiaService.save(solicitud);
+			return ResponseEntity.created(new URI("/reclamo/garantia/api/v1/" + reclamoGar.getId_reclamo()))
+					.body(reclamoGar);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 		}
 	}
-	
+
+	@GetMapping(value = "/findId/{id}")
+	public ReclamoGarantia getfindbyid(@PathVariable(name = "id") Long id) {
+		ReclamoGarantia reclamoGarantia = garantiaService.get(id);
+		return reclamoGarantia;
+	}
+
 	@PutMapping("{id}")
 	public ResponseEntity<?> cambiarEstadoReclamo(@PathVariable("id") Long id) {
 		garantiaSercImpl.cambiarEstadoReclamo(id);
