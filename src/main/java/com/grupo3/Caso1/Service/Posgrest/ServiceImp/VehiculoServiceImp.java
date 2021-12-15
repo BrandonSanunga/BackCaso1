@@ -1,9 +1,8 @@
 package com.grupo3.Caso1.Service.Posgrest.ServiceImp;
 
-<<<<<<< HEAD
+
 import java.util.ArrayList;
-=======
->>>>>>> 4b32ad7da49df23077ed0711f44cdee67a7bd300
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +27,6 @@ public class VehiculoServiceImp extends GenericServiceImp<Vehiculo, String> impl
 		return vehiculo;
 	}
 
-<<<<<<< HEAD
 	public List<Vehiculo> findAllByEstado(Boolean estado){
 		List<Vehiculo> solGaranrespuesta= new ArrayList<>();
 		List<Vehiculo> solicitudes = vehiculo.findAll(); 
@@ -44,11 +42,11 @@ public class VehiculoServiceImp extends GenericServiceImp<Vehiculo, String> impl
 		vehiculo.cambiarEstadoVehiculo(id);
 	
 }
-=======
+
 	@Override
 	public List<Vehiculo> findAllEstadoFalse() {
 		return vehiculo.findAllEstadoFalse();
 	}
 
->>>>>>> 4b32ad7da49df23077ed0711f44cdee67a7bd300
+
 }

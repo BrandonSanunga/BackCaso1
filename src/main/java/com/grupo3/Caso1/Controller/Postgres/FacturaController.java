@@ -84,7 +84,7 @@ public class FacturaController {
 		}
 		try {
 			for (DetalleFactura detalleFactura:factura.getDetallesfacturas()) {
-				veh= vehiculoService.get(detalleFactura.getVehiculo().getChasis_vehiculo());
+				veh= vehiculoService.get(detalleFactura.getVehiculo().getChasis());
 				boolean estadoTrue=true;
 				veh.setEstado(estadoTrue);
 				vehiculoService.save(veh);
