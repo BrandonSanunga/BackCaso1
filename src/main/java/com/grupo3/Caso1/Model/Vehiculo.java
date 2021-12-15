@@ -9,106 +9,117 @@ import javax.persistence.OneToOne;
 public class Vehiculo {
 
     @Id
-    private String chasis_vehiculo;
+    private String chasis;
     private String color;
     private String ramv;
     private boolean estado;
+    private Double precio;
     @OneToOne
-    private Pais id_pais;
+    private Pais pais;
     @ManyToOne
-    private GarantiaVehiculo id_garantia;
+    private GarantiaVehiculo garantia;
     @ManyToOne
     private vehiculo_catalogo vehiculoCatalogo;
-    private Double precio_compra;
-    private Double precio_venta;
+  
 
     public Vehiculo() {
-
-       
+ 
     }
 
-    public Vehiculo(String chasis_vehiculo, String color, String ramv, boolean estado, Pais id_pais, GarantiaVehiculo id_garantia, vehiculo_catalogo vehiculoCatalogo, Double precio_compra, Double precio_venta) {
-        this.chasis_vehiculo = chasis_vehiculo;
-        this.color = color;
-        this.ramv = ramv;
-        this.estado = estado;
-        this.id_pais = id_pais;
-        this.id_garantia = id_garantia;
-        this.vehiculoCatalogo = vehiculoCatalogo;
-        this.precio_compra = precio_compra;
-        this.precio_venta = precio_venta;
-    }
 
-    public String getChasis_vehiculo() {
-        return chasis_vehiculo;
-    }
+	public Vehiculo(String chasis, String color, String ramv, boolean estado, Double precio, Pais pais,
+			GarantiaVehiculo garantia, vehiculo_catalogo vehiculoCatalogo) {
+		this.chasis = chasis;
+		this.color = color;
+		this.ramv = ramv;
+		this.estado = estado;
+		this.precio = precio;
+		this.pais = pais;
+		this.garantia = garantia;
+		this.vehiculoCatalogo = vehiculoCatalogo;
+	}
 
-    public void setChasis_vehiculo(String chasis_vehiculo) {
-        this.chasis_vehiculo = chasis_vehiculo;
-    }
 
-    public String getColor() {
-        return color;
-    }
+	public String getChasis() {
+		return chasis;
+	}
 
-    public void setColor(String color) {
-        this.color = color;
-    }
 
-    public String getRamv() {
-        return ramv;
-    }
+	public void setChasis(String chasis) {
+		this.chasis = chasis;
+	}
 
-    public void setRamv(String ramv) {
-        this.ramv = ramv;
-    }
 
-    public boolean isEstado() {
-        return estado;
-    }
+	public String getColor() {
+		return color;
+	}
 
-    public void setEstado(boolean estado) {
-        this.estado = estado;
-    }
 
-    public Pais getId_pais() {
-        return id_pais;
-    }
+	public void setColor(String color) {
+		this.color = color;
+	}
 
-    public void setId_pais(Pais id_pais) {
-        this.id_pais = id_pais;
-    }
 
-    public GarantiaVehiculo getId_garantia() {
-        return id_garantia;
-    }
+	public String getRamv() {
+		return ramv;
+	}
 
-    public void setId_garantia(GarantiaVehiculo id_garantia) {
-        this.id_garantia = id_garantia;
-    }
 
-    public vehiculo_catalogo getVehiculoCatalogo() {
-        return vehiculoCatalogo;
-    }
+	public void setRamv(String ramv) {
+		this.ramv = ramv;
+	}
 
-    public void setVehiculoCatalogo(vehiculo_catalogo vehiculoCatalogo) {
-        this.vehiculoCatalogo = vehiculoCatalogo;
-    }
 
-    public Double getPrecio_compra() {
-        return precio_compra;
-    }
+	public boolean isEstado() {
+		return estado;
+	}
 
-    public void setPrecio_compra(Double precio_compra) {
-        this.precio_compra = precio_compra;
-    }
 
-    public Double getPrecio_venta() {
-        return precio_venta;
-    }
+	public void setEstado(boolean estado) {
+		this.estado = estado;
+	}
 
-    public void setPrecio_venta(Double precio_venta) {
-        this.precio_venta = precio_venta;
-    }
+
+	public Double getPrecio() {
+		return precio;
+	}
+
+
+	public void setPrecio(Double precio) {
+		this.precio = precio;
+	}
+
+
+	public Pais getPais() {
+		return pais;
+	}
+
+
+	public void setPais(Pais pais) {
+		this.pais = pais;
+	}
+
+
+	public GarantiaVehiculo getGarantia() {
+		return garantia;
+	}
+
+
+	public void setGarantia(GarantiaVehiculo garantia) {
+		this.garantia = garantia;
+	}
+
+
+	public vehiculo_catalogo getVehiculoCatalogo() {
+		return vehiculoCatalogo;
+	}
+
+
+	public void setVehiculoCatalogo(vehiculo_catalogo vehiculoCatalogo) {
+		this.vehiculoCatalogo = vehiculoCatalogo;
+	}
+    
+
+
 }
     

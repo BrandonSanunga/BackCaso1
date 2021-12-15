@@ -32,7 +32,7 @@ public class DetalleGarantiaController {
 	}
 
 	@GetMapping(value = "/find/{id}")
-	public DetalleGarantia find(@PathVariable(value = "id") int id) {
+	public DetalleGarantia find(@PathVariable(value = "id") Long id) {
 		return detalleService.get(id);
 	}
 
@@ -43,7 +43,7 @@ public class DetalleGarantiaController {
 	}
 
 	@GetMapping(value = "/delete/{id}")
-	public ResponseEntity<DetalleGarantia> delete(@PathVariable(value = "id") int id) {
+	public ResponseEntity<DetalleGarantia> delete(@PathVariable(value = "id") Long id) {
 		DetalleGarantia vehiculo = detalleService.get(id);
 		if (vehiculo != null) {
 			detalleService.delete(id);

@@ -14,38 +14,37 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.grupo3.Caso1.Model.GarantiaVehiculo;
-import com.grupo3.Caso1.Model.Vehiculo;
-import com.grupo3.Caso1.Service.Posgrest.GarantiaVehiculoService;
-import com.grupo3.Caso1.Service.Posgrest.VehiculoService;
+import com.grupo3.Caso1.Model.InformeConcecionaria;
+import com.grupo3.Caso1.Service.Posgrest.InformeConcesionariaService;
 
 @RestController
-@RequestMapping("/garantia/api/v1")
-@CrossOrigin(origins = "http://localhost:4200")
-public class GarantiaVehiculocontroller {
+@RequestMapping("/informeC/api/v1")
+@CrossOrigin("*")
+public class InformeConcesionariaController {
 	@Autowired
-	private GarantiaVehiculoService vehiculoService;
-
+	private InformeConcesionariaService informeService;
+	
 	@GetMapping(value = "/all")
-	public List<GarantiaVehiculo> getAll() {
-		return vehiculoService.getAll();
+	public List<InformeConcecionaria> getAll() {
+		return informeService.getAll();
 	}
 
 	@GetMapping(value = "/find/{id}")
-	public GarantiaVehiculo find(@PathVariable(value = "id") Long id) {
-		return vehiculoService.get(id);
+	public InformeConcecionaria find(@PathVariable(value = "id") Long id) {
+		return informeService.get(id);
 	}
 
 	@PostMapping(value = "/save")
-	public ResponseEntity<GarantiaVehiculo> save(@RequestBody GarantiaVehiculo vehiculo) {
-		GarantiaVehiculo obj = vehiculoService.save(vehiculo);
-		return new ResponseEntity<GarantiaVehiculo>(obj, HttpStatus.OK);
+	public ResponseEntity<InformeConcecionaria> save(@RequestBody InformeConcecionaria informe) {
+		
+		InformeConcecionaria obj = informeService.save(informe);
+		return new ResponseEntity<InformeConcecionaria>(obj, HttpStatus.OK);
 	}
 
 	@DeleteMapping(value="/delete/{id}")
 	public ResponseEntity<Boolean> delete(@PathVariable("id") Long id){
-		vehiculoService.delete(id);
-		return ResponseEntity.ok(!(vehiculoService.get(id)!=null));
+		informeService.delete(id);
+		return ResponseEntity.ok(!(informeService.get(id)!=null));
 	}
 
 }
