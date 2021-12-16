@@ -38,7 +38,12 @@ implements SolicitudGarantiaService{
 	public void cambiarEstadoSolicitud(Long id) {
 		garantiaRepository.cambiarEstadoReclamo(id);
 	}
-
+	
+	public List<Object> listCarsByCedula(String id){
+		List<Object> lista = new ArrayList<>();
+		lista.add(garantiaRepository.listCarsByCedula(id));
+		return lista;
+	}
 
 	
 }

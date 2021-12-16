@@ -66,4 +66,9 @@ public class SolicitudGarantiaController {
 		garantiaServImpl.cambiarEstadoSolicitud(id);
 		return ResponseEntity.ok(garantiaService.getAll());
 	}
+	
+	@GetMapping("cars/{id}")
+	public ResponseEntity<Object> getCarsByCedula(@PathVariable("id") String id){
+		return ResponseEntity.ok(garantiaServImpl.listCarsByCedula(id));
+	}
 }
