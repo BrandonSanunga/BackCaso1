@@ -20,5 +20,9 @@ public class GarantiaVehiculoServiceImp  extends GenericServiceImp<GarantiaVehic
 		// TODO Auto-generated method stub
 		return vehiculo;
 	}
+	public void cambiarEstadoSolicitud(Long id) {
+		vehiculo.cambiarEstadoReclamo(id);
+	}
+
 
 }
