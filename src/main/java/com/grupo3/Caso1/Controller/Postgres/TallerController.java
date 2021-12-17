@@ -1,9 +1,13 @@
 package com.grupo3.Caso1.Controller.Postgres;
 
+import com.grupo3.Caso1.Commons.Utils;
 import com.grupo3.Caso1.Service.Posgrest.ServiceImp.TallerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.mail.MessagingException;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -35,8 +39,21 @@ public class TallerController {
         return tallerService.deleteDetalleRepuesto(id);
     }
 
-    @GetMapping("informe-reparacion/{ordenId}")
-    private Map<String, Object> generarInformeReparacion(@PathVariable("ordenId") Long ordenId) {
-        return tallerService.generarInformeReparacion(ordenId);
+//    @GetMapping("informe-reparacion/{ordenId}")
+//    private Map<String, Object> generarInformeReparacion(@PathVariable("ordenId") Long ordenId) {
+//        return tallerService.generarInformeReparacion(ordenId);
+//    }
+
+
+    @GetMapping("informe-reparacion-pdf/{ordenId}")
+    public ResponseEntity<byte[]> generarInformeReparacionPDF(@PathVariable("ordenId") Long ordenId) throws IOException {
+        String pdfName = tallerService.generarInformeReparacion(ordenId);
+        return Utils.responsePdf(pdfName);
     }
+
+    @GetMapping("enviar-correo-informe-reparacion/{ordenId}")
+    public Map<String, Object> enviarCorreoInformeReparacion(@PathVariable("ordenId") Long ordenId) throws MessagingException {
+        return this.tallerService.enviarEmail(ordenId);
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.grupo3.Caso1.Service.Posgrest.ServiceImp;
 
+import com.grupo3.Caso1.Commons.MailAttachment;
 import com.grupo3.Caso1.Commons.Utils;
 import com.grupo3.Caso1.Dao.Posgrest.DetalleOrdenRepository;
 import com.grupo3.Caso1.Dao.Posgrest.ordenReparacion.ordenRepCuerpoRepo;
@@ -11,9 +12,19 @@ import com.grupo3.Caso1.Model.ordenReparacion.DetalleRepuestos;
 import com.grupo3.Caso1.Model.ordenReparacion.ordenRepCuerpo;
 import com.grupo3.Caso1.Reports.InformeReparacionContext;
 import com.grupo3.Caso1.Reports.Report;
+import jdk.jshell.execution.Util;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -26,6 +37,7 @@ public class TallerService {
     private ordenRepCuerpoRepo ordenRepCuerpoRepo;
     @Autowired
     private DetalleOrdenRepository detalleOrdenRepository;
+
 
     public List<Map<String, Object>> getRepuestos() {
         return repuestoRepository.findAll().stream().map(TallerMapper::mappRepuesto).collect(Collectors.toList());
@@ -64,8 +76,7 @@ public class TallerService {
 
     }
 
-    public Map<String, Object> generarInformeReparacion(Long ordenId) {
-        Map<String, Object> json = new HashMap<>();
+    public String generarInformeReparacion(Long ordenId) {
 
         Optional<ordenRepCuerpo> ordenBD = ordenRepCuerpoRepo.findById(ordenId);
         if (ordenBD.isPresent()) {
@@ -93,10 +104,34 @@ public class TallerService {
             Report<InformeReparacionContext> report = new Report<>("template", context);
 
             report.generate();
-            json.put("status", "created");
-        } else {
-            json.put("status", "error");
+            return report.getReportOutPdfName();
         }
+        return "";
+    }
+
+
+    public Map<String, Object> enviarEmail(Long ordenId) throws MessagingException {
+
+        Map<String, Object> json = new HashMap<>();
+        Optional<ordenRepCuerpo> ordenBD = ordenRepCuerpoRepo.findById(ordenId);
+
+        if (ordenBD.isPresent()) {
+            String pdfPath = this.generarInformeReparacion(ordenId);
+            List<MailAttachment> attachments = List.of(new MailAttachment("INFORME REPARACIÓN.pdf", pdfPath));
+            String email = ordenBD.get().getOrdenRepCavecera().getInspeCuerpo().getInspeCavecera().getInformeReclamo().getClient().getEmailClient();
+            Boolean enviado = Utils.enviarEmail(email, "StarMotorsG3@gmail.com", "INFORME DE REPARACIÓN", "INFORME DE REPARACIÓN", attachments);
+
+            if (enviado) {
+                json.put("email", email);
+                json.put("status", "enviado");
+                return json;
+            }
+        }
+
+        json.put("status", "error");
+
         return json;
     }
+
+
 }
