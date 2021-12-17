@@ -1,11 +1,10 @@
 package com.grupo3.Caso1.Model.ordenReparacion;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import com.grupo3.Caso1.Model.Repuestos;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class ordenRepCuerpo {
@@ -20,13 +19,15 @@ public class ordenRepCuerpo {
     private String observaciones;
     private String imagenes;
     private String estadoOrden;
+    private Double costoManoObra;
+
+    @OneToMany(mappedBy = "orden")
+    private List<DetalleRepuestos> detalleRepuestos = new ArrayList<>();
 
     public ordenRepCuerpo() {
     }
 
-    public ordenRepCuerpo(Long idordenCuerpo, com.grupo3.Caso1.Model.ordenReparacion.ordenRepCavecera ordenRepCavecera,
-            String trabajoSolicitado, String trabajoRealizar, String observaciones, String imagenes,
-            String estadoOrden) {
+    public ordenRepCuerpo(Long idordenCuerpo, com.grupo3.Caso1.Model.ordenReparacion.ordenRepCavecera ordenRepCavecera, String trabajoSolicitado, String trabajoRealizar, String observaciones, String imagenes, String estadoOrden) {
         this.idordenCuerpo = idordenCuerpo;
         this.ordenRepCavecera = ordenRepCavecera;
         this.trabajoSolicitado = trabajoSolicitado;
@@ -92,4 +93,19 @@ public class ordenRepCuerpo {
         this.imagenes = imagenes;
     }
 
+    public List<DetalleRepuestos> getDetalleRepuestos() {
+        return detalleRepuestos;
+    }
+
+    public void setDetalleRepuestos(List<DetalleRepuestos> detalleRepuestos) {
+        this.detalleRepuestos = detalleRepuestos;
+    }
+
+    public Double getCostoManoObra() {
+        return costoManoObra;
+    }
+
+    public void setCostoManoObra(Double costoManoObra) {
+        this.costoManoObra = costoManoObra;
+    }
 }
