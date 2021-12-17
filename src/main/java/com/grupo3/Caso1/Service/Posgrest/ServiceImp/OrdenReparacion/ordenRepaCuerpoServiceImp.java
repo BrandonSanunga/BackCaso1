@@ -2,18 +2,18 @@ package com.grupo3.Caso1.Service.Posgrest.ServiceImp.OrdenReparacion;
 
 import com.grupo3.Caso1.Commons.GenericServiceImp;
 import com.grupo3.Caso1.Dao.Posgrest.ordenReparacion.ordenRepCuerpoRepo;
-import com.grupo3.Caso1.Model.ordenReparacion.ordenRepCavecera;
+import com.grupo3.Caso1.Mappers.TallerMapper;
 import com.grupo3.Caso1.Model.ordenReparacion.ordenRepCuerpo;
 import com.grupo3.Caso1.Service.Posgrest.ordenReparacion.ordenRepCuerpoService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ordenRepaCuerpoServiceImp extends GenericServiceImp<ordenRepCuerpo, Long> implements ordenRepCuerpoService {
@@ -37,25 +37,28 @@ public class ordenRepaCuerpoServiceImp extends GenericServiceImp<ordenRepCuerpo,
 
     @Override
     public List<Map<String, Object>> getOrdenesTaller(String estado) {
-        List<Map<String, Object>> ordenes = new ArrayList<>();
         List<ordenRepCuerpo> ordenesRep = ordenRepCuerpoRepo.getOrdenesTaller(estado);
-        ordenesRep.forEach(obj -> {
+        return ordenesRep.stream().map(TallerMapper::mappOrden).collect(Collectors.toList());
+    }
 
-            Map<String, Object> json = new HashMap<>();
-            json.put("id", obj.getIdordenCuerpo());
-            json.put("persona", obj.getOrdenRepCavecera().getInspeCuerpo().getInspeCavecera().getInformeReclamo().getClient().getClienteObject());
-           // json.put("fechaIngreso", obj.getOrdenRepCavecera().getFechaIngresoWithFormat());
-            json.put("estado", obj.getEstadoOrden());
+    public Map<String, Object> getOrdenById(Long id) {
+        return TallerMapper.mappOrden(ordenRepCuerpoRepo.getById(id));
+    }
 
-            Map<String, Object> vehiculo = new HashMap<>();
-            vehiculo.put("id", 1);
-            vehiculo.put("modelo", "2010");
-            vehiculo.put("marca", "TOYOTA");
-            vehiculo.put("label", "TOYOTA | 2010");
-            json.put("vehiculo", vehiculo);
+    public Map<String, Object> cambiarEstadoOrdenById(Long id, String estado) {
 
-            ordenes.add(json);
-        });
-        return ordenes;
+        Map<String, Object> respuesta = new HashMap<>();
+
+        Optional<ordenRepCuerpo> ordenBD = ordenRepCuerpoRepo.findById(id);
+        ordenRepCuerpo orden = ordenBD.get();
+        respuesta.put("oldValue", orden.getEstadoOrden());
+        orden.setEstadoOrden(estado);
+
+        this.update(ordenBD.get(), id);
+
+        respuesta.put("newValue", orden.getEstadoOrden());
+        respuesta.put("status", "success");
+
+        return respuesta;
     }
 }

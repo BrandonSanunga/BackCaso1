@@ -1,78 +1,89 @@
 package com.grupo3.Caso1.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import com.grupo3.Caso1.Model.ordenReparacion.DetalleRepuestos;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Repuestos {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id_repuesto;	
-	private String nombre_repuesto;
-	private boolean estado;	
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id_repuesto;
+    private String nombre_repuesto;
+    private boolean estado;
 
-	@ManyToOne
-	@JoinColumn(name="id_diseno")	
-	private Disenovehiculo diseno;
-	
-	private float precio;
+    @ManyToOne
+    @JoinColumn(name = "id_diseno")
+    private Disenovehiculo diseno;
 
-	public Repuestos(Long id_repuesto, String nombre_repuesto, Disenovehiculo diseno, float precio, boolean estado) {
-		
-		this.id_repuesto = id_repuesto;
-		this.nombre_repuesto = nombre_repuesto;
-		this.diseno = diseno;
-		this.precio = precio;
-		this.estado = estado;
-	}
 
-	public Repuestos() {
-		super();
-	}
+    private float precio;
 
-	public Long getId_repuesto() {
-		return id_repuesto;
-	}
+    @OneToMany(mappedBy = "repuesto")
+    private List<DetalleRepuestos> detalleRepuestos = new ArrayList<>();
 
-	public void setId_repuesto(Long id_repuesto) {
-		this.id_repuesto = id_repuesto;
-	}
+    public Repuestos(Long id_repuesto, String nombre_repuesto, Disenovehiculo diseno, float precio, boolean estado) {
 
-	public String getNombre_repuesto() {
-		return nombre_repuesto;
-	}
+        this.id_repuesto = id_repuesto;
+        this.nombre_repuesto = nombre_repuesto;
+        this.diseno = diseno;
+        this.precio = precio;
+        this.estado = estado;
+    }
 
-	public void setNombre_repuesto(String nombre_repuesto) {
-		this.nombre_repuesto = nombre_repuesto;
-	}
+    public Repuestos() {
+        super();
+    }
 
-	public Disenovehiculo getDiseno() {
-		return diseno;
-	}
+    public Long getId_repuesto() {
+        return id_repuesto;
+    }
 
-	public void setDiseno(Disenovehiculo diseno) {
-		this.diseno = diseno;
-	}
+    public void setId_repuesto(Long id_repuesto) {
+        this.id_repuesto = id_repuesto;
+    }
 
-	public float getPrecio() {
-		return precio;
-	}
+    public String getNombre_repuesto() {
+        return nombre_repuesto;
+    }
 
-	public void setPrecio(float precio) {
-		this.precio = precio;
-	}
+    public void setNombre_repuesto(String nombre_repuesto) {
+        this.nombre_repuesto = nombre_repuesto;
+    }
 
-	public boolean getEstado() {
-		return estado;
-	}
+    public Disenovehiculo getDiseno() {
+        return diseno;
+    }
 
-	public void setEstado(boolean estado) {
-		this.estado = estado;
-	}	
+    public void setDiseno(Disenovehiculo diseno) {
+        this.diseno = diseno;
+    }
 
-	}
+    public float getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(float precio) {
+        this.precio = precio;
+    }
+
+    public boolean getEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
+    public List<DetalleRepuestos> getDetalleRepuestos() {
+        return detalleRepuestos;
+    }
+
+    public void setDetalleRepuestos(List<DetalleRepuestos> detalleRepuestos) {
+        this.detalleRepuestos = detalleRepuestos;
+    }
+
+}
