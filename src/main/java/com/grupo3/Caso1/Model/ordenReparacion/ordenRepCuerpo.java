@@ -19,6 +19,7 @@ public class ordenRepCuerpo {
     private String observaciones;
     private String imagenes;
     private String estadoOrden;
+    private Double costoManoObra;
 
     @OneToMany(mappedBy = "orden")
     private List<DetalleRepuestos> detalleRepuestos = new ArrayList<>();
@@ -100,4 +101,11 @@ public class ordenRepCuerpo {
         this.detalleRepuestos = detalleRepuestos;
     }
 
+    public Double getCostoManoObra() {
+        return costoManoObra;
+    }
+
+    public void setCostoManoObra(Double costoManoObra) {
+        this.costoManoObra = costoManoObra;
+    }
 }

@@ -44,6 +44,7 @@ public class TallerMapper {
 
 
         json.put("detallesVehiculo", detallesVehiculo);
+        json.put("costoManoObra", obj.getCostoManoObra());
         json.put("observaciones", obj.getOrdenRepCavecera().getInspeCuerpo().getObservaciones());
         return json;
     }

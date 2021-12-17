@@ -12,20 +12,14 @@ import com.grupo3.Caso1.Model.ordenReparacion.DetalleRepuestos;
 import com.grupo3.Caso1.Model.ordenReparacion.ordenRepCuerpo;
 import com.grupo3.Caso1.Reports.InformeReparacionContext;
 import com.grupo3.Caso1.Reports.Report;
-import jdk.jshell.execution.Util;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.FileSystemResource;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
-import javax.mail.internet.MimeMessage;
-import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.io.IOException;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -99,7 +93,7 @@ public class TallerService {
             context.setNombresRepuestos(repuestos.trim());
             context.setDetallesLabels(detallesLabels.toUpperCase().trim());
             context.setDetallesValues(detallesValues.toUpperCase().trim());
-
+            context.setCostoManoObra(orden.getCostoManoObra().toString());
 
             Report<InformeReparacionContext> report = new Report<>("template", context);
 
@@ -134,4 +128,18 @@ public class TallerService {
     }
 
 
+    public Map<String, Object> editarManoObra(Long ordenId, Double costo) {
+        Map<String, Object> json = new HashMap<>();
+
+        Optional<ordenRepCuerpo> orden = ordenRepCuerpoRepo.findById(ordenId);
+        if (orden.isPresent()) {
+            orden.get().setCostoManoObra(costo);
+            ordenRepCuerpoRepo.save(orden.get());
+            json.put("status", "editado");
+        } else {
+            json.put("status", "error");
+        }
+
+        return json;
+    }
 }

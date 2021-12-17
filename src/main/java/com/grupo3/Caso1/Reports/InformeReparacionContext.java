@@ -14,4 +14,5 @@ public class InformeReparacionContext {
     private String detallesLabels;
     private String detallesValues;
     private String nombresRepuestos;
+    private String costoManoObra;
 }

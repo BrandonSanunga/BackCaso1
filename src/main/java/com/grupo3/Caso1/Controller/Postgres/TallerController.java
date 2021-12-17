@@ -56,4 +56,8 @@ public class TallerController {
         return this.tallerService.enviarEmail(ordenId);
     }
 
+    @PutMapping("editar-costo-mano-obra/{ordenId}")
+    private Map<String, Object> editarManoObra(@PathVariable("ordenId") Long ordenId, @RequestBody Double costo) {
+        return tallerService.editarManoObra(ordenId, costo);
+    }
 }
