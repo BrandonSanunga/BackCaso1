@@ -1,24 +1,15 @@
 package com.grupo3.Caso1.Controller.Posgrest.ordenReparacion;
 
-import java.util.List;
-import java.util.Map;
-
 import com.grupo3.Caso1.Model.ordenReparacion.ordenRepCuerpo;
 import com.grupo3.Caso1.Service.Posgrest.ServiceImp.OrdenReparacion.ordenRepaCuerpoServiceImp;
 import com.grupo3.Caso1.Service.Posgrest.ordenReparacion.ordenRepCuerpoService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/ordecuerpo/api/v1")
@@ -68,5 +59,15 @@ public class ordenRepacCuerpoController {
     @GetMapping("/ordenes-taller/{estado}")
     public List<Map<String, Object>> getOrdenesTaller(@PathVariable(name = "estado") String estado) {
         return ordenRepaCuerpoServiceImp2.getOrdenesTaller(estado);
+    }
+
+    @GetMapping("/orden-by-id/{id}")
+    public Map<String, Object> getOrdenById(@PathVariable(name = "id") Long id) {
+        return ordenRepaCuerpoServiceImp2.getOrdenById(id);
+    }
+
+    @PutMapping("/cambiar-estado-orden/{id}")
+    public Map<String, Object> cambiarEstadoOrden(@PathVariable(name = "id") Long id, @RequestBody String estado) {
+        return ordenRepaCuerpoServiceImp2.cambiarEstadoOrdenById(id, estado);
     }
 }
