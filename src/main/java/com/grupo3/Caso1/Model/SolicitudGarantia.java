@@ -15,9 +15,9 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name="solicitudgarantia")
-public class SolicitudGarantia implements Serializable{
-	
+@Table(name = "solicitudgarantia")
+public class SolicitudGarantia implements Serializable {
+
 	private static final long serialVersionUID = -4205639510532965379L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,12 +25,12 @@ public class SolicitudGarantia implements Serializable{
 	@Temporal(TemporalType.DATE)
 	private Date fecha_solicitud;
 	@OneToOne
-	@JoinColumn(name = "chasis_vehiculo")
+	@JoinColumn(name = "chasis")
 	private Vehiculo fk_chasis_vehiculo;
 	private String descripcion;
 	@Column(name = "estado_solicitud", columnDefinition = "boolean DEFAULT 'true'")
 	private boolean estado_solicitud;
-	
+
 	public SolicitudGarantia() {
 		super();
 	}
@@ -80,8 +80,6 @@ public class SolicitudGarantia implements Serializable{
 		return estado_solicitud;
 	}
 
-
-
 	public void setEstado_solicitud(boolean estado_solicitud) {
 		this.estado_solicitud = estado_solicitud;
 	}
@@ -89,7 +87,5 @@ public class SolicitudGarantia implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
-	
 
 }
