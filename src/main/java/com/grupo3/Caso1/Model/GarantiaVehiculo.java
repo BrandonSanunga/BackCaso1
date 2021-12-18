@@ -16,6 +16,7 @@ public class GarantiaVehiculo {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long idGarantia;
 	private String descripcion;
+	private boolean estado;
 	@OneToMany(cascade = CascadeType.ALL)
 	private  List<DetalleGarantia> detallegarantia;
 	
@@ -25,10 +26,21 @@ public class GarantiaVehiculo {
 	}
 
 
-	public GarantiaVehiculo(Long idGarantia, String descripcion, List<DetalleGarantia> detallegarantia) {
+	public GarantiaVehiculo(Long idGarantia, String descripcion, List<DetalleGarantia> detallegarantia,boolean estado) {
 		this.idGarantia = idGarantia;
 		this.descripcion = descripcion;
 		this.detallegarantia = detallegarantia;
+		this.estado=estado;
+	}
+
+
+	public boolean isEstado() {
+		return estado;
+	}
+
+
+	public void setEstado(boolean estado) {
+		this.estado = estado;
 	}
 
 

@@ -15,18 +15,20 @@ public class InformeConcecionaria {
 	private double costo;
 	private int porcentaje;
 	private boolean estado;
+	private double total;
 	
 	public InformeConcecionaria() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public InformeConcecionaria(Long idConcesionaria, String descricion, double costo, int porcentaje, boolean estado) {
+	public InformeConcecionaria(Long idConcesionaria, String descricion, double costo, int porcentaje, boolean estado,	 double total) {
 		
 		this.idConcesionaria = idConcesionaria;
 		this.descricion = descricion;
-		this.costo = (costo*porcentaje)/100;
+		this.costo = costo;
 		this.porcentaje = porcentaje;
 		this.estado = estado;
+		this.total=total;
 	}
 
 	public Long getIdConcesionaria() {
@@ -51,6 +53,7 @@ public class InformeConcecionaria {
 
 	public void setCosto(double costo) {
 		this.costo = costo;
+		
 	}
 
 	public int getPorcentaje() {
@@ -67,6 +70,14 @@ public class InformeConcecionaria {
 
 	public void setEstado(boolean estado) {
 		this.estado = estado;
+	}
+
+	public double getTotal() {
+		return (this.getCosto())-((this.getPorcentaje()*this.getCosto())/100);
+	}
+
+	public void setTotal(double total) {
+		this.total = total;
 	}
 	
 
