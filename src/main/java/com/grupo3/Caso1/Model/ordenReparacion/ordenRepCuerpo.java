@@ -1,7 +1,5 @@
 package com.grupo3.Caso1.Model.ordenReparacion;
 
-import com.grupo3.Caso1.Model.Repuestos;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +17,7 @@ public class ordenRepCuerpo {
     private String observaciones;
     private String imagenes;
     private String estadoOrden;
-    private Double costoManoObra;
+
 
     @OneToMany(mappedBy = "orden")
     private List<DetalleRepuestos> detalleRepuestos = new ArrayList<>();
@@ -101,11 +99,4 @@ public class ordenRepCuerpo {
         this.detalleRepuestos = detalleRepuestos;
     }
 
-    public Double getCostoManoObra() {
-        return costoManoObra;
-    }
-
-    public void setCostoManoObra(Double costoManoObra) {
-        this.costoManoObra = costoManoObra;
-    }
 }
