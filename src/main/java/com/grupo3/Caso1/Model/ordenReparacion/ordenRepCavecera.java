@@ -22,6 +22,7 @@ public class ordenRepCavecera {
     @ManyToOne
     @JoinColumn(name = "idinspeCuerpo")
     private inspeCuerpo inspeCuerpo;
+    private Double costoManoObra;
 
     public ordenRepCavecera() {
     }
@@ -69,4 +70,11 @@ public class ordenRepCavecera {
         return Utils.formatDate(this.fechaIngreso);
     }*/
 
+    public Double getCostoManoObra() {
+        return costoManoObra;
+    }
+
+    public void setCostoManoObra(Double costoManoObra) {
+        this.costoManoObra = costoManoObra;
+    }
 }
