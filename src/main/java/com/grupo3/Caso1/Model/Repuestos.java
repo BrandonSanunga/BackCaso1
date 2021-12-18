@@ -1,5 +1,6 @@
 package com.grupo3.Caso1.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.grupo3.Caso1.Model.ordenReparacion.DetalleRepuestos;
 
 import javax.persistence.*;
@@ -23,6 +24,7 @@ public class Repuestos {
     private float precio;
 
     @OneToMany(mappedBy = "repuesto")
+    @JsonIgnore
     private List<DetalleRepuestos> detalleRepuestos = new ArrayList<>();
 
     public Repuestos(Long id_repuesto, String nombre_repuesto, Disenovehiculo diseno, float precio, boolean estado) {
