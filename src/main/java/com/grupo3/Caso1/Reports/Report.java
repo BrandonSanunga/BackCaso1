@@ -3,8 +3,7 @@ package com.grupo3.Caso1.Reports;
 import com.grupo3.Caso1.Commons.Utils;
 import fr.opensagres.poi.xwpf.converter.pdf.PdfConverter;
 import fr.opensagres.poi.xwpf.converter.pdf.PdfOptions;
-import lombok.Getter;
-import lombok.Setter;
+
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.wickedsource.docxstamper.DocxStamper;
 import org.wickedsource.docxstamper.DocxStamperConfiguration;
@@ -12,8 +11,7 @@ import org.wickedsource.docxstamper.DocxStamperConfiguration;
 import java.io.*;
 import java.util.Date;
 
-@Getter
-@Setter
+
 public class Report<T> {
 
     private String reportname;
@@ -21,6 +19,40 @@ public class Report<T> {
     private String reportOutPdfName;
     private T context;
 
+    
+
+
+    public String getReportname() {
+        return reportname;
+    }
+
+    public void setReportname(String reportname) {
+        this.reportname = reportname;
+    }
+
+    public String getReportOutDocxName() {
+        return reportOutDocxName;
+    }
+
+    public void setReportOutDocxName(String reportOutDocxName) {
+        this.reportOutDocxName = reportOutDocxName;
+    }
+
+    public String getReportOutPdfName() {
+        return reportOutPdfName;
+    }
+
+    public void setReportOutPdfName(String reportOutPdfName) {
+        this.reportOutPdfName = reportOutPdfName;
+    }
+
+    public T getContext() {
+        return context;
+    }
+
+    public void setContext(T context) {
+        this.context = context;
+    }
 
     public Report(String reportname, T context) {
 

@@ -15,7 +15,6 @@ public class InformeReclamo {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idinformeRecha;
     private Date fechaEmicion;
-    private String respuestaCliente;
     private String tipoInforme;
     @ManyToOne
     @JoinColumn(name = "cedulaClient")
@@ -30,11 +29,10 @@ public class InformeReclamo {
     public InformeReclamo() {
     }
 
-    public InformeReclamo(Long idinformeRecha, Date fechaEmicion, String respuestaCliente, String tipoInforme,
+    public InformeReclamo(Long idinformeRecha, Date fechaEmicion, String tipoInforme,
             Client client, ReclamoGarantia reclamogarantia, String descripcionInforme) {
         this.idinformeRecha = idinformeRecha;
         this.fechaEmicion = fechaEmicion;
-        this.respuestaCliente = respuestaCliente;
         this.tipoInforme = tipoInforme;
         this.client = client;
         this.reclamogarantia = reclamogarantia;
@@ -47,14 +45,6 @@ public class InformeReclamo {
 
     public void setReclamogarantia(ReclamoGarantia reclamogarantia) {
         this.reclamogarantia = reclamogarantia;
-    }
-
-    public String getRespuestaCliente() {
-        return respuestaCliente;
-    }
-
-    public void setRespuestaCliente(String respuestaCliente) {
-        this.respuestaCliente = respuestaCliente;
     }
 
     public String getTipoInforme() {
@@ -95,14 +85,6 @@ public class InformeReclamo {
 
     public void setTipo_informe(String tipoInforme) {
         this.tipoInforme = tipoInforme;
-    }
-
-    public String isRespuesta_cliente() {
-        return respuestaCliente;
-    }
-
-    public void setRespuesta_cliente(String respuestaCliente) {
-        this.respuestaCliente = respuestaCliente;
     }
 
     public Client getClient() {

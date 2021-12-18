@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,6 +19,7 @@ import com.grupo3.Caso1.Model.GarantiaVehiculo;
 import com.grupo3.Caso1.Model.Vehiculo;
 import com.grupo3.Caso1.Service.Posgrest.GarantiaVehiculoService;
 import com.grupo3.Caso1.Service.Posgrest.VehiculoService;
+import com.grupo3.Caso1.Service.Posgrest.ServiceImp.GarantiaVehiculoServiceImp;
 
 @RestController
 @RequestMapping("/garantia/api/v1")
@@ -25,6 +27,8 @@ import com.grupo3.Caso1.Service.Posgrest.VehiculoService;
 public class GarantiaVehiculocontroller {
 	@Autowired
 	private GarantiaVehiculoService vehiculoService;
+	@Autowired
+	private GarantiaVehiculoServiceImp vehiculoImp;
 
 	@GetMapping(value = "/all")
 	public List<GarantiaVehiculo> getAll() {
@@ -38,7 +42,9 @@ public class GarantiaVehiculocontroller {
 
 	@PostMapping(value = "/save")
 	public ResponseEntity<GarantiaVehiculo> save(@RequestBody GarantiaVehiculo vehiculo) {
+		
 		GarantiaVehiculo obj = vehiculoService.save(vehiculo);
+		
 		return new ResponseEntity<GarantiaVehiculo>(obj, HttpStatus.OK);
 	}
 
@@ -46,6 +52,11 @@ public class GarantiaVehiculocontroller {
 	public ResponseEntity<Boolean> delete(@PathVariable("id") Long id){
 		vehiculoService.delete(id);
 		return ResponseEntity.ok(!(vehiculoService.get(id)!=null));
+	}
+	@PutMapping("{id}")
+	public ResponseEntity<?> cambiarEstadoReclamo(@PathVariable("id") Long id) {
+		vehiculoImp.cambiarEstadoSolicitud(id);
+		return ResponseEntity.ok(vehiculoService.getAll());
 	}
 
 }
