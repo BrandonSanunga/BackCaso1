@@ -8,9 +8,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.grupo3.Caso1.Commons.GenericServiceImp;
 import com.grupo3.Caso1.Dao.Posgrest.facturacion.SolicitudGarantiaRepository;
+import com.grupo3.Caso1.Mappers.TallerMapper;
 import com.grupo3.Caso1.Model.MisVehiculos;
 import com.grupo3.Caso1.Model.SolicitudGarantia;
 import com.grupo3.Caso1.Service.Posgrest.SolicitudGarantiaService;
@@ -43,17 +49,23 @@ public class SolicitudGarantiaServImpl extends GenericServiceImp<SolicitudGarant
 	}
 
 	public List<MisVehiculos> listCarsByCedula(String id) {
-		List<MisVehiculos> listaMisVehiculos = new ArrayList<>();
-		MisVehiculos misVehiculos = new MisVehiculos();
-		List<Object> lista = garantiaRepository.listCarsByCedula(id);
-		for (Object o1 : lista) {
-			for (int i = 0; i < lista.size(); i++) {
-				misVehiculos.setChasis_vehiculo(lista.get(i).toString());
-			}
-			String chasis = Arrays.toString((Object[]) o1);
-
-		}
-		return listaMisVehiculos;
+	
+		List<String> r = garantiaRepository.listCarsByCedula(id);
+		List<MisVehiculos> vehiculos = new ArrayList<MisVehiculos>();
+		
+		for (int i = 0; i < r.size(); i++) {
+			MisVehiculos vehiculosFor = new MisVehiculos();
+			vehiculosFor.setChasis_vehiculo(r.get(i));
+			vehiculosFor.setLinks_imagen(r.get(i));
+			vehiculosFor.setMarca(r.get(i));
+			vehiculosFor.setModelo(r.get(i));
+			
+			System.err.println("El chasis es: "+vehiculosFor.getChasis_vehiculo());
+			
+			vehiculos.add(vehiculosFor);
+		} 
+		System.out.println("EL objeto es: "+r);
+		return vehiculos;
 	}
 
 }

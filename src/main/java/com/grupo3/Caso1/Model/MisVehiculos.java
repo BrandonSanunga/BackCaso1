@@ -1,5 +1,18 @@
 package com.grupo3.Caso1.Model;
 
+import javax.persistence.ColumnResult;
+import javax.persistence.ConstructorResult;
+import javax.persistence.SqlResultSetMapping;
+
+/*@SqlResultSetMapping(name = "misHeviculos",classes = {
+		@ConstructorResult(targetClass = MisVehiculos.class,
+				columns = {
+						@ColumnResult(name="chasis_vehiculo"),
+						@ColumnResult(name="links_imagen"),
+						@ColumnResult(name="marca"),
+						@ColumnResult(name="modelo")
+				})
+})*/
 public class MisVehiculos {
 
     private String chasis_vehiculo;
