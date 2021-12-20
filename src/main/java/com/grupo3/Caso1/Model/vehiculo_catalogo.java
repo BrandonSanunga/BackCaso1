@@ -1,15 +1,14 @@
 package com.grupo3.Caso1.Model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="Vehiculo_catalogo")
@@ -30,7 +29,7 @@ public class vehiculo_catalogo {
 	private CaracteristicaVehiculo caracteristica;
 	
 	private String links_imagen;
-	
+
 	
 	public vehiculo_catalogo(Long id_vehiculo_catalogo, Disenovehiculo diseno, int year_vehiculo,
 			CaracteristicaVehiculo caracteristica, String links_imagen) {
@@ -60,14 +59,6 @@ public class vehiculo_catalogo {
 		this.year_vehiculo = year_vehiculo;
 	}
 
-	public String getLinks_imagen() {
-		return links_imagen;
-	}
-
-	public void setLinks_imagen(String links_imagen) {
-		this.links_imagen = links_imagen;
-	}
-
 	public Disenovehiculo getDiseno() {
 		return diseno;
 	}
@@ -84,6 +75,11 @@ public class vehiculo_catalogo {
 		this.caracteristica = id_caracteristica;
 	}
 
-	
-	
+	public String getLinks_imagen() {
+		return links_imagen;
+	}
+
+	public void setLinks_imagen(String links_imagen) {
+		this.links_imagen = links_imagen;
+	}	
 }
