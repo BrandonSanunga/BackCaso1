@@ -37,6 +37,11 @@ public class VehiculoController {
 	public List<Vehiculo> findAllEstadoFalse() {
 		return vehiculoService.findAllEstadoFalse();
 	}
+	//LISTAR VEHICULOS POR PARAMETRO DE BUSQUEDA DE MARCA O MODELO Y EN ESTADO FALSO PARA LA FACTURA
+	@GetMapping(value = "/all-filtrar/{marcaOrModelo}")
+	public List<Vehiculo> findAllByMarcaOrModeloAndEstado(@PathVariable String marcaOrModelo) {
+		return vehiculoService.findAllByMarcaOrModeloAndEstado(marcaOrModelo);
+	}
 
 	@GetMapping(value = "/find/{id}")
 	public Vehiculo find(@PathVariable(value = "id") String id) {
