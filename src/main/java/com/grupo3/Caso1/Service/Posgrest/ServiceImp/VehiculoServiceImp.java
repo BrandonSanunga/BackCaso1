@@ -48,5 +48,11 @@ public class VehiculoServiceImp extends GenericServiceImp<Vehiculo, String> impl
 		return vehiculo.findAllEstadoFalse();
 	}
 
+	//PARA  SELECIONAR EL VEHICULO Y REALIZAR LA VENTA
+	@Override
+	public List<Vehiculo> findAllByMarcaOrModeloAndEstado(String marcaOrModelo) {
+		return vehiculo.findAllByMarcaOrModeloAndEstado(marcaOrModelo);
+	}
+
 
 }

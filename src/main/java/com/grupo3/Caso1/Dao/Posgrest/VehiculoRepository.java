@@ -23,6 +23,11 @@ public interface VehiculoRepository extends JpaRepository<Vehiculo, String> {
 	
 	@Query("select v from Vehiculo v where v.estado=false ")
 	public List<Vehiculo> findAllEstadoFalse();
+	
+	//PARA  SELECIONAR EL VEHICULO Y REALIZAR LA VENTA
+	@Query( value = "select * from vehiculo v INNER JOIN vehiculo_catalogo vc on v.vehiculo_catalogo_id_vehiculo_catalogo=vc.id_vehiculo_catalogo INNER JOIN disenovehiculo d on vc.id_diseno=d.id_diseno where d.marca like %?1%  and v.estado=false",nativeQuery = true)
+	public List<Vehiculo> findAllByMarcaOrModeloAndEstado(String marcaOrModelo);
 
+	
 
 }
