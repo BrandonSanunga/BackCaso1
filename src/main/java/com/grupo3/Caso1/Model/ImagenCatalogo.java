@@ -11,9 +11,8 @@ public class ImagenCatalogo {
 	
 
 	@Id
-	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long id_imagen;
 
 	@Column(name = "name")
 	private String name;
@@ -25,13 +24,29 @@ public class ImagenCatalogo {
 	private byte[] picByte;
 
 	public ImagenCatalogo() {
-		super();
+		
 	}
 
+	public ImagenCatalogo(Long id_imagen,String name, String type, byte[] picByte) {
+		this.id_imagen= id_imagen;
+		this.name = name;
+		this.type = type;
+		this.picByte = picByte;
+	}
+
+	 
 	public ImagenCatalogo(String name, String type, byte[] picByte) {
 		this.name = name;
 		this.type = type;
 		this.picByte = picByte;
+	}
+
+	public Long getId_imagen() {
+		return id_imagen;
+	}
+
+	public void setId_imagen(Long id_imagen) {
+		this.id_imagen = id_imagen;
 	}
 
 	public String getName() {

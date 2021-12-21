@@ -15,39 +15,37 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.grupo3.Caso1.Model.vehiculo_catalogo;
 import com.grupo3.Caso1.Service.Postgres.vehiculo_catalogoService;
-import java.io.IOException;
-
-import java.io.File;
-
 
 @RestController
 @RequestMapping("/vehiculo_catalogo/api/v1")
 @CrossOrigin("*")
 public class vehiculo_catalogoController {
-
+	
 	@Autowired
 	private vehiculo_catalogoService vehiculoservice;
-	File file;
-
-	@GetMapping(value = "/all")
-	public List<vehiculo_catalogo> getAll() {
+	
+	
+	@GetMapping(value="/all")
+	public List<vehiculo_catalogo> getAll(){
 		return vehiculoservice.getAll();
 	}
 
-	@GetMapping(value = "/find/{id_vehiculo_catalogo}")
+	@GetMapping(value="/find/{id_vehiculo_catalogo}")
 	public vehiculo_catalogo find(@PathVariable Long id_vehiculo_catalogo) {
 		return vehiculoservice.get(id_vehiculo_catalogo);
 	}
-
-	@PostMapping(value = "/save")
-	public ResponseEntity<vehiculo_catalogo> save(@RequestBody vehiculo_catalogo vehiculocatalogo) throws IOException {		
-		vehiculo_catalogo obj = vehiculoservice.save(vehiculocatalogo);
+	
+	@PostMapping(value="/save")
+	public ResponseEntity<vehiculo_catalogo> save(@RequestBody vehiculo_catalogo vehiculocatalogo){
+		vehiculo_catalogo obj= vehiculoservice.save(vehiculocatalogo);
 		return new ResponseEntity<>(obj, HttpStatus.OK);
 	}
-
-	@DeleteMapping(value = "/delete/{id_vehiculo_catalogo}")
-	public ResponseEntity<Boolean> delete(@PathVariable("id_vehiculo_catalogo") Long id_vehiculo_catalogo) {
+	
+	@DeleteMapping(value="/delete/{id_vehiculo_catalogo}")
+	public ResponseEntity<Boolean> delete(@PathVariable("id_vehiculo_catalogo") Long id_vehiculo_catalogo){
 		vehiculoservice.delete(id_vehiculo_catalogo);
-		return ResponseEntity.ok(!(vehiculoservice.get(id_vehiculo_catalogo) != null));
-	}	
+		return ResponseEntity.ok(!(vehiculoservice.get(id_vehiculo_catalogo)!=null));
+	}
+
+
 }

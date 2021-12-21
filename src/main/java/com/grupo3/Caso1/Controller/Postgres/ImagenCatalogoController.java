@@ -2,10 +2,12 @@ package com.grupo3.Caso1.Controller.Postgres;
 
 import com.grupo3.Caso1.Dao.Postgres.ImagenCatalogoReposiory;
 import com.grupo3.Caso1.Model.ImagenCatalogo;
+import com.grupo3.Caso1.Service.Postgres.ImagenCatalogoService;
 
 import java.io.ByteArrayOutputStream;
 	import java.io.IOException;
-	import java.util.Optional;
+import java.util.List;
+import java.util.Optional;
 	import java.util.zip.DataFormatException;
 	import java.util.zip.Deflater;
 	import java.util.zip.Inflater;
@@ -25,11 +27,13 @@ import java.io.ByteArrayOutputStream;
 
 @RestController
 @RequestMapping("/imagencatalogo/api/v1")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin("*")
 public class ImagenCatalogoController {
 		
 		@Autowired
 		ImagenCatalogoReposiory imageRepository;
+		@Autowired
+		ImagenCatalogoService imagenservice;
 	
 		@PostMapping("/upload")
 		public BodyBuilder uplaodImage(@RequestParam("imageFile") MultipartFile file) throws IOException {
@@ -48,7 +52,11 @@ public class ImagenCatalogoController {
 					decompressBytes(retrievedImage.get().getPicByte()));
 			return img;
 		}
-	
+		@GetMapping(value = "/all")
+	public List<ImagenCatalogo> getAll() {
+		return imagenservice.getAll();
+	}
+
 		// compress the image bytes before storing it in the database
 		public static byte[] compressBytes(byte[] data) {
 			Deflater deflater = new Deflater();
