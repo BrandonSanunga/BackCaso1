@@ -3,12 +3,16 @@ package com.grupo3.Caso1.Model;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class GarantiaVehiculo {
@@ -16,8 +20,11 @@ public class GarantiaVehiculo {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long idGarantia;
 	private String descripcion;
+	@Column(name = "estado", columnDefinition = "boolean DEFAULT 'true'")
 	private boolean estado;
-	@OneToMany(cascade = CascadeType.ALL)
+	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_garantia")
 	private  List<DetalleGarantia> detallegarantia;
 	
 

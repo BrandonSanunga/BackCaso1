@@ -5,4 +5,5 @@ import com.grupo3.Caso1.Model.InformeConcecionaria;
 
 public interface InformeConcesionariaService extends GenericService<InformeConcecionaria, Long> {
 
+
 }

@@ -1,6 +1,7 @@
 package com.grupo3.Caso1.Model.ordenReparacion;
 
 import com.grupo3.Caso1.Model.Repuestos;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,13 +13,14 @@ public class DetalleRepuestos implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-
     @ManyToOne
     @JoinColumn(name = "repuesto_id")
+    @JsonIgnore
     private Repuestos repuesto;
 
     @ManyToOne
     @JoinColumn(name = "orden_id")
+    @JsonIgnore
     private ordenRepCuerpo orden;
 
     private String estado;
@@ -67,8 +69,8 @@ public class DetalleRepuestos implements Serializable {
 
     @Override
     public String toString() {
-        return "DetalleRepuestos{" + "id=" + id + ", estado='" + estado + '\'' + ", repuesto=" + repuesto + ", orden=" + orden + '}';
+        return "DetalleRepuestos{" + "id=" + id + ", estado='" + estado + '\'' + ", repuesto=" + repuesto + ", orden="
+                + orden + '}';
     }
-
 
 }

@@ -18,14 +18,15 @@ public class ordenRepCuerpo {
     private String imagenes;
     private String estadoOrden;
 
-
     @OneToMany(mappedBy = "orden")
     private List<DetalleRepuestos> detalleRepuestos = new ArrayList<>();
 
     public ordenRepCuerpo() {
     }
 
-    public ordenRepCuerpo(Long idordenCuerpo, com.grupo3.Caso1.Model.ordenReparacion.ordenRepCavecera ordenRepCavecera, String trabajoSolicitado, String trabajoRealizar, String observaciones, String imagenes, String estadoOrden) {
+    public ordenRepCuerpo(Long idordenCuerpo, com.grupo3.Caso1.Model.ordenReparacion.ordenRepCavecera ordenRepCavecera,
+            String trabajoSolicitado, String trabajoRealizar, String observaciones, String imagenes,
+            String estadoOrden) {
         this.idordenCuerpo = idordenCuerpo;
         this.ordenRepCavecera = ordenRepCavecera;
         this.trabajoSolicitado = trabajoSolicitado;

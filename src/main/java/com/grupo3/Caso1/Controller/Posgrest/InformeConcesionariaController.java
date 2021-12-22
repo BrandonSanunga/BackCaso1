@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.grupo3.Caso1.Model.ConcecionariaInforme;
 import com.grupo3.Caso1.Model.InformeConcecionaria;
 import com.grupo3.Caso1.Service.Posgrest.InformeConcesionariaService;
+import com.grupo3.Caso1.Service.Posgrest.ServiceImp.InformeConcesionariaServiceImp;
 
 @RestController
 @RequestMapping("/informeC/api/v1")
@@ -23,6 +25,8 @@ import com.grupo3.Caso1.Service.Posgrest.InformeConcesionariaService;
 public class InformeConcesionariaController {
 	@Autowired
 	private InformeConcesionariaService informeService;
+	@Autowired
+	private InformeConcesionariaServiceImp informeImp;
 	
 	@GetMapping(value = "/all")
 	public List<InformeConcecionaria> getAll() {
@@ -47,4 +51,9 @@ public class InformeConcesionariaController {
 		return ResponseEntity.ok(!(informeService.get(id)!=null));
 	}
 
-}
+	@GetMapping("/cars/{id}")
+	public ResponseEntity<List<ConcecionariaInforme>> getCarsByCedula(@PathVariable("id") Long id) {
+		return ResponseEntity.ok(informeImp.MostarDatosTodo(id));
+	}
+
+	}
