@@ -2,6 +2,7 @@ package com.grupo3.Caso1.Controller.Postgres;
 
 import java.util.List;
 
+import com.grupo3.Caso1.Commons.Encrypt;
 import com.grupo3.Caso1.Model.Client;
 import com.grupo3.Caso1.Service.Postgres.ClientService;
 
@@ -38,6 +39,8 @@ public class ClientController {
 
     @PostMapping(value = "/save")
     public ResponseEntity<Client> save(@RequestBody Client client) {
+        String passEncryp = new Encrypt().getAES(client.getPasswordClient());
+        client.setPasswordClient(passEncryp);
         Client obj = clientService.save(client);
         return new ResponseEntity<Client>(obj, HttpStatus.OK);
     }
@@ -59,7 +62,7 @@ public class ClientController {
             @RequestParam("passwordClient") String password) {
         Client client = clientService.get(id);
         if (client != null) {
-            if (client.getPasswordClient().equals(password)) {
+            if (new Encrypt().getAESDecrypt(client.getPasswordClient()).equals(new Encrypt().getAESDecrypt(password))) {
                 return client;
             }
         }
