@@ -41,20 +41,20 @@ public class InformeReclamo {
         this.descripcionInforme = descripcionInforme;
     }
 
-    public ReclamoGarantia getReclamogarantia() {
-        return reclamogarantia;
-    }
-
-    public void setReclamogarantia(ReclamoGarantia reclamogarantia) {
-        this.reclamogarantia = reclamogarantia;
-    }
-
     public String getRespuestaCliente() {
         return respuestaCliente;
     }
 
     public void setRespuestaCliente(String respuestaCliente) {
         this.respuestaCliente = respuestaCliente;
+    }
+
+    public ReclamoGarantia getReclamogarantia() {
+        return reclamogarantia;
+    }
+
+    public void setReclamogarantia(ReclamoGarantia reclamogarantia) {
+        this.reclamogarantia = reclamogarantia;
     }
 
     public String getTipoInforme() {
@@ -95,14 +95,6 @@ public class InformeReclamo {
 
     public void setTipo_informe(String tipoInforme) {
         this.tipoInforme = tipoInforme;
-    }
-
-    public String isRespuesta_cliente() {
-        return respuestaCliente;
-    }
-
-    public void setRespuesta_cliente(String respuestaCliente) {
-        this.respuestaCliente = respuestaCliente;
     }
 
     public Client getClient() {

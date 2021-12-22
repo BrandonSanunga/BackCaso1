@@ -26,7 +26,7 @@ public class ordenRepacCuerpoController {
     }
 
     @GetMapping(value = "/find/{id}")
-    public ordenRepCuerpo find(@RequestParam(value = "id") Long id) {
+    public ordenRepCuerpo find(@PathVariable(value = "id") Long id) {
         return ordenRepCuerpoService.get(id);
     }
 
@@ -48,7 +48,8 @@ public class ordenRepacCuerpoController {
     }
 
     @PutMapping(value = "/update/{id}")
-    public ResponseEntity<ordenRepCuerpo> update(@PathVariable(name = "id") Long id, @RequestBody ordenRepCuerpo ordenRepCuerpo) {
+    public ResponseEntity<ordenRepCuerpo> update(@PathVariable(name = "id") Long id,
+            @RequestBody ordenRepCuerpo ordenRepCuerpo) {
         if (ordenRepaCuerpoServiceImp2.update(ordenRepCuerpo, id) != null) {
             return new ResponseEntity<>(HttpStatus.OK);
         } else {

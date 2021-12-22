@@ -50,7 +50,7 @@ public class DetalleFactura implements Serializable {
 	}
 
 	public Double getTotal() {
-		return cantidad.doubleValue()*vehiculo.getPrecio();
+		return cantidad.doubleValue()*vehiculo.getPrecio_venta();
 	}
 
 	public void setTotal(Double total) {

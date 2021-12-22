@@ -17,7 +17,6 @@ public class ordenRepCuerpo {
     private String observaciones;
     private String imagenes;
     private String estadoOrden;
-    private Double costoManoObra;
 
     @OneToMany(mappedBy = "orden")
     private List<DetalleRepuestos> detalleRepuestos = new ArrayList<>();
@@ -25,7 +24,9 @@ public class ordenRepCuerpo {
     public ordenRepCuerpo() {
     }
 
-    public ordenRepCuerpo(Long idordenCuerpo, com.grupo3.Caso1.Model.ordenReparacion.ordenRepCavecera ordenRepCavecera, String trabajoSolicitado, String trabajoRealizar, String observaciones, String imagenes, String estadoOrden) {
+    public ordenRepCuerpo(Long idordenCuerpo, com.grupo3.Caso1.Model.ordenReparacion.ordenRepCavecera ordenRepCavecera,
+            String trabajoSolicitado, String trabajoRealizar, String observaciones, String imagenes,
+            String estadoOrden) {
         this.idordenCuerpo = idordenCuerpo;
         this.ordenRepCavecera = ordenRepCavecera;
         this.trabajoSolicitado = trabajoSolicitado;
@@ -99,11 +100,4 @@ public class ordenRepCuerpo {
         this.detalleRepuestos = detalleRepuestos;
     }
 
-    public Double getCostoManoObra() {
-        return costoManoObra;
-    }
-
-    public void setCostoManoObra(Double costoManoObra) {
-        this.costoManoObra = costoManoObra;
-    }
 }

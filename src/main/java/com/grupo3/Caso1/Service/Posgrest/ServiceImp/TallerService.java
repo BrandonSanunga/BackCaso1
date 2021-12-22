@@ -93,7 +93,13 @@ public class TallerService {
             context.setNombresRepuestos(repuestos.trim());
             context.setDetallesLabels(detallesLabels.toUpperCase().trim());
             context.setDetallesValues(detallesValues.toUpperCase().trim());
-            context.setCostoManoObra(orden.getCostoManoObra().toString());
+
+            Double costoManoObra = orden.getOrdenRepCavecera().getCostoManoObra();
+            if (costoManoObra != null) {
+                context.setCostoManoObra(costoManoObra.toString());
+            } else {
+                context.setCostoManoObra("0.00");
+            }
 
             Report<InformeReparacionContext> report = new Report<>("template", context);
 
@@ -133,7 +139,7 @@ public class TallerService {
 
         Optional<ordenRepCuerpo> orden = ordenRepCuerpoRepo.findById(ordenId);
         if (orden.isPresent()) {
-            orden.get().setCostoManoObra(costo);
+            orden.get().getOrdenRepCavecera().setCostoManoObra(costo);
             ordenRepCuerpoRepo.save(orden.get());
             json.put("status", "editado");
         } else {
