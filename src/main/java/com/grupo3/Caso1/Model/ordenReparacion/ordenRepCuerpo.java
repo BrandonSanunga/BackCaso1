@@ -1,7 +1,5 @@
 package com.grupo3.Caso1.Model.ordenReparacion;
 
-import com.grupo3.Caso1.Model.Repuestos;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;

@@ -45,7 +45,7 @@ public class Utils {
         headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
         return new ResponseEntity<>(contents, headers, HttpStatus.OK);
     }
-
+    
     @Bean
     public static Boolean enviarEmail(String to, String from, String subject, String body, List<MailAttachment> attachments) throws MessagingException {
         try {
@@ -85,4 +85,5 @@ public class Utils {
         }
         return true;
     }
+    
 }
