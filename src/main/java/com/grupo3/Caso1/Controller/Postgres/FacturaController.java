@@ -142,7 +142,15 @@ public class FacturaController {
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> delete(@PathVariable Long id) {
 		Map<String, Object> response = new HashMap<>();
+		Vehiculo veh=null;
 		try {
+			Factura factura= facturaService.findById(id);
+			for (DetalleFactura detalleFactura:factura.getDetallesfacturas()) {
+				veh= vehiculoService.get(detalleFactura.getVehiculo().getChasis());
+				boolean estadoFalse=false;
+				veh.setEstado(estadoFalse);
+				vehiculoService.save(veh);
+			}
 			facturaService.delete(id);
 		} catch (DataAccessException e) {
 			response.put("mensaje", "Error al eliminar el factura en la base de datos");
