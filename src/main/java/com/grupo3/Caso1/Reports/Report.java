@@ -5,6 +5,8 @@ import fr.opensagres.poi.xwpf.converter.pdf.PdfConverter;
 import fr.opensagres.poi.xwpf.converter.pdf.PdfOptions;
 
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.apache.poi.xwpf.usermodel.XWPFTable;
+import org.apache.poi.xwpf.usermodel.XWPFTableRow;
 import org.wickedsource.docxstamper.DocxStamper;
 import org.wickedsource.docxstamper.DocxStamperConfiguration;
 
@@ -18,8 +20,6 @@ public class Report<T> {
     private String reportOutDocxName;
     private String reportOutPdfName;
     private T context;
-
-    
 
 
     public String getReportname() {

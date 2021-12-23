@@ -3,15 +3,18 @@ package com.grupo3.Caso1.Service.Posgrest.ServiceImp;
 import com.grupo3.Caso1.Commons.MailAttachment;
 import com.grupo3.Caso1.Commons.Utils;
 import com.grupo3.Caso1.Dao.Posgrest.DetalleOrdenRepository;
+import com.grupo3.Caso1.Dao.Posgrest.informeReclamoRepositori;
 import com.grupo3.Caso1.Dao.Posgrest.ordenReparacion.ordenRepCuerpoRepo;
 import com.grupo3.Caso1.Dao.Postgres.RepuestoRepository;
 import com.grupo3.Caso1.Mappers.TallerMapper;
+import com.grupo3.Caso1.Model.InformeReclamo;
 import com.grupo3.Caso1.Model.LabelValue;
 import com.grupo3.Caso1.Model.Repuestos;
 import com.grupo3.Caso1.Model.ordenReparacion.DetalleRepuestos;
 import com.grupo3.Caso1.Model.ordenReparacion.ordenRepCuerpo;
 import com.grupo3.Caso1.Reports.InformeReparacionContext;
 import com.grupo3.Caso1.Reports.Report;
+import com.grupo3.Caso1.Reports.ReporteGarantiaContex;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +35,8 @@ public class TallerService {
     @Autowired
     private DetalleOrdenRepository detalleOrdenRepository;
 
+    @Autowired
+    private informeReclamoRepositori informeReclamoRepository;
 
     public List<Map<String, Object>> getRepuestos() {
         return repuestoRepository.findAll().stream().map(TallerMapper::mappRepuesto).collect(Collectors.toList());
@@ -147,5 +152,39 @@ public class TallerService {
         }
 
         return json;
+    }
+
+    public String generarInformeGarantia(Long id) {
+
+        ReporteGarantiaContex context = new ReporteGarantiaContex();
+
+        List<InformeReclamo> informes = informeReclamoRepository.findAll();
+
+        /**
+         * LOGICA DE ARMADO DEL REPORTE DE GARANTIA
+         */
+
+        String estados = informes.stream().map(InformeReclamo::getTipoInforme).collect(Collectors.joining("\n"));
+        context.setEstados(estados);
+
+        String marcas = informes.stream().map(obj -> obj.getReclamogarantia().getFk_id_solicitud().getFk_chasis_vehiculo().getVehiculoCatalogo().getDiseno().getMarca()).collect(Collectors.joining("\n"));
+        context.setMarcas(marcas);
+
+        String modelos = informes.stream().map(obj -> obj.getReclamogarantia().getFk_id_solicitud().getFk_chasis_vehiculo().getVehiculoCatalogo().getDiseno().getModelo()).collect(Collectors.joining("\n"));
+        context.setModelos(modelos);
+
+        String paises = informes.stream().map(obj -> obj.getReclamogarantia().getFk_id_solicitud().getFk_chasis_vehiculo().getPais().getNombre()).collect(Collectors.joining("\n"));
+        context.setPaises(paises);
+
+        String colors = informes.stream().map(obj -> obj.getReclamogarantia().getFk_id_solicitud().getFk_chasis_vehiculo().getColor()).collect(Collectors.joining("\n"));
+        context.setColores(colors);
+
+        String anios = informes.stream().map(obj -> obj.getReclamogarantia().getFk_id_solicitud().getFk_chasis_vehiculo().getVehiculoCatalogo().getYear_vehiculo() + "").collect(Collectors.joining("\n"));
+        context.setAnios(anios);
+
+        Report<ReporteGarantiaContex> report = new Report<>("reporte_garantia", context);
+        report.generate();
+
+        return report.getReportOutPdfName();
     }
 }
