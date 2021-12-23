@@ -35,6 +35,7 @@ public class RepuestosController {
 		return repuestoservice.get(id_repuesto);
 	}
 	
+
 	@PostMapping(value="/save")
 	public ResponseEntity<Repuestos> save(@RequestBody Repuestos repuesto){
 		Repuestos obj= repuestoservice.save(repuesto);

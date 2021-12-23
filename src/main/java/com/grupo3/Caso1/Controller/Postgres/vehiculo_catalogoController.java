@@ -1,7 +1,6 @@
 package com.grupo3.Caso1.Controller.Postgres;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.grupo3.Caso1.Model.vehiculo_catalogo;
 import com.grupo3.Caso1.Service.Postgres.vehiculo_catalogoService;
-
 
 @RestController
 @RequestMapping("/vehiculo_catalogo/api/v1")

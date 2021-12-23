@@ -60,4 +60,11 @@ public class TallerController {
     private Map<String, Object> editarManoObra(@PathVariable("ordenId") Long ordenId, @RequestBody Double costo) {
         return tallerService.editarManoObra(ordenId, costo);
     }
+
+    @GetMapping("informe-garantia-pdf/{id}")
+    public ResponseEntity<byte[]> generarInformeGarantiaPdf(@PathVariable("id") Long id) throws IOException {
+        String pdfPath = tallerService.generarInformeGarantia(id);
+        return Utils.responsePdf(pdfPath);
+    }
+
 }
