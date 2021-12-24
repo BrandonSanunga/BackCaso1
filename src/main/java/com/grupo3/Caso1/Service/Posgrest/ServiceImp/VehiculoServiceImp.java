@@ -54,5 +54,10 @@ public class VehiculoServiceImp extends GenericServiceImp<Vehiculo, String> impl
 		return vehiculo.findAllByMarcaOrModeloAndEstado(marcaOrModelo);
 	}
 
+	@Override
+	public Vehiculo findVehiculoByIdVehiculoCatalogo(Integer id) {
+		return vehiculo.findVehiculoByIdVehiculoCatalogo(id);
+	}
+
 
 }
