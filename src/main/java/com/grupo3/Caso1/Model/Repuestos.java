@@ -14,7 +14,7 @@ public class Repuestos {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_repuesto;
     private String nombre_repuesto;
-    private boolean estado;
+    //private boolean estado;
 
     @ManyToOne
     @JoinColumn(name = "id_diseno")
@@ -27,13 +27,13 @@ public class Repuestos {
     @JsonIgnore
     private List<DetalleRepuestos> detalleRepuestos = new ArrayList<>();
 
-    public Repuestos(Long id_repuesto, String nombre_repuesto, Disenovehiculo diseno, float precio, boolean estado) {
+    public Repuestos(Long id_repuesto, String nombre_repuesto, Disenovehiculo diseno, float precio/*, boolean estado*/) {
 
         this.id_repuesto = id_repuesto;
         this.nombre_repuesto = nombre_repuesto;
         this.diseno = diseno;
         this.precio = precio;
-        this.estado = estado;
+        //this.estado = estado;
     }
 
     public Repuestos() {
@@ -71,14 +71,14 @@ public class Repuestos {
     public void setPrecio(float precio) {
         this.precio = precio;
     }
-
+/*
     public boolean getEstado() {
         return estado;
     }
 
     public void setEstado(boolean estado) {
         this.estado = estado;
-    }
+    }*/
 
     public List<DetalleRepuestos> getDetalleRepuestos() {
         return detalleRepuestos;
@@ -87,5 +87,4 @@ public class Repuestos {
     public void setDetalleRepuestos(List<DetalleRepuestos> detalleRepuestos) {
         this.detalleRepuestos = detalleRepuestos;
     }
-
 }
