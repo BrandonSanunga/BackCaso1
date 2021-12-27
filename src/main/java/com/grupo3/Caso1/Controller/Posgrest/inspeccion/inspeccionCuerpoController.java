@@ -54,6 +54,7 @@ public class inspeccionCuerpoController {
     }
 
     @PutMapping(value = "/update/{id}")
+    @CrossOrigin
     public ResponseEntity<inspeCuerpo> update(@PathVariable(name = "id") Long id,
             @RequestBody inspeCuerpo inspeCuerpo) {
         if (inspeccionCuerpoServiceImp2.update(inspeCuerpo, id) != null) {
