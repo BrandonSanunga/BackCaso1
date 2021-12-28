@@ -8,6 +8,7 @@ import com.grupo3.Caso1.Service.Posgrest.ServiceImp.Inspeccion.inspeccionCuerpoS
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -24,6 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class inspeccionCuerpoController {
     @Autowired
     private inspeCuerpoService inspeCuerpoService;
+    @Autowired
     private inspeccionCuerpoServiceImp inspeccionCuerpoServiceImp2;
 
     @GetMapping(value = "all")
@@ -53,13 +57,11 @@ public class inspeccionCuerpoController {
         return new ResponseEntity<inspeCuerpo>(obj, HttpStatus.OK);
     }
 
-    @PutMapping(value = "/update/{id}")
-    public ResponseEntity<inspeCuerpo> update(@PathVariable(name = "id") Long id,
-            @RequestBody inspeCuerpo inspeCuerpo) {
-        if (inspeccionCuerpoServiceImp2.update(inspeCuerpo, id) != null) {
-            return new ResponseEntity<>(HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
-        }
+    @RequestMapping(value = "/update", method = RequestMethod.PUT)
+    @JsonIgnore
+    public @ResponseBody ResponseEntity<?> update(@RequestBody inspeCuerpo inspeCuerpo) {
+        System.out.println(inspeCuerpo);
+        inspeccionCuerpoServiceImp2.update(inspeCuerpo);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

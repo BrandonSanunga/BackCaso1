@@ -18,6 +18,7 @@ import java.util.Map;
 public class ordenRepaCaveceraController {
     @Autowired
     private ordenRepaCaveceraService ordenRepaCaveceraService;
+    @Autowired
     private ordenRepaCaveceraServiceImp ordenRepaCaveceraServiceImp2;
 
     @GetMapping(value = "/all")
@@ -48,7 +49,8 @@ public class ordenRepaCaveceraController {
     }
 
     @PutMapping(value = "/update/{id}")
-    public ResponseEntity<ordenRepCavecera> update(@RequestBody ordenRepCavecera ordenRepCavecera, @PathVariable(name = "id") Long id) {
+    public ResponseEntity<ordenRepCavecera> update(@RequestBody ordenRepCavecera ordenRepCavecera,
+            @PathVariable(name = "id") Long id) {
         if (ordenRepaCaveceraServiceImp2.update(ordenRepCavecera, id) != null) {
             return new ResponseEntity<>(HttpStatus.OK);
         } else {

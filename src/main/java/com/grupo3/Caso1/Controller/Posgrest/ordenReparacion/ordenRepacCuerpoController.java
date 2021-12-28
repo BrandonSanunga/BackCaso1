@@ -71,4 +71,10 @@ public class ordenRepacCuerpoController {
     public Map<String, Object> cambiarEstadoOrden(@PathVariable(name = "id") Long id, @RequestBody String estado) {
         return ordenRepaCuerpoServiceImp2.cambiarEstadoOrdenById(id, estado);
     }
+
+    @RequestMapping(value = "/updatestadorep/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<?> updateEstadoRep(@PathVariable(name = "id") Long id) {
+        ordenRepaCuerpoServiceImp2.ordenEstadoUpdate(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

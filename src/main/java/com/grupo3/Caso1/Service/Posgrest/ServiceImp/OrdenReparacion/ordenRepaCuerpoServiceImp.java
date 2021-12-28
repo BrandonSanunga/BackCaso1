@@ -16,7 +16,8 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class ordenRepaCuerpoServiceImp extends GenericServiceImp<ordenRepCuerpo, Long> implements ordenRepCuerpoService {
+public class ordenRepaCuerpoServiceImp extends GenericServiceImp<ordenRepCuerpo, Long>
+        implements ordenRepCuerpoService {
 
     @Autowired
     private ordenRepCuerpoRepo ordenRepCuerpoRepo;
@@ -60,5 +61,9 @@ public class ordenRepaCuerpoServiceImp extends GenericServiceImp<ordenRepCuerpo,
         respuesta.put("status", "success");
 
         return respuesta;
+    }
+
+    public void ordenEstadoUpdate(Long id) {
+        ordenRepCuerpoRepo.updateordenrepuesto(id);
     }
 }
