@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.grupo3.Caso1.Model.SolicitudGarantia;
 import com.grupo3.Caso1.Model.Vehiculo;
 import com.grupo3.Caso1.Service.Posgrest.VehiculoService;
 import com.grupo3.Caso1.Service.Posgrest.ServiceImp.VehiculoServiceImp;
@@ -33,7 +32,7 @@ public class VehiculoController {
 		return vehiculoService.getAll();
 	}
 	//LISTAR VEHICULOS EN ESTADO FALSO PARA LA FACTURA
-	@GetMapping(value = "/all-false")
+	@GetMapping(value = "/all-true")
 	public List<Vehiculo> findAllEstadoFalse() {
 		return vehiculoService.findAllEstadoFalse();
 	}
@@ -41,6 +40,11 @@ public class VehiculoController {
 	@GetMapping(value = "/all-filtrar/{marcaOrModelo}")
 	public List<Vehiculo> findAllByMarcaOrModeloAndEstado(@PathVariable String marcaOrModelo) {
 		return vehiculoService.findAllByMarcaOrModeloAndEstado(marcaOrModelo);
+	}
+	//ENDPOINT NECESARIO PARA LA FACTURA NO BORRAR
+	@GetMapping(value = "/vc/{id}")
+	public Vehiculo findVehiculoByVehiculoCatalogoId(@PathVariable Integer id) {
+		return vehiculoService.findVehiculoByIdVehiculoCatalogo(id);
 	}
 
 	@GetMapping(value = "/find/{id}")
