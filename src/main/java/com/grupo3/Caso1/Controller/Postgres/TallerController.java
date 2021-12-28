@@ -63,6 +63,7 @@ public class TallerController {
 
     @GetMapping("informe-garantia-pdf/{id}")
     public ResponseEntity<byte[]> generarInformeGarantiaPdf(@PathVariable("id") Long id) throws IOException {
+        
         String pdfPath = tallerService.generarInformeGarantia(id);
         return Utils.responsePdf(pdfPath);
     }

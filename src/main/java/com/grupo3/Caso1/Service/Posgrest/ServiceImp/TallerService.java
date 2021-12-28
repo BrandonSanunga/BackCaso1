@@ -160,6 +160,7 @@ public class TallerService {
 
         List<InformeReclamo> informes = informeReclamoRepository.findAll();
 
+
         /**
          * LOGICA DE ARMADO DEL REPORTE DE GARANTIA
          */
