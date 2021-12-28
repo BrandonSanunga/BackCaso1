@@ -37,11 +37,6 @@ public class VehiculoController {
 	public List<Vehiculo> findAllEstadoFalse() {
 		return vehiculoService.findAllEstadoFalse();
 	}
-	//OBTENER UN VEHICULO COTIZADO VEHICULOS  PARA LA FACTURA
-	@GetMapping(value = "/vc/{id}")
-	public Vehiculo findVehiculoByVehiculoCatalogoId(@PathVariable Integer id) {
-		return vehiculoService.findVehiculoByIdVehiculoCatalogo(id);
-	}
 	//LISTAR VEHICULOS POR PARAMETRO DE BUSQUEDA DE MARCA O MODELO Y EN ESTADO FALSO PARA LA FACTURA
 	@GetMapping(value = "/all-filtrar/{marcaOrModelo}")
 	public List<Vehiculo> findAllByMarcaOrModeloAndEstado(@PathVariable String marcaOrModelo) {

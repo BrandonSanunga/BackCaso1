@@ -2,7 +2,6 @@ package com.grupo3.Caso1.Model;
 
 import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,10 +13,8 @@ import javax.persistence.ManyToOne;
 public class InformeReclamo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "idinformeRecha")
     private Long idinformeRecha;
     private Date fechaEmicion;
-    @Column(name = "respuestaCliente")
     private String respuestaCliente;
     private String tipoInforme;
     @ManyToOne
