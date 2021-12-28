@@ -19,10 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -83,12 +80,12 @@ public class TallerService {
 
             List<LabelValue> labelValues = (List<LabelValue>) objectMap.get("detallesVehiculo");
 
-            InformeReparacionContext context = new InformeReparacionContext();
             String repuestos = orden.getDetalleRepuestos().stream().map((obj) -> obj.getRepuesto().getNombre_repuesto()).collect(Collectors.joining("\n"));
 
             String detallesLabels = labelValues.stream().map(LabelValue::getLabel).collect(Collectors.joining("\n"));
             String detallesValues = labelValues.stream().map(obj -> obj.getValue().toString()).collect(Collectors.joining("\n"));
 
+            InformeReparacionContext context = new InformeReparacionContext();
             context.setOrden(String.valueOf(orden.getIdordenCuerpo()));
             context.setCliente(orden.getOrdenRepCavecera().getInspeCuerpo().getInspeCavecera().getInformeReclamo().getClient().getClienteLabel());
             context.setFecha(Utils.formatDate(orden.getOrdenRepCavecera().getFechaIngreso()));
@@ -186,5 +183,10 @@ public class TallerService {
         report.generate();
 
         return report.getReportOutPdfName();
+    }
+
+    public List<Map<String, Object>> getOrdenesTaller(String estado) {
+        List<ordenRepCuerpo> ordenesRep = ordenRepCuerpoRepo.getOrdenesTaller(estado);
+        return ordenesRep.stream().map(TallerMapper::mappOrden).collect(Collectors.toList());
     }
 }

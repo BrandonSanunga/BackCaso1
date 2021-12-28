@@ -35,12 +35,6 @@ public class ordenRepaCuerpoServiceImp extends GenericServiceImp<ordenRepCuerpo,
         }
     }
 
-    @Override
-    public List<Map<String, Object>> getOrdenesTaller(String estado) {
-        List<ordenRepCuerpo> ordenesRep = ordenRepCuerpoRepo.getOrdenesTaller(estado);
-        return ordenesRep.stream().map(TallerMapper::mappOrden).collect(Collectors.toList());
-    }
-
     public Map<String, Object> getOrdenById(Long id) {
         return TallerMapper.mappOrden(ordenRepCuerpoRepo.getById(id));
     }
