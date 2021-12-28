@@ -48,18 +48,12 @@ public class ordenRepacCuerpoController {
     }
 
     @PutMapping(value = "/update/{id}")
-    public ResponseEntity<ordenRepCuerpo> update(@PathVariable(name = "id") Long id,
-            @RequestBody ordenRepCuerpo ordenRepCuerpo) {
+    public ResponseEntity<ordenRepCuerpo> update(@PathVariable(name = "id") Long id, @RequestBody ordenRepCuerpo ordenRepCuerpo) {
         if (ordenRepaCuerpoServiceImp2.update(ordenRepCuerpo, id) != null) {
             return new ResponseEntity<>(HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
         }
-    }
-
-    @GetMapping("/ordenes-taller/{estado}")
-    public List<Map<String, Object>> getOrdenesTaller(@PathVariable(name = "estado") String estado) {
-        return ordenRepaCuerpoServiceImp2.getOrdenesTaller(estado);
     }
 
     @GetMapping("/orden-by-id/{id}")
