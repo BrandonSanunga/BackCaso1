@@ -34,7 +34,6 @@ public class TallerService {
     private ordenRepCuerpoRepo ordenRepCuerpoRepo;
     @Autowired
     private DetalleOrdenRepository detalleOrdenRepository;
-
     @Autowired
     private informeReclamoRepositori informeReclamoRepository;
 
