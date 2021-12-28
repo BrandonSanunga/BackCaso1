@@ -26,13 +26,11 @@ public class vehiculo_catalogo {
 	@JoinColumn(name="id_caracteristica")
 	private CaracteristicaVehiculo caracteristica;
 	
-	@ManyToOne
-	@JoinColumn(name="id_imagen")
-	private ImagenCatalogo links_imagen;
+	private String links_imagen;
 
 	
 	public vehiculo_catalogo(Long id_vehiculo_catalogo, Disenovehiculo diseno, int year_vehiculo,
-			CaracteristicaVehiculo caracteristica, ImagenCatalogo links_imagen) {
+			CaracteristicaVehiculo caracteristica, String links_imagen) {
 		this.id_vehiculo_catalogo = id_vehiculo_catalogo;
 		this.diseno = diseno;
 		this.year_vehiculo = year_vehiculo;
@@ -75,11 +73,11 @@ public class vehiculo_catalogo {
 		this.caracteristica = id_caracteristica;
 	}
 
-	public ImagenCatalogo getLinks_imagen() {
+	public String getLinks_imagen() {
 		return links_imagen;
 	}
 
-	public void setLinks_imagen(ImagenCatalogo links_imagen) {
+	public void setLinks_imagen(String links_imagen) {
 		this.links_imagen = links_imagen;
 	}	
 }
