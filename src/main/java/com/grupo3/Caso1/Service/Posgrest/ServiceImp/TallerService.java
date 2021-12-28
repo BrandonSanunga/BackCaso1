@@ -3,6 +3,7 @@ package com.grupo3.Caso1.Service.Posgrest.ServiceImp;
 import com.grupo3.Caso1.Commons.MailAttachment;
 import com.grupo3.Caso1.Commons.Utils;
 import com.grupo3.Caso1.Dao.Posgrest.DetalleOrdenRepository;
+import com.grupo3.Caso1.Dao.Posgrest.informeReclamoRepositori;
 import com.grupo3.Caso1.Dao.Posgrest.ordenReparacion.ordenRepCuerpoRepo;
 import com.grupo3.Caso1.Dao.Postgres.RepuestoRepository;
 import com.grupo3.Caso1.Mappers.TallerMapper;
@@ -33,7 +34,8 @@ public class TallerService {
     private ordenRepCuerpoRepo ordenRepCuerpoRepo;
     @Autowired
     private DetalleOrdenRepository detalleOrdenRepository;
-
+    @Autowired
+    private informeReclamoRepositori informeReclamoRepository;
 
     public List<Map<String, Object>> getRepuestos() {
         return repuestoRepository.findAll().stream().map(TallerMapper::mappRepuesto).collect(Collectors.toList());
