@@ -34,7 +34,6 @@ public class TallerService {
     private ordenRepCuerpoRepo ordenRepCuerpoRepo;
     @Autowired
     private DetalleOrdenRepository detalleOrdenRepository;
-
     @Autowired
     private informeReclamoRepositori informeReclamoRepository;
 
@@ -159,6 +158,7 @@ public class TallerService {
         ReporteGarantiaContex context = new ReporteGarantiaContex();
 
         List<InformeReclamo> informes = informeReclamoRepository.findAll();
+
 
         /**
          * LOGICA DE ARMADO DEL REPORTE DE GARANTIA

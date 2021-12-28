@@ -55,4 +55,5 @@ public class ReporteGarantiaContex {
     public void setEstados(String estados) {
         this.estados = estados;
     }
+
 }
