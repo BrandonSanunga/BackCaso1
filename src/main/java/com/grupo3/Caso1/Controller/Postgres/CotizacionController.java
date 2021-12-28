@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import javax.mail.MessagingException;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,14 +27,19 @@ import org.springframework.web.bind.annotation.RestController;
 import com.grupo3.Caso1.Model.Cotizacion;
 import com.grupo3.Caso1.Service.Postgres.CotizacionService;
 
-
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/cotizaciones/api/v1")
 public class CotizacionController {
-	
+
 	@Autowired
 	private CotizacionService cotizacionService;
+
+	//ENVIA AL EMAIL LA COTIZACION NOTA --> TIENE QUE PRIMERO GUARDAR LA COTIZACION Y ENVIAR AL  EMAIL POR ID DE LA COTIZACION
+	@GetMapping("enviar-correo-cotizacion/{id}")
+	public Map<String, Object> enviarCorreoCotizacion(@PathVariable("id") Long id) throws MessagingException {
+		return this.cotizacionService.enviarEmail(id);
+	}
 
 	@GetMapping("/")
 	public List<Cotizacion> getCotizacions() {
@@ -52,7 +58,8 @@ public class CotizacionController {
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		if (cotizacion == null) {
-			response.put("mensaje", "La Cotizacion ID: ".concat(id.toString()).concat(" no existe en la base de datos"));
+			response.put("mensaje",
+					"La Cotizacion ID: ".concat(id.toString()).concat(" no existe en la base de datos"));
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<Cotizacion>(cotizacion, HttpStatus.OK);
@@ -83,7 +90,8 @@ public class CotizacionController {
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<?> update(@Valid @RequestBody Cotizacion cotizacion, BindingResult result, @PathVariable Long id) {
+	public ResponseEntity<?> update(@Valid @RequestBody Cotizacion cotizacion, BindingResult result,
+			@PathVariable Long id) {
 		Cotizacion cot = cotizacionService.findById(id);
 
 		Cotizacion cotupd = null;
@@ -103,7 +111,7 @@ public class CotizacionController {
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
 		}
 		try {
-			
+
 			cot.setCliente(cotizacion.getCliente());
 			cot.setVehiculo_catalogo(cotizacion.getVehiculo_catalogo());
 			cot.setTotal(cotizacion.getTotal());
@@ -131,6 +139,5 @@ public class CotizacionController {
 		response.put("mensaje", "Cotizacion eliminada con exito");
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
 	}
-
 
 }
