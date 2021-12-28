@@ -32,11 +32,14 @@ public class InformeConcesionariaServiceImp extends GenericServiceImp<InformeCon
     	ConcecionariaInforme info;
     	Double precio=informe.precio(id);
     	Double mano=informe.costo(id);
+    	int ids= informe.id(id);
+    	
 	
 	
 			info = new ConcecionariaInforme();
 			info.setMano_obra(mano);
 			info.setPrecio(precio);
+			info.setId(ids);
 			lista.add(info);
 		
         
