@@ -48,24 +48,8 @@ public class SolicitudGarantiaServImpl extends GenericServiceImp<SolicitudGarant
 		garantiaRepository.cambiarEstadoReclamo(id);
 	}
 
-	public List<MisVehiculos> listCarsByCedula(String id) {
-	
-		List<String> r = garantiaRepository.listCarsByCedula(id);
-		List<MisVehiculos> vehiculos = new ArrayList<MisVehiculos>();
-		
-		for (int i = 0; i < r.size(); i++) {
-			MisVehiculos vehiculosFor = new MisVehiculos();
-			vehiculosFor.setChasis_vehiculo(r.get(i));
-			vehiculosFor.setLinks_imagen(r.get(i));
-			vehiculosFor.setMarca(r.get(i));
-			vehiculosFor.setModelo(r.get(i));
-			
-			System.err.println("El chasis es: "+vehiculosFor.getChasis_vehiculo());
-			
-			vehiculos.add(vehiculosFor);
-		} 
-		System.out.println("EL objeto es: "+r);
-		return vehiculos;
+	public List<String> listCarsByCedula(String id) {
+		return garantiaRepository.listCarsByCedula(id);
 	}
 
 }
