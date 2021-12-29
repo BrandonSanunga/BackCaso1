@@ -7,20 +7,18 @@ import javax.mail.MessagingException;
 
 import com.grupo3.Caso1.Model.Cotizacion;
 
-
 public interface CotizacionService {
-	
-	public List<Cotizacion> findAll();
+
+    public List<Cotizacion> findAll();
 
     public Cotizacion save(Cotizacion cotizacion);
 
     public void delete(Long id);
-    
+
     public Cotizacion findById(Long id);
-    
-    public Map<String, Object> enviarEmail(Long id)throws MessagingException;
-    
-    public String generarReporteCotizacion(Long id);
-	
+
+    public String enviarEmail(Long id, String nombre, String correo) throws MessagingException;
+
+    public String generarReporteCotizacion(Long id, String nombre);
 
 }

@@ -39,8 +39,6 @@ public class ClientController {
 
     @PostMapping(value = "/save")
     public ResponseEntity<Client> save(@RequestBody Client client) {
-        String passEncryp = new Encrypt().getAES(client.getPasswordClient());
-        client.setPasswordClient(passEncryp);
         Client obj = clientService.save(client);
         return new ResponseEntity<Client>(obj, HttpStatus.OK);
     }
@@ -61,12 +59,21 @@ public class ClientController {
     public Client login(@RequestParam("cedulaClient") String id,
             @RequestParam("passwordClient") String password) {
         Client client = clientService.get(id);
+        System.out.println(new Encrypt().getAESDecrypt(client.getPasswordClient()));
         if (client != null) {
             if (new Encrypt().getAESDecrypt(client.getPasswordClient()).equals(new Encrypt().getAESDecrypt(password))) {
                 return client;
             }
         }
         return null;
+    }
+
+    @PostMapping(value = "/edit-pass")
+    public ResponseEntity<Client> EditPass(@RequestBody Client client) {
+        String passEncryp = new Encrypt().getAES(client.getPasswordClient());
+        client.setPasswordClient(passEncryp);
+        Client obj = clientService.save(client);
+        return new ResponseEntity<Client>(obj, HttpStatus.OK);
     }
 
 }

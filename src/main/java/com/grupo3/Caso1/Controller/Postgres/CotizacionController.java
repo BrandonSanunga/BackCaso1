@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -35,10 +36,13 @@ public class CotizacionController {
 	@Autowired
 	private CotizacionService cotizacionService;
 
-	//ENVIA AL EMAIL LA COTIZACION NOTA --> TIENE QUE PRIMERO GUARDAR LA COTIZACION Y ENVIAR AL  EMAIL POR ID DE LA COTIZACION
-	@GetMapping("enviar-correo-cotizacion/{id}")
-	public Map<String, Object> enviarCorreoCotizacion(@PathVariable("id") Long id) throws MessagingException {
-		return this.cotizacionService.enviarEmail(id);
+	// ENVIA AL EMAIL LA COTIZACION NOTA --> TIENE QUE PRIMERO GUARDAR LA COTIZACION
+	// Y ENVIAR AL EMAIL POR ID DE LA COTIZACION
+	@GetMapping("enviar-correo-cotizacion")
+	public String enviarCorreoCotizacion(@RequestParam("chasis") Long id,
+			@RequestParam("nombreClient") String nombre, @RequestParam("emailClient") String email)
+			throws MessagingException {
+		return this.cotizacionService.enviarEmail(id, nombre, email);
 	}
 
 	@GetMapping("/")
