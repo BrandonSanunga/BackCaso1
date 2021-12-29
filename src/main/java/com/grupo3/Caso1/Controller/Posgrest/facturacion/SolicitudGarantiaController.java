@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.grupo3.Caso1.Model.Client;
 import com.grupo3.Caso1.Model.MisVehiculos;
 import com.grupo3.Caso1.Model.SolicitudGarantia;
+import com.grupo3.Caso1.Model.Vehiculo;
 import com.grupo3.Caso1.Service.Posgrest.SolicitudGarantiaService;
 import com.grupo3.Caso1.Service.Posgrest.VehiculoService;
 import com.grupo3.Caso1.Service.Posgrest.ServiceImp.facturacion.SolicitudGarantiaServImpl;
@@ -78,15 +80,13 @@ public class SolicitudGarantiaController {
 		return ResponseEntity.ok(garantiaServImpl.listCarsByCedula(id));
 	}
 
-	@GetMapping("/save/{id}")
-	public ResponseEntity<SolicitudGarantia> postSolicitudId(@PathVariable("id") String id
-	/* @RequestBody SolicitudGarantia solicitudGarantia */) {
-		vehiculoService.get(id);
-		System.out.println(vehiculoService.get(id).getChasis());
-		return null;
-		/*
-		 * SolicitudGarantia obj = garantiaServImpl.save(solicitudGarantia);
-		 * return new ResponseEntity<SolicitudGarantia>(obj, HttpStatus.OK);
-		 */
+	@PostMapping("save/{id}")
+	public ResponseEntity<SolicitudGarantia> postSolicitudId(@PathVariable("id") String id, @RequestBody SolicitudGarantia soli) {
+		Vehiculo vehiculo = vehiculoService.get(id);
+		soli.setFk_chasis_vehiculo(vehiculo);
+		soli.setEstado_solicitud(true);
+		SolicitudGarantia obj = garantiaService.save(soli);
+		return new ResponseEntity<SolicitudGarantia>(obj, HttpStatus.OK);
 	}
+	
 }
