@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/ordencave/api/v1")
@@ -32,21 +29,16 @@ public class ordenRepaCaveceraController {
     }
 
     @PostMapping(value = "/save")
-    public ResponseEntity<ordenRepCavecera> save(@RequestBody ordenRepCavecera ordenRepCavecera) {
-        ordenRepCavecera obj = ordenRepaCaveceraService.save(ordenRepCavecera);
-        return new ResponseEntity<ordenRepCavecera>(obj, HttpStatus.OK);
-    }
+    public ResponseEntity<ordenRepCavecera> save(@RequestBody ordenRepCavecera ordencab){
+		ordenRepCavecera obj= ordenRepaCaveceraService.save(ordencab);
+		return new ResponseEntity<>(obj, HttpStatus.OK);
+	}
 
-    @GetMapping(value = "/delete/{id}")
-    public ResponseEntity<ordenRepCavecera> delete(@PathVariable(value = "id") Long id) {
-        ordenRepCavecera obj = ordenRepaCaveceraService.get(id);
-        if (obj != null) {
-            ordenRepaCaveceraService.delete(id);
-        } else {
-            return new ResponseEntity<ordenRepCavecera>(HttpStatus.NOT_ACCEPTABLE);
-        }
-        return new ResponseEntity<ordenRepCavecera>(obj, HttpStatus.OK);
-    }
+    @DeleteMapping(value = "/delete/{idordenCave}")
+	public ResponseEntity<Boolean> delete(@PathVariable("idordenCave") Long idordenCave){
+		ordenRepaCaveceraService.delete(idordenCave);
+		return ResponseEntity.ok(!(ordenRepaCaveceraService.get(idordenCave)!=null));
+	}
 
     @PutMapping(value = "/update/{id}")
     public ResponseEntity<ordenRepCavecera> update(@RequestBody ordenRepCavecera ordenRepCavecera,

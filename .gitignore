@@ -33,3 +33,7 @@ build/
 .vscode/
 *__out__.docx
 *.pdf
+src/main/java/com/grupo3/Caso1/Model/ordenReparacion/ordenRepCavecera.java
+src/main/java/com/grupo3/Caso1/Model/ordenReparacion/ordenRepCuerpo.java
+src/main/java/com/grupo3/Caso1/Model/ordenReparacion/ordenRepCuerpo.java
+src/main/resources/application.properties

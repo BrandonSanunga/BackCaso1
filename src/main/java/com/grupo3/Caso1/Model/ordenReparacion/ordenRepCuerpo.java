@@ -1,5 +1,6 @@
 package com.grupo3.Caso1.Model.ordenReparacion;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,7 @@ public class ordenRepCuerpo {
     private String estadoOrden;
 
     @OneToMany(mappedBy = "orden")
+    @JsonIgnore
     private List<DetalleRepuestos> detalleRepuestos = new ArrayList<>();
 
     public ordenRepCuerpo() {
