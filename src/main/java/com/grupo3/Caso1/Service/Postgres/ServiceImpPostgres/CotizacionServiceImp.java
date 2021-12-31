@@ -1,8 +1,6 @@
 package com.grupo3.Caso1.Service.Postgres.ServiceImpPostgres;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.mail.MessagingException;
 
@@ -11,15 +9,12 @@ import org.springframework.stereotype.Service;
 
 import com.grupo3.Caso1.Commons.MailAttachment;
 import com.grupo3.Caso1.Commons.Utils;
-import com.grupo3.Caso1.Dao.Posgrest.VehiculoRepository;
 import com.grupo3.Caso1.Dao.Postgres.CotizacionRepository;
 import com.grupo3.Caso1.Dao.Postgres.vehiculo_catalogoRepository;
 import com.grupo3.Caso1.Model.Cotizacion;
-import com.grupo3.Caso1.Model.Vehiculo;
 import com.grupo3.Caso1.Model.vehiculo_catalogo;
 import com.grupo3.Caso1.Reports.Report;
 import com.grupo3.Caso1.Reports.ReporteCotizacionContext;
-import com.grupo3.Caso1.Service.Posgrest.VehiculoService;
 import com.grupo3.Caso1.Service.Postgres.CotizacionService;
 
 @Service
@@ -54,12 +49,10 @@ public class CotizacionServiceImp implements CotizacionService {
 
 	@Override
 	public String enviarEmail(Long id, String nombre, String correo) throws MessagingException {
-		// Map<String, Object> json = new HashMap<>();
 		vehiculo_catalogo vehiculo = null;
 		try {
 			vehiculo = vehiculoRepository.findById(id).orElse(null);
 			generarReporteCotizacion(id, nombre);
-			System.out.println("Eoor llega aqui");
 		} catch (Exception e) {
 
 		}
@@ -68,19 +61,14 @@ public class CotizacionServiceImp implements CotizacionService {
 			String pdfPath = this.generarReporteCotizacion(id, nombre);
 			List<MailAttachment> attachments = List.of(new MailAttachment("Cotizacion Vehiculo.pdf", pdfPath));
 			String email = correo;
-			Boolean enviado = Utils.enviarEmail(email, "StarMotorsG3@gmail.com", "Reporte Cotizacion Vehiculo",
-					"Reporte Cotizacion Vehiculo", attachments);
+			Boolean enviado = Utils.enviarEmail(email, "StarMotorsG3@gmail.com",
+					"Starmotors, Cotizacion del Vehiculo seleccionado",
+					"Starmotors, Cotizacion del Vehiculo seleccionado", attachments);
 			if (enviado) {
-				/*
-				 * json.put("email", email);
-				 * json.put("status", "enviado");
-				 */
-				return "Todo BIen";
+				return "El proceso se concluyó con exito";
 			}
 		}
-		// json.put("status", "error");
-
-		return "Todo mal";
+		return "Ocurrio algun inconveniente en el proceso";
 	}
 
 	@Override
