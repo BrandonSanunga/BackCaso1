@@ -1,6 +1,7 @@
 package com.grupo3.Caso1.Controller.Posgrest.facturacion;
 
 import java.net.URI;
+import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.grupo3.Caso1.Model.Client;
+import com.grupo3.Caso1.Model.Factura;
 import com.grupo3.Caso1.Model.MisVehiculos;
 import com.grupo3.Caso1.Model.SolicitudGarantia;
 import com.grupo3.Caso1.Model.Vehiculo;
@@ -87,6 +89,11 @@ public class SolicitudGarantiaController {
 		soli.setEstado_solicitud(true);
 		SolicitudGarantia obj = garantiaService.save(soli);
 		return new ResponseEntity<SolicitudGarantia>(obj, HttpStatus.OK);
+	}
+
+	@GetMapping("facturas/{inicio}/{fin}")
+	public ResponseEntity<List<Factura>> getFact(@PathVariable("inicio") Date inicio, @PathVariable("fin") Date fin) {
+		return ResponseEntity.ok(garantiaServImpl.findByDate(inicio,fin));
 	}
 	
 }
