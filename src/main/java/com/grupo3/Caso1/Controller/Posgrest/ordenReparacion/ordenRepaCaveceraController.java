@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import com.grupo3.Caso1.Model.Inspeccion.inspeCuerpo;
+import com.grupo3.Caso1.Service.Posgrest.Inspeccion.inspeCuerpoService;
 
 @RestController
 @RequestMapping(value = "/ordencave/api/v1")
@@ -17,6 +19,9 @@ public class ordenRepaCaveceraController {
     private ordenRepaCaveceraService ordenRepaCaveceraService;
     @Autowired
     private ordenRepaCaveceraServiceImp ordenRepaCaveceraServiceImp2;
+   
+    @Autowired
+    private  inspeCuerpoService inspeserv;
 
     @GetMapping(value = "/all")
     public List<ordenRepCavecera> getall() {
@@ -28,11 +33,14 @@ public class ordenRepaCaveceraController {
         return ordenRepaCaveceraService.get(id);
     }
 
-    @PostMapping(value = "/save")
-    public ResponseEntity<ordenRepCavecera> save(@RequestBody ordenRepCavecera ordencab){
-		ordenRepCavecera obj= ordenRepaCaveceraService.save(ordencab);
-		return new ResponseEntity<>(obj, HttpStatus.OK);
-	}
+    @PostMapping(value = "/save/{id}")
+    public ResponseEntity<ordenRepCavecera> save(@PathVariable(name = "id") Long id, @RequestBody ordenRepCavecera ordencab) {
+        inspeCuerpo inspe = new inspeCuerpo();
+        inspe = inspeserv.get(id);
+        ordencab.setInspeCuerpo(inspe);
+        ordenRepCavecera obj = ordenRepaCaveceraService.save(ordencab);
+        return new ResponseEntity<>(obj, HttpStatus.OK);
+    }
 
     @DeleteMapping(value = "/delete/{idordenCave}")
 	public ResponseEntity<Boolean> delete(@PathVariable("idordenCave") Long idordenCave){
