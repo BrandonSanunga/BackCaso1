@@ -1,13 +1,18 @@
 package com.grupo3.Caso1.Controller.Posgrest.ordenReparacion;
 
+import com.grupo3.Caso1.Model.ordenReparacion.ordenRepCavecera;
 import com.grupo3.Caso1.Model.ordenReparacion.ordenRepCuerpo;
 import com.grupo3.Caso1.Service.Posgrest.ServiceImp.OrdenReparacion.ordenRepaCuerpoServiceImp;
 import com.grupo3.Caso1.Service.Posgrest.ordenReparacion.ordenRepCuerpoService;
+import com.grupo3.Caso1.Service.Posgrest.ordenReparacion.ordenRepaCaveceraService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -19,6 +24,8 @@ public class ordenRepacCuerpoController {
     public ordenRepCuerpoService ordenRepCuerpoService;
     @Autowired
     public ordenRepaCuerpoServiceImp ordenRepaCuerpoServiceImp2;
+    @Autowired
+    private ordenRepaCaveceraService ordenRepaCaveceraService;
 
     @GetMapping(value = "/getall")
     public List<ordenRepCuerpo> getAll() {
@@ -30,10 +37,25 @@ public class ordenRepacCuerpoController {
         return ordenRepCuerpoService.get(id);
     }
 
-    @PostMapping(value = "/save")
-    public ResponseEntity<ordenRepCuerpo> save(@RequestBody ordenRepCuerpo ordenRepCuerpo) {
-        ordenRepCuerpo obj = ordenRepCuerpoService.save(ordenRepCuerpo);
-        return new ResponseEntity<ordenRepCuerpo>(obj, HttpStatus.OK);
+    @PostMapping(value = "/save/{trabajoSolicitado}/{trabajoRealizar}/{observaciones}/{imagenes}/{estadoOrden}/{inspeccion}")
+    public ResponseEntity<ordenRepCuerpo> save(
+            @PathVariable(name = "trabajoSolicitado") String trabajoSolicitado,
+            @PathVariable(name = "trabajoRealizar") String trabajoRealizar,
+            @PathVariable(name = "observaciones") String observaciones,
+            @PathVariable(name = "imagenes") String imagenes,
+            @PathVariable(name = "estadoOrden") String estadoOrden,
+            @PathVariable(name = "inspeccion") Long inspeccion) {
+        ordenRepCuerpo ord = new ordenRepCuerpo();
+        ord.setTrabajoSolicitado(trabajoSolicitado);
+        ord.setTrabajoRealizar(trabajoRealizar);
+        ord.setObservaciones(observaciones);
+        ord.setImagenes(imagenes);
+        ord.setEstadoOrden(estadoOrden);
+        ordenRepCavecera ordencv = new ordenRepCavecera();
+        ordencv = ordenRepaCaveceraService.get(inspeccion);
+        ord.setOrdenRepCavecera(ordencv);
+        ordenRepCuerpo ord1 = ordenRepCuerpoService.save(ord);
+        return new ResponseEntity<ordenRepCuerpo>(ord, HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/delete/{idordenCuerpo}")
