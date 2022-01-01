@@ -29,16 +29,16 @@ public class ordenRepaCaveceraController {
     }
 
     @PostMapping(value = "/save")
-    public ResponseEntity<ordenRepCavecera> save(@RequestBody ordenRepCavecera ordencab){
-		ordenRepCavecera obj= ordenRepaCaveceraService.save(ordencab);
-		return new ResponseEntity<>(obj, HttpStatus.OK);
-	}
+    public ResponseEntity<ordenRepCavecera> save(@RequestBody ordenRepCavecera ordencab) {
+        ordenRepCavecera obj = ordenRepaCaveceraService.save(ordencab);
+        return new ResponseEntity<>(obj, HttpStatus.OK);
+    }
 
     @DeleteMapping(value = "/delete/{idordenCave}")
-	public ResponseEntity<Boolean> delete(@PathVariable("idordenCave") Long idordenCave){
-		ordenRepaCaveceraService.delete(idordenCave);
-		return ResponseEntity.ok(!(ordenRepaCaveceraService.get(idordenCave)!=null));
-	}
+    public ResponseEntity<Boolean> delete(@PathVariable("idordenCave") Long idordenCave) {
+        ordenRepaCaveceraService.delete(idordenCave);
+        return ResponseEntity.ok(!(ordenRepaCaveceraService.get(idordenCave) != null));
+    }
 
     @PutMapping(value = "/update/{id}")
     public ResponseEntity<ordenRepCavecera> update(@RequestBody ordenRepCavecera ordenRepCavecera,

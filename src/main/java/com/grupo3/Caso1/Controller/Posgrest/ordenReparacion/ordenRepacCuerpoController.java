@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 
-
 @RestController
 @RequestMapping(value = "/ordecuerpo/api/v1")
 @CrossOrigin("*")
@@ -38,12 +37,14 @@ public class ordenRepacCuerpoController {
     }
 
     @DeleteMapping(value = "/delete/{idordenCuerpo}")
-	public ResponseEntity<Boolean> delete(@PathVariable("idordenCuerpo") Long idordenCuerpo){
-		ordenRepCuerpoService.delete(idordenCuerpo);
-		return ResponseEntity.ok(!(ordenRepCuerpoService.get(idordenCuerpo)!=null));
-	}
+    public ResponseEntity<Boolean> delete(@PathVariable("idordenCuerpo") Long idordenCuerpo) {
+        ordenRepCuerpoService.delete(idordenCuerpo);
+        return ResponseEntity.ok(!(ordenRepCuerpoService.get(idordenCuerpo) != null));
+    }
+
     @PutMapping(value = "/update/{id}")
-    public ResponseEntity<ordenRepCuerpo> update(@PathVariable(name = "id") Long id, @RequestBody ordenRepCuerpo ordenRepCuerpo) {
+    public ResponseEntity<ordenRepCuerpo> update(@PathVariable(name = "id") Long id,
+            @RequestBody ordenRepCuerpo ordenRepCuerpo) {
         if (ordenRepaCuerpoServiceImp2.update(ordenRepCuerpo, id) != null) {
             return new ResponseEntity<>(HttpStatus.OK);
         } else {

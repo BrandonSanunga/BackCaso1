@@ -60,8 +60,31 @@ public class inspeccionCuerpoController {
     @RequestMapping(value = "/update", method = RequestMethod.PUT)
     @JsonIgnore
     public @ResponseBody ResponseEntity<?> update(@RequestBody inspeCuerpo inspeCuerpo) {
+
+        inspeCuerpo insp = inspeCuerpoService.get(inspeCuerpo.getIdinspeCuerpo());
+        inspeCuerpo insp1 = null;
+        insp.setBateria(inspeCuerpo.getBateria());
+        insp.setCinturones(inspeCuerpo.getCinturones());
+        insp.setDireccion(inspeCuerpo.getDireccion());
+        insp.setEje(inspeCuerpo.getEje());
+        insp.setEscape(inspeCuerpo.getEscape());
+        insp.setFiltro_aire(inspeCuerpo.getFiltro_aire());
+        insp.setFiltro_cabina(inspeCuerpo.getFiltro_cabina());
+        insp.setFrenos(inspeCuerpo.getFrenos());
+        insp.setIdinspeCuerpo(inspeCuerpo.getIdinspeCuerpo());
+        insp.setInspeCavecera(inspeCuerpo.getInspeCavecera());
+        insp.setLiquido_transmicion(inspeCuerpo.getLiquido_transmicion());
+        insp.setLuces(inspeCuerpo.getLuces());
+        insp.setObservaciones(inspeCuerpo.getObservaciones());
+        insp.setParabrisas(inspeCuerpo.getParabrisas());
+        insp.setPatron_desgaste_neomatico(inspeCuerpo.getPatron_desgaste_neomatico());
+        insp.setRefrigerante(inspeCuerpo.getRefrigerante());
+        insp.setSuspencion(inspeCuerpo.getSuspencion());
+        insp.setTipo_reparacion_neomatico(inspeCuerpo.getTipo_reparacion_neomatico());
+        insp1 = inspeCuerpoService.save(insp);
+
         System.out.println(inspeCuerpo);
-        inspeccionCuerpoServiceImp2.update(inspeCuerpo);
+        // inspeccionCuerpoServiceImp2.update(inspeCuerpo);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
