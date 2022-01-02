@@ -27,17 +27,14 @@ public class ordenRepCavecera {
     public ordenRepCavecera() {
     }
 
-  
-
-    public ordenRepCavecera(Long idordenCave, Date fecha_emision, Date fechaIngreso,inspeCuerpo inspeCuerpo, Double costoManoObra) {
+    public ordenRepCavecera(Long idordenCave, Date fecha_emision, Date fechaIngreso,
+            com.grupo3.Caso1.Model.Inspeccion.inspeCuerpo inspeCuerpo, Double costoManoObra) {
         this.idordenCave = idordenCave;
         this.fecha_emision = fecha_emision;
         this.fechaIngreso = fechaIngreso;
         this.inspeCuerpo = inspeCuerpo;
         this.costoManoObra = costoManoObra;
     }
-
-
 
     public Long getIdordenCave() {
         return idordenCave;
