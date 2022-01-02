@@ -7,10 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
-import com.grupo3.Caso1.Model.ordenReparacion.DetalleRepuestos;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.grupo3.Caso1.Model.ordenReparacion.ordenRepCuerpo;
 
 @Entity
@@ -22,6 +21,7 @@ public class InformeConcecionaria {
 	private int porcentaje;
 	@Column(name = "estado", columnDefinition = "boolean DEFAULT 'true'")
 	private boolean estado;
+	@JsonIgnore
 	@OneToOne 
 	private ordenRepCuerpo detalle;
 	private double total;

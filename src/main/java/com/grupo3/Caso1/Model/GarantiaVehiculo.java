@@ -20,8 +20,6 @@ public class GarantiaVehiculo {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long idGarantia;
 	private String descripcion;
-	@Column(name = "estado", columnDefinition = "boolean DEFAULT 'true'")
-	private boolean estado;
 	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_garantia")
@@ -33,21 +31,13 @@ public class GarantiaVehiculo {
 	}
 
 
-	public GarantiaVehiculo(Long idGarantia, String descripcion, List<DetalleGarantia> detallegarantia,boolean estado) {
+	public GarantiaVehiculo(Long idGarantia, String descripcion, 
+			List<DetalleGarantia> detallegarantia) {
+		super();
 		this.idGarantia = idGarantia;
 		this.descripcion = descripcion;
+
 		this.detallegarantia = detallegarantia;
-		this.estado=estado;
-	}
-
-
-	public boolean isEstado() {
-		return estado;
-	}
-
-
-	public void setEstado(boolean estado) {
-		this.estado = estado;
 	}
 
 
@@ -71,6 +61,9 @@ public class GarantiaVehiculo {
 	}
 
 
+
+
+
 	public List<DetalleGarantia> getDetallegarantia() {
 		return detallegarantia;
 	}
@@ -79,6 +72,7 @@ public class GarantiaVehiculo {
 	public void setDetallegarantia(List<DetalleGarantia> detallegarantia) {
 		this.detallegarantia = detallegarantia;
 	}
-	
+
+
 	
 	}

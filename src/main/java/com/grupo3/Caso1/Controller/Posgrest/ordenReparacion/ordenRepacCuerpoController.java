@@ -1,7 +1,6 @@
 package com.grupo3.Caso1.Controller.Posgrest.ordenReparacion;
 
-import com.grupo3.Caso1.Dao.Posgrest.ordenReparacion.detallerepuestosServiceImp;
-import com.grupo3.Caso1.Model.ordenReparacion.DetalleRepuestos;
+import com.grupo3.Caso1.Model.Vehiculo;
 import com.grupo3.Caso1.Model.ordenReparacion.ordenRepCavecera;
 import com.grupo3.Caso1.Model.ordenReparacion.ordenRepCuerpo;
 import com.grupo3.Caso1.Service.Posgrest.ServiceImp.OrdenReparacion.detalle_repuestoServiceIMP;
@@ -93,6 +92,12 @@ public class ordenRepacCuerpoController {
     @PutMapping("/cambiar-estado-orden/{id}")
     public Map<String, Object> cambiarEstadoOrden(@PathVariable(name = "id") Long id, @RequestBody String estado) {
         return ordenRepaCuerpoServiceImp2.cambiarEstadoOrdenById(id, estado);
+    }
+
+    // LISTAR POR ESTADO LOS ORDENES
+    @GetMapping("est/{estado}")
+    private ResponseEntity<List<ordenRepCuerpo>> getAllSoliGarTrue(@PathVariable("estado") String estado) {
+        return ResponseEntity.ok(ordenRepaCuerpoServiceImp2.findAllByEstado(estado));
     }
 
     @RequestMapping(value = "/updatestadorep/{id}", method = RequestMethod.PUT)
