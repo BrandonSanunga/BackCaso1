@@ -1,6 +1,7 @@
 package com.grupo3.Caso1.Controller.Posgrest.facturacion;
 
 import java.net.URI;
+import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -17,9 +18,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.grupo3.Caso1.Model.Client;
+import com.grupo3.Caso1.Model.Factura;
 import com.grupo3.Caso1.Model.MisVehiculos;
 import com.grupo3.Caso1.Model.SolicitudGarantia;
+import com.grupo3.Caso1.Model.Vehiculo;
 import com.grupo3.Caso1.Service.Posgrest.SolicitudGarantiaService;
+import com.grupo3.Caso1.Service.Posgrest.VehiculoService;
 import com.grupo3.Caso1.Service.Posgrest.ServiceImp.facturacion.SolicitudGarantiaServImpl;
 
 @RestController
@@ -31,6 +36,8 @@ public class SolicitudGarantiaController {
 	private SolicitudGarantiaService garantiaService;
 	@Autowired
 	private SolicitudGarantiaServImpl garantiaServImpl;
+	@Autowired
+	private VehiculoService vehiculoService;
 
 	@GetMapping
 	private ResponseEntity<List<SolicitudGarantia>> getAllSoliGarantia() {
@@ -71,7 +78,22 @@ public class SolicitudGarantiaController {
 	}
 
 	@GetMapping("cars/{id}")
-	public ResponseEntity<List<MisVehiculos>> getCarsByCedula(@PathVariable("id") String id) {
+	public ResponseEntity<List<String>> getCarsByCedula(@PathVariable("id") String id) {
 		return ResponseEntity.ok(garantiaServImpl.listCarsByCedula(id));
 	}
+
+	@PostMapping("save/{id}")
+	public ResponseEntity<SolicitudGarantia> postSolicitudId(@PathVariable("id") String id, @RequestBody SolicitudGarantia soli) {
+		Vehiculo vehiculo = vehiculoService.get(id);
+		soli.setFk_chasis_vehiculo(vehiculo);
+		soli.setEstado_solicitud(true);
+		SolicitudGarantia obj = garantiaService.save(soli);
+		return new ResponseEntity<SolicitudGarantia>(obj, HttpStatus.OK);
+	}
+
+	@GetMapping("facturas/{inicio}/{fin}")
+	public ResponseEntity<List<Factura>> getFact(@PathVariable("inicio") Date inicio, @PathVariable("fin") Date fin) {
+		return ResponseEntity.ok(garantiaServImpl.findByDate(inicio,fin));
+	}
+	
 }

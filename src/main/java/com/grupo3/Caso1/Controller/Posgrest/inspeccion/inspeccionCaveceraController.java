@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class inspeccionCaveceraController {
     @Autowired
     private inspeCaveceraService inspeCaveceraService;
+    @Autowired
     private inspeccionCaveceraServiceImp inpecCaveService2;
 
     @GetMapping(value = "/all")

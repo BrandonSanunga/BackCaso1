@@ -7,10 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+import com.grupo3.Caso1.Model.Inspeccion.inspeCuerpo;
+import com.grupo3.Caso1.Service.Posgrest.Inspeccion.inspeCuerpoService;
 
 @RestController
 @RequestMapping(value = "/ordencave/api/v1")
@@ -18,7 +17,11 @@ import java.util.Map;
 public class ordenRepaCaveceraController {
     @Autowired
     private ordenRepaCaveceraService ordenRepaCaveceraService;
+    @Autowired
     private ordenRepaCaveceraServiceImp ordenRepaCaveceraServiceImp2;
+
+    @Autowired
+    private inspeCuerpoService inspeserv;
 
     @GetMapping(value = "/all")
     public List<ordenRepCavecera> getall() {
@@ -30,25 +33,25 @@ public class ordenRepaCaveceraController {
         return ordenRepaCaveceraService.get(id);
     }
 
-    @PostMapping(value = "/save")
-    public ResponseEntity<ordenRepCavecera> save(@RequestBody ordenRepCavecera ordenRepCavecera) {
-        ordenRepCavecera obj = ordenRepaCaveceraService.save(ordenRepCavecera);
-        return new ResponseEntity<ordenRepCavecera>(obj, HttpStatus.OK);
+    @PostMapping(value = "/save/{id}")
+    public ResponseEntity<ordenRepCavecera> save(@PathVariable(name = "id") Long id,
+            @RequestBody ordenRepCavecera ordencab) {
+        inspeCuerpo inspe = new inspeCuerpo();
+        inspe = inspeserv.get(id);
+        ordencab.setInspeCuerpo(inspe);
+        ordenRepCavecera obj = ordenRepaCaveceraService.save(ordencab);
+        return new ResponseEntity<>(obj, HttpStatus.OK);
     }
 
-    @GetMapping(value = "/delete/{id}")
-    public ResponseEntity<ordenRepCavecera> delete(@PathVariable(value = "id") Long id) {
-        ordenRepCavecera obj = ordenRepaCaveceraService.get(id);
-        if (obj != null) {
-            ordenRepaCaveceraService.delete(id);
-        } else {
-            return new ResponseEntity<ordenRepCavecera>(HttpStatus.NOT_ACCEPTABLE);
-        }
-        return new ResponseEntity<ordenRepCavecera>(obj, HttpStatus.OK);
+    @DeleteMapping(value = "/delete/{idordenCave}")
+    public ResponseEntity<Boolean> delete(@PathVariable("idordenCave") Long idordenCave) {
+        ordenRepaCaveceraService.delete(idordenCave);
+        return ResponseEntity.ok(!(ordenRepaCaveceraService.get(idordenCave) != null));
     }
 
     @PutMapping(value = "/update/{id}")
-    public ResponseEntity<ordenRepCavecera> update(@RequestBody ordenRepCavecera ordenRepCavecera, @PathVariable(name = "id") Long id) {
+    public ResponseEntity<ordenRepCavecera> update(@RequestBody ordenRepCavecera ordenRepCavecera,
+            @PathVariable(name = "id") Long id) {
         if (ordenRepaCaveceraServiceImp2.update(ordenRepCavecera, id) != null) {
             return new ResponseEntity<>(HttpStatus.OK);
         } else {

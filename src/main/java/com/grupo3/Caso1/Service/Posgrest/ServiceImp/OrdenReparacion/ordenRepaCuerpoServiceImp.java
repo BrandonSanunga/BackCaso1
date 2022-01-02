@@ -18,7 +18,8 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class ordenRepaCuerpoServiceImp extends GenericServiceImp<ordenRepCuerpo, Long> implements ordenRepCuerpoService {
+public class ordenRepaCuerpoServiceImp extends GenericServiceImp<ordenRepCuerpo, Long>
+        implements ordenRepCuerpoService {
 
     @Autowired
     private ordenRepCuerpoRepo ordenRepCuerpoRepo;
@@ -35,12 +36,6 @@ public class ordenRepaCuerpoServiceImp extends GenericServiceImp<ordenRepCuerpo,
         } else {
             return null;
         }
-    }
-
-    @Override
-    public List<Map<String, Object>> getOrdenesTaller(String estado) {
-        List<ordenRepCuerpo> ordenesRep = ordenRepCuerpoRepo.getOrdenesTaller(estado);
-        return ordenesRep.stream().map(TallerMapper::mappOrden).collect(Collectors.toList());
     }
 
     public Map<String, Object> getOrdenById(Long id) {
@@ -74,4 +69,9 @@ public class ordenRepaCuerpoServiceImp extends GenericServiceImp<ordenRepCuerpo,
 	   }
 		return solGaranrespuesta;
    }
+
+
+    public void ordenEstadoUpdate(Long id) {
+        ordenRepCuerpoRepo.updateordenrepuesto(id);
+    }
 }

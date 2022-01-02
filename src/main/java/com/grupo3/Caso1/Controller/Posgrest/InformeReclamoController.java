@@ -33,7 +33,7 @@ public class InformeReclamoController {
     @Autowired
     private InformeReclamoServiceImp inforservice2;
 
-    /*@Value("${spring.mail.username}")
+    @Value("${spring.mail.username}")
     private String username;
 
     @Value("${spring.mail.password}")
@@ -101,4 +101,3 @@ public class InformeReclamoController {
     }
 
 }
-*/}

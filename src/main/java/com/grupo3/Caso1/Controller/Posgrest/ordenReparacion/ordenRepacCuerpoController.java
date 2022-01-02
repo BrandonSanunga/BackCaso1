@@ -1,14 +1,19 @@
 package com.grupo3.Caso1.Controller.Posgrest.ordenReparacion;
 
 import com.grupo3.Caso1.Model.Vehiculo;
+import com.grupo3.Caso1.Model.ordenReparacion.ordenRepCavecera;
 import com.grupo3.Caso1.Model.ordenReparacion.ordenRepCuerpo;
 import com.grupo3.Caso1.Service.Posgrest.ServiceImp.OrdenReparacion.ordenRepaCuerpoServiceImp;
 import com.grupo3.Caso1.Service.Posgrest.ordenReparacion.ordenRepCuerpoService;
+import com.grupo3.Caso1.Service.Posgrest.ordenReparacion.ordenRepaCaveceraService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -20,6 +25,8 @@ public class ordenRepacCuerpoController {
     public ordenRepCuerpoService ordenRepCuerpoService;
     @Autowired
     public ordenRepaCuerpoServiceImp ordenRepaCuerpoServiceImp2;
+    @Autowired
+    private ordenRepaCaveceraService ordenRepaCaveceraService;
 
     @GetMapping(value = "/getall")
     public List<ordenRepCuerpo> getAll() {
@@ -31,21 +38,31 @@ public class ordenRepacCuerpoController {
         return ordenRepCuerpoService.get(id);
     }
 
-    @PostMapping(value = "/save")
-    public ResponseEntity<ordenRepCuerpo> save(@RequestBody ordenRepCuerpo ordenRepCuerpo) {
-        ordenRepCuerpo obj = ordenRepCuerpoService.save(ordenRepCuerpo);
-        return new ResponseEntity<ordenRepCuerpo>(obj, HttpStatus.OK);
+    @PostMapping(value = "/save/{trabajoSolicitado}/{trabajoRealizar}/{observaciones}/{imagenes}/{estadoOrden}/{inspeccion}")
+    public ResponseEntity<ordenRepCuerpo> save(
+            @PathVariable(name = "trabajoSolicitado") String trabajoSolicitado,
+            @PathVariable(name = "trabajoRealizar") String trabajoRealizar,
+            @PathVariable(name = "observaciones") String observaciones,
+            @PathVariable(name = "imagenes") String imagenes,
+            @PathVariable(name = "estadoOrden") String estadoOrden,
+            @PathVariable(name = "inspeccion") Long inspeccion) {
+        ordenRepCuerpo ord = new ordenRepCuerpo();
+        ord.setTrabajoSolicitado(trabajoSolicitado);
+        ord.setTrabajoRealizar(trabajoRealizar);
+        ord.setObservaciones(observaciones);
+        ord.setImagenes(imagenes);
+        ord.setEstadoOrden("EN REVISION DEL TALLER");
+        ordenRepCavecera ordencv = new ordenRepCavecera();
+        ordencv = ordenRepaCaveceraService.get(inspeccion);
+        ord.setOrdenRepCavecera(ordencv);
+        ordenRepCuerpo ord1 = ordenRepCuerpoService.save(ord);
+        return new ResponseEntity<ordenRepCuerpo>(ord, HttpStatus.OK);
     }
 
-    @GetMapping(value = "/delete/{id}")
-    public ResponseEntity<ordenRepCuerpo> delete(@RequestParam(value = "id") Long id) {
-        ordenRepCuerpo obj = ordenRepCuerpoService.get(id);
-        if (obj != null) {
-            ordenRepCuerpoService.delete(id);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
-        }
-        return new ResponseEntity<ordenRepCuerpo>(obj, HttpStatus.OK);
+    @DeleteMapping(value = "/delete/{idordenCuerpo}")
+    public ResponseEntity<Boolean> delete(@PathVariable("idordenCuerpo") Long idordenCuerpo) {
+        ordenRepCuerpoService.delete(idordenCuerpo);
+        return ResponseEntity.ok(!(ordenRepCuerpoService.get(idordenCuerpo) != null));
     }
 
     @PutMapping(value = "/update/{id}")
@@ -56,11 +73,6 @@ public class ordenRepacCuerpoController {
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
         }
-    }
-
-    @GetMapping("/ordenes-taller/{estado}")
-    public List<Map<String, Object>> getOrdenesTaller(@PathVariable(name = "estado") String estado) {
-        return ordenRepaCuerpoServiceImp2.getOrdenesTaller(estado);
     }
 
     @GetMapping("/orden-by-id/{id}")
@@ -80,4 +92,10 @@ public class ordenRepacCuerpoController {
 		return ResponseEntity.ok(ordenRepaCuerpoServiceImp2.findAllByEstado(estado));
 	}
 
+
+    @RequestMapping(value = "/updatestadorep/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<?> updateEstadoRep(@PathVariable(name = "id") Long id) {
+        ordenRepaCuerpoServiceImp2.ordenEstadoUpdate(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

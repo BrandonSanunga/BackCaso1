@@ -21,12 +21,12 @@ public class inspeccionCuerpoServiceImp extends GenericServiceImp<inspeCuerpo, L
         return inspecCuerpoRepo;
     }
 
-    public inspeCuerpo update(inspeCuerpo inspeCuerpo, Long id) {
-        if (inspecCuerpoRepo.findById(id) != null) {
-            return inspecCuerpoRepo.save(inspeCuerpo);
-        } else {
-            return null;
-        }
+    public inspeCuerpo update(inspeCuerpo inspeCuerpo) {
+        // if (inspecCuerpoRepo.findById(id) != null) {
+        return inspecCuerpoRepo.save(inspeCuerpo);
+        // } else {
+        // return null;
+        // }
     }
 
 }

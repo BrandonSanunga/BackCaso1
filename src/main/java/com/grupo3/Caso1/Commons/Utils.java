@@ -1,6 +1,5 @@
 package com.grupo3.Caso1.Commons;
 
-
 import org.apache.commons.io.FileUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.FileSystemResource;
@@ -34,7 +33,6 @@ public class Utils {
         return dateFormat.format(fecha);
     }
 
-
     public static ResponseEntity<byte[]> responsePdf(String pdfName) throws IOException {
         File file = new File(pdfName);
         byte[] contents = FileUtils.readFileToByteArray(file);
@@ -45,16 +43,17 @@ public class Utils {
         headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
         return new ResponseEntity<>(contents, headers, HttpStatus.OK);
     }
-    
+
     @Bean
-    public static Boolean enviarEmail(String to, String from, String subject, String body, List<MailAttachment> attachments) throws MessagingException {
+    public static Boolean enviarEmail(String to, String from, String subject, String body,
+            List<MailAttachment> attachments) throws MessagingException {
         try {
             JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
             mailSender.setHost("smtp.gmail.com");
             mailSender.setPort(587);
 
-            mailSender.setUsername("StarMotorsG3@gmail.com");
-            mailSender.setPassword("1234567Aa.a");
+            mailSender.setUsername("starmotorsc1g3@gmail.com");
+            mailSender.setPassword("ocitjnmkvkihtxbi");
 
             Properties props = mailSender.getJavaMailProperties();
             props.put("mail.transport.protocol", "smtp");
@@ -78,12 +77,11 @@ public class Utils {
                 }
             }
 
-
             mailSender.send(message);
         } catch (Exception e) {
             return false;
         }
         return true;
     }
-    
+
 }

@@ -1,5 +1,7 @@
 package com.grupo3.Caso1.Model.ordenReparacion;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,14 +21,16 @@ public class ordenRepCuerpo {
     private String estadoOrden;
 
     @OneToMany(mappedBy = "orden")
+    @JsonIgnore
     private List<DetalleRepuestos> detalleRepuestos = new ArrayList<>();
 
     public ordenRepCuerpo() {
     }
 
-    public ordenRepCuerpo(Long idordenCuerpo, com.grupo3.Caso1.Model.ordenReparacion.ordenRepCavecera ordenRepCavecera,
-            String trabajoSolicitado, String trabajoRealizar, String observaciones, String imagenes,
-            String estadoOrden) {
+    @JsonCreator
+    public ordenRepCuerpo(Long idordenCuerpo, ordenRepCavecera ordenRepCavecera,
+            String trabajoSolicitado, String trabajoRealizar, String observaciones, String imagenes, String estadoOrden,
+            List<DetalleRepuestos> detalleRepuestos) {
         this.idordenCuerpo = idordenCuerpo;
         this.ordenRepCavecera = ordenRepCavecera;
         this.trabajoSolicitado = trabajoSolicitado;
@@ -34,6 +38,7 @@ public class ordenRepCuerpo {
         this.observaciones = observaciones;
         this.imagenes = imagenes;
         this.estadoOrden = estadoOrden;
+        this.detalleRepuestos = detalleRepuestos;
     }
 
     public String getEstadoOrden() {
