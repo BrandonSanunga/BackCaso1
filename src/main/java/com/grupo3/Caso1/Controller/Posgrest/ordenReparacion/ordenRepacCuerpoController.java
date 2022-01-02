@@ -50,7 +50,7 @@ public class ordenRepacCuerpoController {
         ord.setTrabajoRealizar(trabajoRealizar);
         ord.setObservaciones(observaciones);
         ord.setImagenes(imagenes);
-        ord.setEstadoOrden(estadoOrden);
+        ord.setEstadoOrden("EN REVISION DEL TALLER");
         ordenRepCavecera ordencv = new ordenRepCavecera();
         ordencv = ordenRepaCaveceraService.get(inspeccion);
         ord.setOrdenRepCavecera(ordencv);
