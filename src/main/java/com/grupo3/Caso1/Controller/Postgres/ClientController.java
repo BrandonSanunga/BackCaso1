@@ -59,7 +59,6 @@ public class ClientController {
     public Client login(@RequestParam("cedulaClient") String id,
             @RequestParam("passwordClient") String password) {
         Client client = clientService.get(id);
-        System.out.println(new Encrypt().getAESDecrypt(client.getPasswordClient()));
         if (client != null) {
             if (new Encrypt().getAESDecrypt(client.getPasswordClient()).equals(new Encrypt().getAESDecrypt(password))) {
                 return client;
