@@ -52,13 +52,13 @@ public class InformeReclamoServiceImp extends GenericServiceImp<InformeReclamo, 
     public void sendMail(String toEmail, String body, String subject) throws MessagingException {
         ((JavaMailSenderImpl) javaMailSender).setHost("smtp.gmail.com");
         ((JavaMailSenderImpl) javaMailSender).setPort(587);
-        ((JavaMailSenderImpl) javaMailSender).setUsername("comercializadora787@gmail.com");
+        ((JavaMailSenderImpl) javaMailSender).setUsername("sacomercializadora982@gmail.com");
         ((JavaMailSenderImpl) javaMailSender).setPassword("mjCPhcmmgU2Xb2w");
         Properties properties = new Properties();
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.starttls.enable", "true");
         SimpleMailMessage mailMessage = new SimpleMailMessage();
-        mailMessage.setFrom("comercializadora787@gmail.com");
+        mailMessage.setFrom("sacomercializadora982@gmail.com");
         mailMessage.setTo(toEmail);
         mailMessage.setText(body);
         mailMessage.setSubject(subject);

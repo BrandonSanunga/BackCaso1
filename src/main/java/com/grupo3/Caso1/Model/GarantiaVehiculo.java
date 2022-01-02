@@ -23,15 +23,13 @@ public class GarantiaVehiculo {
 	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_garantia")
-	private  List<DetalleGarantia> detallegarantia;
-	
+	private List<DetalleGarantia> detallegarantia;
 
 	public GarantiaVehiculo() {
 		// TODO Auto-generated constructor stub
 	}
 
-
-	public GarantiaVehiculo(Long idGarantia, String descripcion, 
+	public GarantiaVehiculo(Long idGarantia, String descripcion,
 			List<DetalleGarantia> detallegarantia) {
 		super();
 		this.idGarantia = idGarantia;
@@ -40,39 +38,28 @@ public class GarantiaVehiculo {
 		this.detallegarantia = detallegarantia;
 	}
 
-
 	public Long getIdGarantia() {
 		return idGarantia;
 	}
-
 
 	public void setIdGarantia(Long idGarantia) {
 		this.idGarantia = idGarantia;
 	}
 
-
 	public String getDescripcion() {
 		return descripcion;
 	}
-
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
 
-
-
-
-
 	public List<DetalleGarantia> getDetallegarantia() {
 		return detallegarantia;
 	}
-
 
 	public void setDetallegarantia(List<DetalleGarantia> detallegarantia) {
 		this.detallegarantia = detallegarantia;
 	}
 
-
-	
-	}
+}

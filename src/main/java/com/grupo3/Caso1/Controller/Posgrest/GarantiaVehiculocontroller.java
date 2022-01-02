@@ -23,7 +23,7 @@ import com.grupo3.Caso1.Service.Posgrest.ServiceImp.GarantiaVehiculoServiceImp;
 
 @RestController
 @RequestMapping("/garantia/api/v1")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 public class GarantiaVehiculocontroller {
 	@Autowired
 	private GarantiaVehiculoService vehiculoService;
@@ -42,17 +42,18 @@ public class GarantiaVehiculocontroller {
 
 	@PostMapping(value = "/save")
 	public ResponseEntity<GarantiaVehiculo> save(@RequestBody GarantiaVehiculo vehiculo) {
-		
+
 		GarantiaVehiculo obj = vehiculoService.save(vehiculo);
-		
+
 		return new ResponseEntity<GarantiaVehiculo>(obj, HttpStatus.OK);
 	}
 
-	@DeleteMapping(value="/delete/{id}")
-	public ResponseEntity<Boolean> delete(@PathVariable("id") Long id){
+	@DeleteMapping(value = "/delete/{id}")
+	public ResponseEntity<Boolean> delete(@PathVariable("id") Long id) {
 		vehiculoService.delete(id);
-		return ResponseEntity.ok(!(vehiculoService.get(id)!=null));
+		return ResponseEntity.ok(!(vehiculoService.get(id) != null));
 	}
+
 	@PutMapping("{id}")
 	public ResponseEntity<?> cambiarEstadoReclamo(@PathVariable("id") Long id) {
 		vehiculoImp.cambiarEstadoSolicitud(id);
