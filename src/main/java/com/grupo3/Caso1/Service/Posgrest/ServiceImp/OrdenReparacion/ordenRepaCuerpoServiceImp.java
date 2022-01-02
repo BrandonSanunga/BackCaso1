@@ -3,12 +3,14 @@ package com.grupo3.Caso1.Service.Posgrest.ServiceImp.OrdenReparacion;
 import com.grupo3.Caso1.Commons.GenericServiceImp;
 import com.grupo3.Caso1.Dao.Posgrest.ordenReparacion.ordenRepCuerpoRepo;
 import com.grupo3.Caso1.Mappers.TallerMapper;
+import com.grupo3.Caso1.Model.Vehiculo;
 import com.grupo3.Caso1.Model.ordenReparacion.ordenRepCuerpo;
 import com.grupo3.Caso1.Service.Posgrest.ordenReparacion.ordenRepCuerpoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -61,4 +63,15 @@ public class ordenRepaCuerpoServiceImp extends GenericServiceImp<ordenRepCuerpo,
 
         return respuesta;
     }
+    //Listar por estado para el informe concecioaria
+	public List<ordenRepCuerpo> findAllByEstado(String estado){
+		List<ordenRepCuerpo> solGaranrespuesta= new ArrayList<>();
+		List<ordenRepCuerpo> solicitudes = ordenRepCuerpoRepo.findAll(); 
+		for (int i=0; i<solicitudes.size();i++) {
+			if(solicitudes.get(i).getEstadoOrden()==estado) {
+				solGaranrespuesta.add(solicitudes.get(i));
+			}
+	   }
+		return solGaranrespuesta;
+   }
 }

@@ -23,11 +23,15 @@ import com.grupo3.Caso1.Service.Posgrest.ServiceImp.VehiculoServiceImp;
 @RequestMapping("/vehiculo/api/v1")
 @CrossOrigin("*")
 public class VehiculoController {
+	
+	//IMPLEMENTACION DE LOS SERVICIOS
 	@Autowired
 	private VehiculoService vehiculoService;
 	
 	@Autowired 
 	private VehiculoServiceImp vehiculoimp;
+	
+	//LISTAR TODOS LOS VEHICULOS
 	@GetMapping(value = "/all")
 	public List<Vehiculo> getAll() {
 		return vehiculoService.getAll();
@@ -43,11 +47,13 @@ public class VehiculoController {
 		return vehiculoService.findAllByMarcaOrModeloAndEstado(marcaOrModelo);
 	}
 
+	//BUSCAR POR ID
 	@GetMapping(value = "/find/{id}")
 	public Vehiculo find(@PathVariable(value = "id") String id) {
 		return vehiculoService.get(id);
 	}
-
+	
+	//GUARDAR UN VEHICULO
 	@PostMapping(value = "/save")
 	public ResponseEntity<Vehiculo> save(@RequestBody Vehiculo vehiculo) {
 		
@@ -55,11 +61,13 @@ public class VehiculoController {
 		return new ResponseEntity<Vehiculo>(obj, HttpStatus.OK);
 	}
 
+	//ELIMINAR LOS VEHICULOS 
 	@DeleteMapping(value="/delete/{id}")
 	public ResponseEntity<Boolean> delete(@PathVariable("id") String id){
 		vehiculoService.delete(id);
 		return ResponseEntity.ok(!(vehiculoService.get(id)!=null));
 	}
+	//LISTAR POR ESTADO LOS VEHICULOS 
 	@GetMapping("est/{estado}")
 	private ResponseEntity<List<Vehiculo>> getAllSoliGarTrue(@PathVariable("estado") Boolean estado){
 		return ResponseEntity.ok(vehiculoimp.findAllByEstado(estado));

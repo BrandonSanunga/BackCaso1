@@ -1,5 +1,6 @@
 package com.grupo3.Caso1.Controller.Posgrest.ordenReparacion;
 
+import com.grupo3.Caso1.Model.Vehiculo;
 import com.grupo3.Caso1.Model.ordenReparacion.ordenRepCuerpo;
 import com.grupo3.Caso1.Service.Posgrest.ServiceImp.OrdenReparacion.ordenRepaCuerpoServiceImp;
 import com.grupo3.Caso1.Service.Posgrest.ordenReparacion.ordenRepCuerpoService;
@@ -71,4 +72,12 @@ public class ordenRepacCuerpoController {
     public Map<String, Object> cambiarEstadoOrden(@PathVariable(name = "id") Long id, @RequestBody String estado) {
         return ordenRepaCuerpoServiceImp2.cambiarEstadoOrdenById(id, estado);
     }
+    
+   
+	//LISTAR POR ESTADO LOS ORDENES 
+	@GetMapping("est/{estado}")
+	private ResponseEntity<List<ordenRepCuerpo>> getAllSoliGarTrue(@PathVariable("estado") String estado){
+		return ResponseEntity.ok(ordenRepaCuerpoServiceImp2.findAllByEstado(estado));
+	}
+
 }
