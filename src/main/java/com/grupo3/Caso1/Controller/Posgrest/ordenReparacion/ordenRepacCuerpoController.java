@@ -1,7 +1,10 @@
 package com.grupo3.Caso1.Controller.Posgrest.ordenReparacion;
 
+import com.grupo3.Caso1.Dao.Posgrest.ordenReparacion.detallerepuestosServiceImp;
+import com.grupo3.Caso1.Model.ordenReparacion.DetalleRepuestos;
 import com.grupo3.Caso1.Model.ordenReparacion.ordenRepCavecera;
 import com.grupo3.Caso1.Model.ordenReparacion.ordenRepCuerpo;
+import com.grupo3.Caso1.Service.Posgrest.ServiceImp.OrdenReparacion.detalle_repuestoServiceIMP;
 import com.grupo3.Caso1.Service.Posgrest.ServiceImp.OrdenReparacion.ordenRepaCuerpoServiceImp;
 import com.grupo3.Caso1.Service.Posgrest.ordenReparacion.ordenRepCuerpoService;
 import com.grupo3.Caso1.Service.Posgrest.ordenReparacion.ordenRepaCaveceraService;
@@ -22,10 +25,18 @@ import java.util.Map;
 public class ordenRepacCuerpoController {
     @Autowired
     public ordenRepCuerpoService ordenRepCuerpoService;
+
     @Autowired
     public ordenRepaCuerpoServiceImp ordenRepaCuerpoServiceImp2;
+
     @Autowired
     private ordenRepaCaveceraService ordenRepaCaveceraService;
+
+    // @Autowired
+    // private detallerepuestosServiceImp detallerepuestosServiceImp;
+
+    @Autowired
+    private detalle_repuestoServiceIMP detalle_repuestoServiceIMP;
 
     @GetMapping(value = "/getall")
     public List<ordenRepCuerpo> getAll() {
@@ -86,7 +97,9 @@ public class ordenRepacCuerpoController {
 
     @RequestMapping(value = "/updatestadorep/{id}", method = RequestMethod.PUT)
     public ResponseEntity<?> updateEstadoRep(@PathVariable(name = "id") Long id) {
-        ordenRepaCuerpoServiceImp2.ordenEstadoUpdate(id);
+        // detallerepuestosServiceImp.updateordenrepuesto(id);
+        // ordenRepaCuerpoServiceImp2.ordenEstadoUpdate(id);
+        detalle_repuestoServiceIMP.updateidestado(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

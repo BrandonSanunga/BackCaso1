@@ -16,6 +16,6 @@ public interface ordenRepCuerpoRepo extends JpaRepository<ordenRepCuerpo, Long> 
 
     @Transactional
     @Modifying
-    @Query("UPDATE ordenRepCuerpo set estadoOrden='APROBADO' WHERE idordenCuerpo=:id")
+    @Query("UPDATE ordenRepCuerpo set estado='APROBADO' WHERE idordenCuerpo=:id")
     public void updateordenrepuesto(@Param("id") Long id);
 }

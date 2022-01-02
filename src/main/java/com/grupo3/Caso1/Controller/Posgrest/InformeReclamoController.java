@@ -51,7 +51,7 @@ public class InformeReclamoController {
 
     @PostMapping(value = "/save")
     public ResponseEntity<InformeReclamo> save(@RequestBody InformeReclamo informeRechazo) {
-        username = "comercializadora787@gmail.com";
+        username = "sacomercializadora982@gmail.com";
         password = "mjCPhcmmgU2Xb2w";
         InformeReclamo obj = informeRechazoService.save(informeRechazo);
         return new ResponseEntity<InformeReclamo>(obj, HttpStatus.OK);

@@ -21,7 +21,6 @@ public class ordenRepCuerpo {
     private String estadoOrden;
 
     @OneToMany(mappedBy = "orden")
-    @JsonIgnore
     private List<DetalleRepuestos> detalleRepuestos = new ArrayList<>();
 
     public ordenRepCuerpo() {
